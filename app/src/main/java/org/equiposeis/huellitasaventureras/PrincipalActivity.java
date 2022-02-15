@@ -7,17 +7,17 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import org.equiposeis.huellitasaventureras.databinding.ActivityMainBinding;
+import org.equiposeis.huellitasaventureras.databinding.ActivityPrincipalBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class PrincipalActivity extends AppCompatActivity {
 
-private ActivityMainBinding binding;
+private ActivityPrincipalBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-     binding = ActivityMainBinding.inflate(getLayoutInflater());
+     binding = ActivityPrincipalBinding.inflate(getLayoutInflater());
      setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

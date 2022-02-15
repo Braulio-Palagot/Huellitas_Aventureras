@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="org.equiposeis.huellitasaventureras.ui.HomeFragment"
+        android:name="org.equiposeis.huellitasaventureras.ui.InicioFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_inicio" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="org.equiposeis.huellitasaventureras.ui.ProfileFragment"
+        android:name="org.equiposeis.huellitasaventureras.ui.PerfilFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_perfil" />
 </navigation>

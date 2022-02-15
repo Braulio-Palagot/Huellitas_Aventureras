@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import org.equiposeis.huellitasaventureras.databinding.FragmentProfileBinding;
+import org.equiposeis.huellitasaventureras.databinding.FragmentPerfilBinding;
 
-public class ProfileFragment extends Fragment {
+public class PerfilFragment extends Fragment {
 
-private FragmentProfileBinding binding;
+private FragmentPerfilBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-    binding = FragmentProfileBinding.inflate(inflater, container, false);
+    binding = FragmentPerfilBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
     return root;
