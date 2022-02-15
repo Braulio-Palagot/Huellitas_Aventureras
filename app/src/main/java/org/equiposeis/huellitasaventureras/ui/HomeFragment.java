@@ -8,15 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import org.equiposeis.huellitasaventureras.databinding.FragmentInicioBinding;
+import org.equiposeis.huellitasaventureras.databinding.FragmentHomeBinding;
 
-public class InicioFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-private FragmentInicioBinding binding;
+private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-    binding = FragmentInicioBinding.inflate(inflater, container, false);
+    binding = FragmentHomeBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
     return root;
