@@ -5,4 +5,23 @@
     <string name="title_profile">Perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
+
+    <string-array name="Otherrace_opc">
+        <item>Husky siberiano</item>
+        <item>Golden retriever</item>
+        <item>Caniche</item>
+        <item>Pastor alemán</item>
+        <item>Yorkshire terrier</item>
+        <item>Dálmata</item>
+        <item>Bóxer</item>
+        <item>Chihuahua</item>
+        <item>Bulldog inglés</item>
+        <item>Beagle</item>
+        <item>schnauzer</item>
+        <item>Otro</item>
+    </string-array>
+    <string name="Otherrace_name">Seleccione una raza</string>
+
 </resources>

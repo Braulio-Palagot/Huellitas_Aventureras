@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddPetFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/txtPetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/txtPetAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Edad"
+            android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/spnrRace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/Otherrace_opc"
+            android:prompt="@string/Otherrace_name"
+            android:spinnerMode="dialog" />
+
+        <EditText
+            android:id="@+id/txtOtherRace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Otra Raza"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/bttnPetRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finalizar Registro" />
+
+        <Button
+            android:id="@+id/bttnCancelPetRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancelar" />
+    </LinearLayout>
+</RelativeLayout>

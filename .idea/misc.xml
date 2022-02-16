@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/activity_login_register.xml" value="0.17074275362318841" />
+        <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/add_pet_fragment.xml" value="0.17074275362318841" />
+        <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/fragment_add_pet.xml" value="0.33" />
+        <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/fragment_register.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/layout/fragment_dashboard.xml" value="0.22854387656702024" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
