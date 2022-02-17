@@ -24,4 +24,36 @@
     </string-array>
     <string name="Otherrace_name">Seleccione una raza</string>
 
+    <!-- Inicio: Opciones de mi RequestClientFragmente spnr" -->
+    <string-array name="spnrEmployee_opc">
+        //Iteams de empleados subidos de la BD
+        <item>---</item>
+        <item>---</item>
+    </string-array>
+    <string name="spnrEmployee_name">Seleccione un Empleado</string>
+
+    <string-array name="spnrPet_opc">
+        //Iteams de mascotas subidos de la BD
+        <item>---</item>
+        <item>---</item>
+    </string-array>
+    <string name="spnrPet_name">Seleccione un Empleado</string>
+
+    <string-array name="spnrTime_opc">
+        //Iteams de mascotas subidos de la BD
+        <item>30 Mint</item>
+        <item>45 Mint</item>
+        <item>60 Mint</item>
+        <item>75 Mint</item>
+        <item>90 Mint</item>
+        <item>105 Mint</item>
+        <item>120 Mint</item>
+        <item>135 Mint</item>
+        <item>150 Mint</item>
+        <item>165 Mint</item>
+        <item>180 Mint</item>
+    </string-array>
+    <string name="spnrTime_name">Seleccione un Empleado</string>
+    <!-- Final :Opciones de mi RequestClientFragmente spnr" -->
+
 </resources>

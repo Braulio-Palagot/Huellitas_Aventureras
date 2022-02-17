@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.RideRequestClientFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Solicitud de Paseo" />
+
+        <Spinner
+            android:id="@+id/spnrEmployee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spnrEmployee_opc"
+            android:prompt="@string/spnrEmployee_name"
+            android:spinnerMode="dialog" />
+
+        <Spinner
+            android:id="@+id/spnrPet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spnrPet_opc"
+            android:prompt="@string/spnrPet_name"
+            android:spinnerMode="dialog" />
+
+        <Spinner
+            android:id="@+id/spnrTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spnrTime_opc"
+            android:prompt="@string/spnrTime_name"
+            android:spinnerMode="dialog" />
+
+        <Button
+            android:id="@+id/bttnClientRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Solicitar Paseo" />
+
+        <Button
+            android:id="@+id/bttnCancelClientRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancelar" />
+    </LinearLayout>
+</RelativeLayout>
