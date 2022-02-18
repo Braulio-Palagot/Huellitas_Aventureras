@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.PaymentFormat">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitularCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Titular de la tarjeta"
+            android:text="Titular de la tarjeta" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="36dp" />
+
+        <TextView
+            android:id="@+id/txtIntroducir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introducir"
+            android:text="Introducir" />
+
+        <TextView
+            android:id="@+id/txtCVV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CVV"
+            android:text="CVV" />
+
+        <Button
+            android:id="@+id/txtFinalizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Finalizar"
+            android:text="Finalizar" />
+    </LinearLayout>
+</FrameLayout>
