@@ -20,6 +20,6 @@ public class PaymentFormat extends Fragment {
     private String TitularCard,Introducir;
     private int CVV ;
 
-
+    //Continuar aqui
 
 }

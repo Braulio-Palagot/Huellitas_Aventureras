@@ -42,5 +42,12 @@
             android:layout_height="wrap_content"
             android:hint="Finalizar"
             android:text="Finalizar" />
+
+        <Button
+            android:id="@+id/txtELIMINAR_ESTE_BOTON"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ELIMINAR ESTE BOTON" />
+
     </LinearLayout>
 </FrameLayout>
