@@ -30,8 +30,7 @@
     </string-array>
 
     <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
-
-    <string-array name="Otherrace_opc">
+    <string-array name="races">
         <item>Husky siberiano</item>
         <item>Golden retriever</item>
         <item>Caniche</item>
@@ -45,7 +44,6 @@
         <item>schnauzer</item>
         <item>Otro</item>
     </string-array>
-    <string name="Otherrace_name">Seleccione una raza</string>
 
     <!-- Inicio: Opciones de mi RequestClientFragmente spnr" -->
     <string-array name="spnrEmployee_opc">
