@@ -1,10 +1,33 @@
 <resources>
+    <!--  Strings generales para toda la App  -->
     <string name="app_name">Huellitas Aventureras</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Inicio</string>
     <string name="title_profile">Perfil</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cancel">Cancelar</string>
+    <string name="register">Registrarse</string>
+
+    <!--  RegisterFragment  -->
+    <string name="name_hint">Nombre</string>
+    <string name="gender_hint">Género</string>
+    <string name="age_hint">Edad</string>
+    <string name="phone_hint">Teléfono</string>
+    <string name="address_hint">Dirección</string>
+    <string name="mail_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="repeat_password_hint">Repetir contraseña</string>
+    <string name="user_type_hint">Tipo de usuario</string>
+    <string name="mexico_prefix">+52</string>
+    <string name="not_loged">No se ha podido iniciar sesión.</string>
+    <string-array name="genders">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
+    <string-array name="user_types">
+        <item>Cliente</item>
+        <item>Paseador</item>
+    </string-array>
 
     <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
 
