@@ -53,33 +53,31 @@ public class AddPetFragment extends Fragment {
             petname = Objects.requireNonNull(binding.txtPetName.getText()).toString();
             petage = Integer.parseInt(Objects.requireNonNull(binding.txtPetAge.getText()).toString());
 
-            if (binding.txtRace.getText().toString().equals("Masculino")) {
+            if (binding.txtRace.getText().toString().equals("Husky siberiano")) {
                 race = 0;
-            } else if (binding.txtRace.getText().toString().equals("Husky siberiano")) {
-                race = 1;
             } else if (binding.txtRace.getText().toString().equals("Golden retrieve")) {
-                race = 2;
+                race = 1;
             } else if (binding.txtRace.getText().toString().equals("Pastor alemán")) {
-                race = 3;
+                race = 2;
             } else if (binding.txtRace.getText().toString().equals("Yorkshire terrier")) {
-                race = 4;
+                race = 3;
             } else if (binding.txtRace.getText().toString().equals("Dálmata")) {
-                race = 5;
+                race = 4;
             } else if (binding.txtRace.getText().toString().equals("Bóxer")) {
-                race = 6;
+                race = 5;
             } else if (binding.txtRace.getText().toString().equals("Chihuahua")) {
-                race = 7;
+                race = 6;
             } else if (binding.txtRace.getText().toString().equals("Bulldog inglés")) {
-                race = 8;
+                race = 7;
             } else if (binding.txtRace.getText().toString().equals("Beagle")) {
-                race = 9;
+                race = 8;
             } else if (binding.txtRace.getText().toString().equals("Schnauzer")) {
-                race = 10;
+                race = 9;
             } else {
-                race = 11;
+                race = 10;
             }
 
-            if (!petname.isEmpty() && race!=11) {
+            if (!petname.isEmpty() && race!=10) {
                     //Mandar datos a la base de datos.
                     requireActivity().onBackPressed();
                 } else {
