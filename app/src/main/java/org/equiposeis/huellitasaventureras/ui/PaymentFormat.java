@@ -20,6 +20,19 @@ public class PaymentFormat extends Fragment {
     private String TitularCard,Introducir;
     private int CVV ;
 
-    //Continuar aqui
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+        binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        binding.bttnFinalizar.setOnClickListener(v -> {
+            TitularCard = binding.txtTitularCard.getText().toString();
+            Introducir = binding.txtIntroducir.getText().toString();
+
+            CVV = Integer.parseInt(binding.txtCVV.getText().toString());
+        });
+        return root;
+    }
 
 }
