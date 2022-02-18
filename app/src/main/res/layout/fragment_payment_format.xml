@@ -38,6 +38,13 @@
             android:text="CVV" />
 
         <Button
+            android:id="@+id/txtCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cancelar"
+            android:text="Cancelar" />
+
+        <Button
             android:id="@+id/bttnFinalizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

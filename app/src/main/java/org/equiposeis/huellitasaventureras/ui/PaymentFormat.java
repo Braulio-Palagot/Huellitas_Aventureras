@@ -33,6 +33,9 @@ public class PaymentFormat extends Fragment {
             CVV = Integer.parseInt(binding.txtCVV.getText().toString());
         });
         return root;
+
+
+
     }
 
 }
