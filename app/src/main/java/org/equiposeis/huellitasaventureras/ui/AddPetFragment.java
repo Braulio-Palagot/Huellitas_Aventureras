@@ -9,57 +9,88 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.databinding.FragmentAddPetBinding;
 import org.equiposeis.huellitasaventureras.databinding.FragmentRegisterBinding;
 
+import java.util.Objects;
+
 public class AddPetFragment extends Fragment {
 
     private FragmentAddPetBinding binding;
     private String petname;
     private int race,otherrace, petage;
+    private final String[] races = getResources().getStringArray(R.array.races);
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAddPetBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        binding.txtRace.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, races));
+
         binding.txtOtherRace.setVisibility(View.GONE);
 
-        //Inicio del Listen Spinner
-       binding.spnrRace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               //Condición del evento
-             if(binding.spnrRace.getSelectedItemPosition()==12)
-              binding.txtOtherRace.setVisibility(View.VISIBLE);
-           }
-           @Override
-           public void onNothingSelected(AdapterView<?> adapterView) {
+        //Listener para el cambio de visibilidad de txtOtherrace en condición de selección Otos
+        binding.txtRace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(binding.txtRace.getText().toString().equals("Otros")) {
+                    binding.txtOtherRace.setVisibility(View.VISIBLE);
+                } else { }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
 
-           }
-       });
-        //Fin del Listen Spinner
-
+        });
         binding.bttnPetRegister.setOnClickListener(v -> {
-            petname = binding.txtPetName.getText().toString();
-            petage = Integer.parseInt(binding.txtPetAge.getText().toString());
-            race = binding.spnrRace.getSelectedItemPosition();
-            otherrace = Integer.parseInt(binding.txtOtherRace.getText().toString());
 
+            petname = Objects.requireNonNull(binding.txtPetName.getText()).toString();
+            petage = Integer.parseInt(Objects.requireNonNull(binding.txtPetAge.getText()).toString());
 
-            //Mandar datos a la base de datos.
+            if (binding.txtRace.getText().toString().equals("Husky siberiano")) {
+                race = 0;
+            } else if (binding.txtRace.getText().toString().equals("Golden retrieve")) {
+                race = 1;
+            } else if (binding.txtRace.getText().toString().equals("Pastor alemán")) {
+                race = 2;
+            } else if (binding.txtRace.getText().toString().equals("Yorkshire terrier")) {
+                race = 3;
+            } else if (binding.txtRace.getText().toString().equals("Dálmata")) {
+                race = 4;
+            } else if (binding.txtRace.getText().toString().equals("Bóxer")) {
+                race = 5;
+            } else if (binding.txtRace.getText().toString().equals("Chihuahua")) {
+                race = 6;
+            } else if (binding.txtRace.getText().toString().equals("Bulldog inglés")) {
+                race = 7;
+            } else if (binding.txtRace.getText().toString().equals("Beagle")) {
+                race = 8;
+            } else if (binding.txtRace.getText().toString().equals("Schnauzer")) {
+                race = 9;
+            } else {
+                race = 10;
+            }
+
+            if (!petname.isEmpty() && race!=10) {
+                    //Mandar datos a la base de datos.
+                    requireActivity().onBackPressed();
+                } else {
+                    Toast.makeText(requireActivity(), R.string.not_loged, Toast.LENGTH_SHORT).show();
+                }
+
         });
 
         binding.bttnCancelPetRegister.setOnClickListener(v -> getActivity().onBackPressed(
-
                 //Regresar navegación.
-
         ));
 
-        return inflater.inflate(R.layout.fragment_add_pet, container, false);
+        return root;
     }
 
     @Override

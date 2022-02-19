@@ -30,8 +30,7 @@
     </string-array>
 
     <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
-
-    <string-array name="Otherrace_opc">
+    <string-array name="races">
         <item>Husky siberiano</item>
         <item>Golden retriever</item>
         <item>Caniche</item>
@@ -45,24 +44,21 @@
         <item>schnauzer</item>
         <item>Otro</item>
     </string-array>
-    <string name="Otherrace_name">Seleccione una raza</string>
 
     <!-- Inicio: Opciones de mi RequestClientFragmente spnr" -->
-    <string-array name="spnrEmployee_opc">
+    <string-array name="Employees">
         //Iteams de empleados subidos de la BD
         <item>---</item>
         <item>---</item>
     </string-array>
-    <string name="spnrEmployee_name">Seleccione un Empleado</string>
 
-    <string-array name="spnrPet_opc">
+    <string-array name="Pets">
         //Iteams de mascotas subidos de la BD
         <item>---</item>
         <item>---</item>
     </string-array>
-    <string name="spnrPet_name">Seleccione un Empleado</string>
 
-    <string-array name="spnrTime_opc">
+    <string-array name="Times">
         //Iteams de mascotas subidos de la BD
         <item>30 Mint</item>
         <item>45 Mint</item>
@@ -76,7 +72,6 @@
         <item>165 Mint</item>
         <item>180 Mint</item>
     </string-array>
-    <string name="spnrTime_name">Seleccione un Empleado</string>
     <!-- Final :Opciones de mi RequestClientFragmente spnr" -->
 
 </resources>

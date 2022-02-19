@@ -10,46 +10,59 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlytEmployee"
+            style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solicitud de Paseo" />
+            android:hint="Empleados Disponibles">
 
-        <Spinner
-            android:id="@+id/spnrEmployee"
+            <AutoCompleteTextView
+                android:id="@+id/txtEmployee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlytPet"
+            style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/spnrEmployee_opc"
-            android:prompt="@string/spnrEmployee_name"
-            android:spinnerMode="dialog" />
+            android:hint="Mascotas Registradas">
 
-        <Spinner
-            android:id="@+id/spnrPet"
+            <AutoCompleteTextView
+                android:id="@+id/txtPet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlyTime"
+            style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/spnrPet_opc"
-            android:prompt="@string/spnrPet_name"
-            android:spinnerMode="dialog" />
+            android:hint="Duración del Servicio">
 
-        <Spinner
-            android:id="@+id/spnrTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/spnrTime_opc"
-            android:prompt="@string/spnrTime_name"
-            android:spinnerMode="dialog" />
+            <AutoCompleteTextView
+                android:id="@+id/txtTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnClientRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Solicitar Paseo" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnCancelClientRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cancelar" />
+
     </LinearLayout>
 </RelativeLayout>
