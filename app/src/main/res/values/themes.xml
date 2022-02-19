@@ -39,4 +39,10 @@
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">20sp</item>
     </style>
+
+    <!-- Base TextLink Button style. -->
+    <style name="BaseTextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
