@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation2"
+    app:startDestination="@id/navigation_login">
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="org.equiposeis.huellitasaventureras.ui.LoginFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_notifications"
+            app:destination="@id/navigation_register" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name="org.equiposeis.huellitasaventureras.ui.RegisterFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_navigation_notifications_to_navigation_dashboard"
+            app:destination="@id/navigation_login"
+            app:popUpTo="@id/navigation_login"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

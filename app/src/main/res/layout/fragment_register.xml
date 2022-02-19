@@ -1,139 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.RegisterFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytName"
-        style="@style/BaseOutlinedTextInput"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/name_hint">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytGender"
-        style="@style/BaseDropDown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/gender_hint">
-        <AutoCompleteTextView
-            android:id="@+id/txtGender"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytAge"
-        style="@style/BaseOutlinedTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/age_hint">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtAge"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytName"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_hint">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytPhone"
-        style="@style/BaseOutlinedTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/phone_hint"
-        app:prefixText="@string/mexico_prefix">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtPhone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytAddress"
-        style="@style/BaseOutlinedTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/address_hint">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtAddress"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytGender"
+                style="@style/BaseDropDown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/gender_hint">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytMail"
-        style="@style/BaseOutlinedTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/mail_hint">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtMail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <AutoCompleteTextView
+                    android:id="@+id/txtGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytPassword"
-        style="@style/BaseOutlinedTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password_hint">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtPassword"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytAge"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/age_hint">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytRepeatPassword"
-        style="@style/BaseOutlinedTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/repeat_password_hint">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtRepeatPassword"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytUserType"
-        style="@style/BaseDropDown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/user_type_hint">
-        <AutoCompleteTextView
-            android:id="@+id/txtUserType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytPhone"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_hint"
+                app:prefixText="@string/mexico_prefix">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bttnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/register" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bttnCancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel" />
-</LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytAddress"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytMail"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mail_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytPassword"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytRepeatPassword"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/repeat_password_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtRepeatPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytUserType"
+                style="@style/BaseDropDown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/user_type_hint">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtUserType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bttnRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bttnCancel"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
