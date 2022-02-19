@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_login"
         android:name="org.equiposeis.huellitasaventureras.ui.LoginFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_navigation_dashboard_to_navigation_notifications"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/navigation_register"
         android:name="org.equiposeis.huellitasaventureras.ui.RegisterFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/register"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_navigation_notifications_to_navigation_dashboard"

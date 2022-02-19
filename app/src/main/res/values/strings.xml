@@ -6,6 +6,7 @@
     <string name="title_profile">Perfil</string>
     <string name="cancel">Cancelar</string>
     <string name="register">Registrarse</string>
+    <string name="login">Iniciar Sesión</string>
 
     <!--  RegisterFragment  -->
     <string name="name_hint">Nombre</string>
@@ -28,6 +29,12 @@
         <item>Cliente</item>
         <item>Paseador</item>
     </string-array>
+
+    <!--  LoginFragment  -->
+    <string name="keep_loged">Mantener sesión iniciada.</string>
+    <string name="or">ó</string>
+    <string name="no_mail">Debe introducir un correo</string>
+    <string name="no_password">Debe introducir una contraseña</string>
 
     <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
     <string-array name="races">

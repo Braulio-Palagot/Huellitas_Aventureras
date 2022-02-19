@@ -1,32 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginFragment">
+    android:orientation="vertical"
+    tools:context=".ui.LoginFragment"
+    android:gravity="center">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgAppImage"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytMail"
+        style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:startIconDrawable="@drawable/ic_mail"
+        android:hint="@string/mail_hint">
 
-    <Button
-        android:id="@+id/button"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtMail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytPassword"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_hint"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/chkKeepLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_dashboard" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="start"
+        android:layout_marginHorizontal="24dp"
+        android:text="@string/keep_loged" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/login" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView"
+        style="@style/BaseTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/or"
+        android:textAlignment="center" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttnRegister"
+        style="@style/BaseTextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register" />
+</LinearLayout>

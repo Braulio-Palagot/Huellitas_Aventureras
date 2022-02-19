@@ -1,5 +1,7 @@
 package org.equiposeis.huellitasaventureras;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +15,22 @@ import org.equiposeis.huellitasaventureras.databinding.ActivityAuthBinding;
 public class AuthActivity extends AppCompatActivity {
 
     private ActivityAuthBinding binding;
+    public static SharedPreferences preferences;
+    public static final String PREFS_NAME = "org.equiposeis.huellitasaventureras.sharedpreferences";
+    public static final String IS_LOGGED = "IS_LOGGED";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        if (preferences.getBoolean(IS_LOGGED, false)) {
+            startActivity(new Intent(this, MainActivity.class));
+            this.finish();
+        }
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
