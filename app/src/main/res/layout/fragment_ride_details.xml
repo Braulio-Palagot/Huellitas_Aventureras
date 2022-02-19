@@ -57,7 +57,60 @@
             android:id="@+id/txtPetName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytPetAge"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edad">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPetAge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytRace"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Raza">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRace"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytTime"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Duracion de paseo">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtTime"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aceptar" />
+
+    <Button
+        android:id="@+id/rechazar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rechazar" />
+
 
 </LinearLayout>
