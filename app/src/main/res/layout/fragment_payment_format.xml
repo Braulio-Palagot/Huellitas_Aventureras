@@ -1,55 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.PaymentFormat">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/txtTitularCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Titular de la tarjeta"
+        android:inputType="textPersonName" />
 
-        <TextView
-            android:id="@+id/txtTitularCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Titular de la tarjeta"
-            android:text="Titular de la tarjeta" />
+    <Spinner
+        android:id="@+id/spnrCardDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <Spinner
-            android:id="@+id/spnnrCardDetails"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+    <EditText
+        android:id="@+id/txtIntroducir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Introducir"
+        android:inputType="textLongMessage" />
 
-        <TextView
-            android:id="@+id/txtIntroducir"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Introducir"
-            android:text="Introducir" />
-
-        <TextView
-            android:id="@+id/txtCVV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="CVV"
-            android:text="CVV" />
+    <EditText
+        android:id="@+id/txtCVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="CVV"
+        android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/txtCancelar"
+            android:id="@+id/bttnCancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cancelar"
             android:text="Cancelar" />
 
         <Button
             android:id="@+id/bttnFinalizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Finalizar"
             android:text="Finalizar" />
 
     </LinearLayout>
-</FrameLayout>

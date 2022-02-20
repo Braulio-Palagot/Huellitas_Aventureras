@@ -35,7 +35,6 @@ public class PaymentFormat extends Fragment {
         return root;
 
 
-
     }
 
 }
