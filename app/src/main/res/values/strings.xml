@@ -9,6 +9,7 @@
     <string name="register">Registrarse</string>
     <string name="login">Iniciar Sesión</string>
     <string name="payment_method">Método de %1$s</string>
+    <string name="select_media_app">Selecciona su galería</string>
 
     <!--  RegisterFragment  -->
     <string name="name_hint">Nombre</string>

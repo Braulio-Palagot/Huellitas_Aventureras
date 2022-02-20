@@ -12,6 +12,7 @@ import org.equiposeis.huellitasaventureras.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
 private ActivityMainBinding binding;
+public static int IMAGE_REQUEST_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,9 +1,17 @@
 package org.equiposeis.huellitasaventureras.ui;
 
+import static android.app.Activity.RESULT_OK;
+import static org.equiposeis.huellitasaventureras.MainActivity.IMAGE_REQUEST_CODE;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +45,8 @@ public class EditProfileFragment extends Fragment {
         binding.txtUserType.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, user_types));
 
         binding.bttnEditPhoto.setOnClickListener(v -> {
-            // Se realiza la selección de foto desde el celular (Pendiente):
+            // Se realiza la selección de foto desde el celular:
+            loadImage();
         });
 
         binding.bttnFinish.setOnClickListener(v -> {
@@ -94,6 +103,26 @@ public class EditProfileFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void loadImage() {
+        Intent galery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        galery.setType("image/");
+        startActivityForResult(galery.createChooser(galery, getResources().getString(R.string.select_media_app)), IMAGE_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK) {
+            Uri path = null;
+            try {
+                path = data.getData();
+            } catch (Exception e) {
+                Log.e("Error", String.valueOf(e));
+            }
+            binding.imgUserPhoto.setImageURI(path);
+        }
     }
 
     @Override
