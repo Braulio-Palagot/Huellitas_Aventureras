@@ -5,8 +5,10 @@
     <string name="title_home">Inicio</string>
     <string name="title_profile">Perfil</string>
     <string name="cancel">Cancelar</string>
+    <string name="finish">Finalizar</string>
     <string name="register">Registrarse</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="payment_method">Método de %1$s</string>
 
     <!--  RegisterFragment  -->
     <string name="name_hint">Nombre</string>

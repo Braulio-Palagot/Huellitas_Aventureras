@@ -1,22 +1,20 @@
 package org.equiposeis.huellitasaventureras.ui;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import org.equiposeis.huellitasaventureras.R;
-import org.equiposeis.huellitasaventureras.databinding.FragmentRegisterBinding;
+import org.equiposeis.huellitasaventureras.databinding.FragmentEditProfileBinding;
 
-public class RegisterFragment extends Fragment {
+public class EditProfileFragment extends Fragment {
 
-    private FragmentRegisterBinding binding;
+    private FragmentEditProfileBinding binding;
     // Creación de variables para mandar a la BD:
     private String name = "", addres = "", mail = "", passOne = "", passTwo = "";
     private int gender = 0, age = 0, phone = 0, userType = 0;
@@ -24,9 +22,12 @@ public class RegisterFragment extends Fragment {
     private String[] genders = null;
     private String[] user_types = null;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) { binding = FragmentRegisterBinding.inflate(inflater, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentEditProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         // Se cargan los elementos de los arrays. Si hay que bajar de la BD, se hace aquí:
         genders = getResources().getStringArray(R.array.genders);
         user_types = getResources().getStringArray(R.array.user_types);
@@ -35,8 +36,11 @@ public class RegisterFragment extends Fragment {
         binding.txtGender.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, genders));
         binding.txtUserType.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, user_types));
 
-        // Se crea el click listener para registrarse:
-        binding.bttnRegister.setOnClickListener(v -> {
+        binding.bttnEditPhoto.setOnClickListener(v -> {
+            // Se realiza la selección de foto desde el celular (Pendiente):
+        });
+
+        binding.bttnFinish.setOnClickListener(v -> {
             // Se toman los valores string de los campos de texto, confirmando que no sean nulos:
             if (!binding.txtName.getText().toString().isEmpty()) {
                 name = binding.txtName.getText().toString();
@@ -79,29 +83,22 @@ public class RegisterFragment extends Fragment {
                     userType = 1;
                 }
             }
-
-            // Se confirma que el correo no esté vacío y que las contraseñas coincidan para
-            // realizar el registro:
-            if (!mail.isEmpty()) {
-                if (passOne.equals(passTwo)) {
-                    //Mandar datos a la base de datos.
-                    NavHostFragment.findNavController(this).navigate(R.id.action_navigation_notifications_to_navigation_dashboard, null);
-                } else {
-                    Toast.makeText(requireActivity(), R.string.not_loged, Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(requireActivity(), R.string.not_loged, Toast.LENGTH_SHORT).show();
-            }
         });
 
-        binding.bttnCancel.setOnClickListener(v -> NavHostFragment.findNavController(this).navigate(R.id.action_navigation_notifications_to_navigation_dashboard, null));
+        binding.bttnPaymentMethod.setOnClickListener(v -> {
+            // Navegación al PaymentFormatFragment:
+        });
+
+        binding.bttnCancel.setOnClickListener(v -> {
+            requireActivity().onBackPressed();
+        });
 
         return root;
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
+        super.onDestroy();
         binding = null;
     }
 }
