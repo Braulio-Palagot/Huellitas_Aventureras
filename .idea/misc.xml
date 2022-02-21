@@ -8,21 +8,11 @@
         <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/add_pet_fragment.xml" value="0.17074275362318841" />
         <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/fragment_add_pet.xml" value="0.33" />
         <entry key="..\:/Natsume UwU/Universidad/6 SEMESTRE/2.- Ingeneria De Software/Unidad 3/Huellitas_Aventureras/app/src/main/res/layout/fragment_register.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/drawable/ic_home.xml" value="0.1995" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/drawable/ic_lock.xml" value="0.135" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/drawable/ic_mail.xml" value="0.135" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/drawable/ic_profile.xml" value="0.1995" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/layout/activity_auth.xml" value="0.19010416666666666" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/layout/fragment_add_pet.xml" value="0.20102564102564102" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/layout/fragment_dashboard.xml" value="0.20102564102564102" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/layout/fragment_login.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/layout/fragment_notifications.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/layout/fragment_register.xml" value="0.2261904761904762" />
-        <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/ClonedRepo_HuellitasAventureras/Huellitas_Aventureras/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/layout/fragment_dashboard.xml" value="0.22854387656702024" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/83083/Documents/Braulio/ITO/6_Semestre/02_IngenieriaSoftware(6g6D)/HuellitasAventureras/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/activity_auth.xml" value="0.1" />
         <entry key="..\:/Users/claux/AndroidStudioProjects/Huellitas_Aventureras/app/src/main/res/layout/activity_login_register.xml" value="0.19692307692307692" />
         <entry key="..\:/Users/claux/AndroidStudioProjects/Huellitas_Aventureras/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/claux/AndroidStudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_add_pet.xml" value="0.2" />
@@ -33,11 +23,14 @@
         <entry key="..\:/Users/claux/AndroidStudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_ride_details.xml" value="0.25" />
         <entry key="..\:/Users/claux/AndroidStudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_ride_request_client.xml" value="0.33" />
         <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/activity_login_register.xml" value="0.33" />
-        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_add_pet.xml" value="0.25" />
+        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/activity_main.xml" value="0.13541666666666666" />
+        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_add_pet.xml" value="0.1" />
         <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_home.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_payment_format.xml" value="0.33" />
-        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_profile.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_payment_format.xml" value="0.25" />
+        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_ride_details.xml" value="0.22" />
+        <entry key="..\:/Users/jocel/StudioProjects/Huellitas_Aventureras/app/src/main/res/layout/fragment_ride_request_client.xml" value="0.25" />
       </map>
     </option>
   </component>
