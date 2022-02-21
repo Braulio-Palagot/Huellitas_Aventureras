@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.RideDetailsFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtViewUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/client_title"
+        style="@style/BaseTextView"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytName"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_hint">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytAddress"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/address_hint">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtViewPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pet_title"
+        style="@style/BaseTextView"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytPetName"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_hint">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPetName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytPetAge"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/age_hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPetAge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytRace"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/race_hint">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRace"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlytTime"
+        style="@style/BaseOutlinedTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/time_hint">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtTime"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/bttnAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/accept" />
+
+    <Button
+        android:id="@+id/bttnReject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reject" />
+
+
+</LinearLayout>
