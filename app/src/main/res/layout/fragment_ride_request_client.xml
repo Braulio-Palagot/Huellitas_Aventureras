@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RideRequestClientFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    tools:context=".ui.RideRequestClientFragment"
+    android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtlytEmployee"
             style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Empleados Disponibles">
+            android:hint="@string/walker_hint">
 
             <AutoCompleteTextView
                 android:id="@+id/txtEmployee"
@@ -29,7 +25,7 @@
             style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mascotas Registradas">
+            android:hint="@string/pets_hint">
 
             <AutoCompleteTextView
                 android:id="@+id/txtPet"
@@ -39,11 +35,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtlyTime"
+            android:id="@+id/txtlytTime"
             style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Duración del Servicio">
+            android:hint="@string/time_select_hint">
 
             <AutoCompleteTextView
                 android:id="@+id/txtTime"
@@ -56,13 +52,11 @@
             android:id="@+id/bttnClientRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solicitar Paseo" />
+            android:text="@string/request_ride" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnCancelClientRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancelar" />
-
-    </LinearLayout>
-</RelativeLayout>
+            android:text="@string/cancel" />
+</androidx.appcompat.widget.LinearLayoutCompat>
