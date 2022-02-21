@@ -5,10 +5,13 @@
     <string name="title_home">Inicio</string>
     <string name="title_profile">Perfil</string>
     <string name="cancel">Cancelar</string>
+    <string name="finish">Finalizar</string>
     <string name="register">Registrarse</string>
     <string name="login">Iniciar Sesión</string>
     <string name="accept">Aceptar</string>
     <string name="reject">Rechazar</string>
+    <string name="payment_method">Método de %1$s</string>
+    <string name="select_media_app">Selecciona su galería</string>
 
     <!--  RegisterFragment  -->
     <string name="name_hint">Nombre</string>
