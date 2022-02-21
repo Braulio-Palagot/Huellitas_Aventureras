@@ -19,6 +19,15 @@ private FragmentHomeBinding binding;
     binding = FragmentHomeBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
+        //Condición en base si es Cliente o usuario se no seran visibles algunos campos
+
+        //Bttn para solicitar Paseo
+        binding.bttnQuestRide.setOnClickListener(v -> getActivity().onBackPressed(
+                //Navegación hacia solicitar paseo.
+        ));
+
+        //Registros de solicitudes en curso y aceptados de la BD de forma tabular
+
     return root;
     }
 
