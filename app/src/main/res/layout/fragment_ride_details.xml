@@ -8,11 +8,11 @@
     tools:context=".ui.RideDetailsFragment">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewUser"
+        android:id="@+id/txtViewUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cliente" />
-
+        android:text="@string/client_title"
+        style="@style/BaseTextView"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtlytName"
@@ -42,10 +42,11 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewPet"
+        android:id="@+id/txtViewPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mascota" />
+        android:text="@string/pet_title"
+        style="@style/BaseTextView"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtlytPetName"
@@ -65,7 +66,7 @@
         style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edad">
+        android:hint="@string/age_hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPetAge"
@@ -79,7 +80,7 @@
         style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Raza">
+        android:hint="@string/race_hint">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtRace"
             android:layout_width="match_parent"
@@ -92,7 +93,7 @@
         style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Duracion de paseo">
+        android:hint="@string/time_hint">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtTime"
             android:layout_width="match_parent"
@@ -101,16 +102,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/accept"
+        android:id="@+id/bttnAccept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aceptar" />
+        android:text="@string/accept" />
 
     <Button
-        android:id="@+id/rechazar"
+        android:id="@+id/bttnReject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rechazar" />
+        android:text="@string/reject" />
 
 
 </LinearLayout>
