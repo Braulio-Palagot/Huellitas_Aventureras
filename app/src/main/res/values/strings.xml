@@ -1,14 +1,61 @@
 <resources>
+    <!--  Strings generales para toda la App  -->
     <string name="app_name">Huellitas Aventureras</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Inicio</string>
     <string name="title_profile">Perfil</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cancel">Cancelar</string>
+    <string name="finish">Finalizar</string>
+    <string name="register">Registrarse</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="accept">Aceptar</string>
+    <string name="reject">Rechazar</string>
+    <string name="payment_method">Método de %1$s</string>
+    <string name="select_media_app">Selecciona su galería</string>
+
+    <!--  RegisterFragment  -->
+    <string name="name_hint">Nombre</string>
+    <string name="gender_hint">Género</string>
+    <string name="age_hint">Edad</string>
+    <string name="phone_hint">Teléfono</string>
+    <string name="address_hint">Dirección</string>
+    <string name="mail_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="repeat_password_hint">Repetir contraseña</string>
+    <string name="user_type_hint">Tipo de usuario</string>
+    <string name="mexico_prefix">+52</string>
+    <string name="not_loged">No se ha podido iniciar sesión.</string>
+    <string-array name="genders">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
+    <string-array name="user_types">
+        <item>Cliente</item>
+        <item>Paseador</item>
+    </string-array>
+
+    <!--  LoginFragment  -->
+    <string name="keep_loged">Mantener sesión iniciada.</string>
+    <string name="or">ó</string>
+    <string name="no_mail">Debe introducir un correo</string>
+    <string name="no_password">Debe introducir una contraseña</string>
+
+    <!-- ProfileFragment -->
+    <string name="pets_title">Tus mascotas</string>
+    <string name="rides_title">Paseos completados</string>
+    <string name="add_pet">Agregar mascota</string>
+
+    <!--RideDetailsFragment-->
+
+    <string name="client_title">Cliente</string>
+    <string name="pet_title">Mascota</string>
+    <string name="race_hint">Raza</string>
+    <string name="time_hint">Tiempo de paseo</string>
+
 
     <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
-
-    <string-array name="Otherrace_opc">
+    <string-array name="races">
         <item>Husky siberiano</item>
         <item>Golden retriever</item>
         <item>Caniche</item>
@@ -22,24 +69,21 @@
         <item>schnauzer</item>
         <item>Otro</item>
     </string-array>
-    <string name="Otherrace_name">Seleccione una raza</string>
 
     <!-- Inicio: Opciones de mi RequestClientFragmente spnr" -->
-    <string-array name="spnrEmployee_opc">
+    <string-array name="Employees">
         //Iteams de empleados subidos de la BD
         <item>---</item>
         <item>---</item>
     </string-array>
-    <string name="spnrEmployee_name">Seleccione un Empleado</string>
 
-    <string-array name="spnrPet_opc">
+    <string-array name="Pets">
         //Iteams de mascotas subidos de la BD
         <item>---</item>
         <item>---</item>
     </string-array>
-    <string name="spnrPet_name">Seleccione un Empleado</string>
 
-    <string-array name="spnrTime_opc">
+    <string-array name="Times">
         //Iteams de mascotas subidos de la BD
         <item>30 Mint</item>
         <item>45 Mint</item>
@@ -54,6 +98,12 @@
         <item>180 Mint</item>
     </string-array>
     <string name="spnrTime_name">Seleccione un Empleado</string>
+    <string name="title_activity_auth">AuthActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
     <!-- Final :Opciones de mi RequestClientFragmente spnr" -->
+
+
+
 
 </resources>
