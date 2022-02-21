@@ -47,14 +47,12 @@
     <string name="add_pet">Agregar mascota</string>
 
     <!--RideDetailsFragment-->
-
     <string name="client_title">Cliente</string>
     <string name="pet_title">Mascota</string>
     <string name="race_hint">Raza</string>
     <string name="time_hint">Tiempo de paseo</string>
 
-
-    <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
+    <!-- AddPetFragment -->
     <string-array name="races">
         <item>Husky siberiano</item>
         <item>Golden retriever</item>
@@ -69,22 +67,22 @@
         <item>schnauzer</item>
         <item>Otro</item>
     </string-array>
+    <string name="other_race">Otra raza</string>
 
-    <!-- Inicio: Opciones de mi RequestClientFragmente spnr" -->
+    <!-- RideRequestClientFragment -->
+    <string name="walker_hint">Seleccione un paseador</string>
+    <string name="pets_hint">Seleccione una mascota</string>
+    <string name="time_select_hint">Seleccione la duración del paseo</string>
+    <string name="request_ride">Solicitar paseo</string>
     <string-array name="Employees">
-        //Iteams de empleados subidos de la BD
         <item>---</item>
         <item>---</item>
     </string-array>
-
     <string-array name="Pets">
-        //Iteams de mascotas subidos de la BD
         <item>---</item>
         <item>---</item>
     </string-array>
-
     <string-array name="Times">
-        //Iteams de mascotas subidos de la BD
         <item>30 Mint</item>
         <item>45 Mint</item>
         <item>60 Mint</item>
@@ -97,14 +95,16 @@
         <item>165 Mint</item>
         <item>180 Mint</item>
     </string-array>
-    <string name="spnrTime_name">Seleccione un Empleado</string>
-    <!-- Final :Opciones de mi RequestClientFragmente spnr" -->
   
-    <!-- Opciones spinner formas de pago de payment fragment -->
+    <!-- PaymentFormatFragment -->
+    <string name="card_owner_hint">Titular de la cuenta</string>
+    <string name="bank_acount_identifier_hint">Identificador de la cuenta</string>
+    <string name="identifier_hint">Introducir %1$s</string>
+    <string name="cvv_hint">CVV</string>
     <string-array name="CardDetails">
         <item>CLABE</item>
-        <item>Numero de tarjeta</item>
-        <item>Numero de cuenta</item>
+        <item>Número de tarjeta</item>
+        <item>Número de cuenta</item>
     </string-array>
 
 </resources>

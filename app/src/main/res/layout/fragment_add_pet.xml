@@ -29,7 +29,7 @@
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Edad">
+            android:hint="@string/age_hint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPetAge"
@@ -43,7 +43,7 @@
             style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Raza">
+            android:hint="@string/race_hint">
 
             <AutoCompleteTextView
                 android:id="@+id/txtRace"
@@ -57,7 +57,7 @@
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Otra Raza">
+            android:hint="@string/other_race">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtOtherRace"
@@ -70,13 +70,13 @@
             android:id="@+id/bttnPetRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Finalizar" />
+            android:text="@string/finish" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnCancelPetRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancelar" />
+            android:text="@string/cancel" />
 
     </LinearLayout>
 </RelativeLayout>
