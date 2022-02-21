@@ -8,6 +8,8 @@
     <string name="finish">Finalizar</string>
     <string name="register">Registrarse</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="accept">Aceptar</string>
+    <string name="reject">Rechazar</string>
     <string name="payment_method">Método de %1$s</string>
     <string name="select_media_app">Selecciona su galería</string>
 
@@ -38,6 +40,19 @@
     <string name="or">ó</string>
     <string name="no_mail">Debe introducir un correo</string>
     <string name="no_password">Debe introducir una contraseña</string>
+
+    <!-- ProfileFragment -->
+    <string name="pets_title">Tus mascotas</string>
+    <string name="rides_title">Paseos completados</string>
+    <string name="add_pet">Agregar mascota</string>
+
+    <!--RideDetailsFragment-->
+
+    <string name="client_title">Cliente</string>
+    <string name="pet_title">Mascota</string>
+    <string name="race_hint">Raza</string>
+    <string name="time_hint">Tiempo de paseo</string>
+
 
     <!-- Opciones de mi Registro de mascota "Spinner Otras razas" -->
     <string-array name="races">
@@ -83,11 +98,8 @@
         <item>180 Mint</item>
     </string-array>
     <string name="spnrTime_name">Seleccione un Empleado</string>
-    <string name="title_activity_auth">AuthActivity</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <!-- Final :Opciones de mi RequestClientFragmente spnr" -->
-
+  
     <!-- Opciones spinner formas de pago de payment fragment -->
     <string-array name="CardDetails">
         <item>CLABE</item>
