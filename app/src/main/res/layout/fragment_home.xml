@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment" >
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,16 +18,28 @@
             android:text="Solicitar Paseo" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewRideInProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Paseos en Curso" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclrRideInProgress"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textViewRideInRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paseos en Solicitados" />
+            android:text="Paseos en Solicitud" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclrRideInRequest"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+
+
 
 
     </LinearLayout>

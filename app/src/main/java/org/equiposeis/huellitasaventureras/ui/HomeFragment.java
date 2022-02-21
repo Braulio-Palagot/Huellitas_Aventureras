@@ -13,20 +13,28 @@ import org.equiposeis.huellitasaventureras.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
 private FragmentHomeBinding binding;
+private int user =0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
     binding = FragmentHomeBinding.inflate(inflater, container, false);
     View root = binding.getRoot();
 
-        //Condición en base si es Cliente o usuario se no seran visibles algunos campos
+        //Tomar los datos de la BD
 
-        //Bttn para solicitar Paseo
+        if (user==0){//ocultaer datos empleado
+                  //Ocultar los recyclerview
+
+        } else { //ocultar datos de cliente
+            binding.bttnQuestRide.setVisibility(View.GONE);
+                //Publicidad e imagenes
+        }
+
         binding.bttnQuestRide.setOnClickListener(v -> getActivity().onBackPressed(
-                //Navegación hacia solicitar paseo.
+                //Navegación hacia el Fragment Solicitar paseo.
         ));
 
-        //Registros de solicitudes en curso y aceptados de la BD de forma tabular
+
 
     return root;
     }
