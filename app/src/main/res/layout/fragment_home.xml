@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    tools:context=".ui.HomeFragment"
+    android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnQuestRide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solicitar Paseo" />
+            android:text="@string/request_ride" />
 
         <TextView
             android:id="@+id/textViewRideInProgress"
+            style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paseos en Curso" />
+            android:text="@string/ongoing_rides_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRideInProgress"
@@ -30,19 +26,13 @@
 
         <TextView
             android:id="@+id/textViewRideInRequest"
+            style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paseos en Solicitud" />
+            android:text="@string/pending_rides_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRideInRequest"
             android:layout_width="match_parent"
             android:layout_height="120dp" />
-
-
-
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

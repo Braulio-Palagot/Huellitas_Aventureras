@@ -107,4 +107,8 @@
         <item>Número de cuenta</item>
     </string-array>
 
+    <!--  HomeFragment  -->
+    <string name="ongoing_rides_title">Paseos en curso</string>
+    <string name="pending_rides_title">Paseos en solicitud</string>
+
 </resources>
