@@ -98,12 +98,13 @@
         <item>180 Mint</item>
     </string-array>
     <string name="spnrTime_name">Seleccione un Empleado</string>
-    <string name="title_activity_auth">AuthActivity</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <!-- Final :Opciones de mi RequestClientFragmente spnr" -->
-
-
-
+  
+    <!-- Opciones spinner formas de pago de payment fragment -->
+    <string-array name="CardDetails">
+        <item>CLABE</item>
+        <item>Numero de tarjeta</item>
+        <item>Numero de cuenta</item>
+    </string-array>
 
 </resources>

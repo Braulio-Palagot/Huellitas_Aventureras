@@ -6,43 +6,70 @@
     android:orientation="vertical"
     tools:context=".ui.PaymentFormat">
 
-    <EditText
-        android:id="@+id/txtTitularCard"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTitularCard"
+            style="@style/BaseOutlinedTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Titular de la tarjeta">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@id/txtTitularCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtCardDetails"
+        style="@style/BaseDropDown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Titular de la tarjeta"
-        android:inputType="textPersonName" />
+        android:hint="Tipo de dato a ingresar">
 
-    <Spinner
-        android:id="@+id/spnrCardDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <AutoCompleteTextView
+            android:id="@id/txtCardDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/txtIntroducir"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Introducir"
-        android:inputType="textLongMessage" />
 
-    <EditText
-        android:id="@+id/txtCVV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="CVV"
-        android:inputType="textPassword" />
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtIntroduce"
+            style="@style/BaseOutlinedTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introducir tipo de dato">
 
-        <Button
-            android:id="@+id/bttnCancelar"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@id/txtIntroduce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtCVV"
+            style="@style/BaseOutlinedTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CVV" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@id/txtCVV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttnCancelPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cancelar" />
 
-        <Button
-            android:id="@+id/bttnFinalizar"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttnEndPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Finalizar" />
