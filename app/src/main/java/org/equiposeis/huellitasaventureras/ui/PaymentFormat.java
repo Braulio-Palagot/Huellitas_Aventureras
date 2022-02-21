@@ -52,11 +52,9 @@ public class PaymentFormat extends Fragment {
         binding.bttnCancelPayment.setOnClickListener(v -> getActivity().onBackPressed(
 
                 //Regresar a la navegación.
-
         ));
 
         return root;
-
     }
 
     @Override
