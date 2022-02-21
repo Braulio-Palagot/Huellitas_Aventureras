@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,46 +10,73 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtTitularCard"
+            style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Titular de la tarjeta"
-            android:text="Titular de la tarjeta" />
+            android:hint="Titular de la tarjeta">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@id/txtTitularCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spnnrCardDetails"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtCardDetails"
+        style="@style/BaseDropDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tipo de dato a ingresar">
 
-        <TextView
-            android:id="@+id/txtIntroducir"
+        <AutoCompleteTextView
+            android:id="@id/txtCardDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Introducir"
-            android:text="Introducir" />
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtIntroduce"
+            style="@style/BaseOutlinedTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introducir tipo de dato">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@id/txtIntroduce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtCVV"
+            style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="CVV"
-            android:text="CVV" />
+            android:hint="CVV" >
 
-        <Button
-            android:id="@+id/txtCancelar"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@id/txtCVV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttnCancelPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cancelar"
             android:text="Cancelar" />
 
-        <Button
-            android:id="@+id/bttnFinalizar"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttnEndPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Finalizar"
             android:text="Finalizar" />
 
     </LinearLayout>
-</FrameLayout>
+</RelativeLayout>
