@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".ui.ProfileFragment" >
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgUserPhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginVertical="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtlytName"
             style="@style/BaseOutlinedTextInput"
@@ -16,6 +25,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
+                    android:enabled="false"
                     android:layout_height="match_parent"
                     android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -28,36 +38,42 @@
             android:hint="@string/address_hint">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtAddress"
+                    android:enabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewUser"
+            android:id="@+id/txtViewPet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tus mascotas"/>
-
+            android:text="@string/pets_title"
+            style="@style/BaseTextView"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclrPet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="120dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/bttnAddPet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Agregar mascota"/>
+            android:text="@string/add_pet"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewWalker"
+            android:id="@+id/txtViewWalker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paseos completados"/>
+            android:text="@string/rides_title"
+            style="@style/BaseTextView"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclrRides"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
 </LinearLayout>
