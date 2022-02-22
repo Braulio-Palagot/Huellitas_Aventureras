@@ -8,6 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
+
+import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -30,9 +33,10 @@ private int user =0;
                 //Publicidad e imagenes
         }
 
-        binding.bttnQuestRide.setOnClickListener(v -> getActivity().onBackPressed(
-                //Navegación hacia el Fragment Solicitar paseo.
-        ));
+        binding.bttnQuestRide.setOnClickListener(v ->
+                //Solicitar Paseo
+                NavHostFragment.findNavController(this).navigate(R.id.navigation_ride_request, null)
+        );
 
 
 
