@@ -40,7 +40,7 @@ if (user==0){
 
     binding.bttnAddPet.setOnClickListener( v -> {
         //Navegación hacia el fragment agregar mascota
-        NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_details_to_navigation_home, null);
+        NavHostFragment.findNavController(this).navigate(R.id.action_navigation_profile_to_navigation_add_pet, null);
     }
 );
 
