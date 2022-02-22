@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import org.equiposeis.huellitasaventureras.R;
-import org.equiposeis.huellitasaventureras.databinding.FragmentAddPetBinding;
 import org.equiposeis.huellitasaventureras.databinding.FragmentRideRequestClientBinding;
 
 public class RideRequestClientFragment extends Fragment {
@@ -71,13 +69,13 @@ public class RideRequestClientFragment extends Fragment {
 
 
             //Metodo para mandar datos a la base de datos.
-            NavHostFragment.findNavController(this).navigate(R.id. action_rideRequestClientFragment_to_navigation_home, null);
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_request_to_navigation_home, null);
 
         });
 
         binding.bttnCancelClientRequest.setOnClickListener(v ->
             //Regresar navegación.
-             NavHostFragment.findNavController(this).navigate(R.id. action_rideRequestClientFragment_to_navigation_home, null)
+             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_request_to_navigation_home, null)
                 );
 
         return inflater.inflate(R.layout.fragment_ride_request_client, container, false);
