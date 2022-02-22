@@ -38,8 +38,6 @@ private int user =0;
                 NavHostFragment.findNavController(this).navigate(R.id.action_navigation_home_to_navigation_ride_request, null)
         );
 
-
-
     return root;
     }
 
