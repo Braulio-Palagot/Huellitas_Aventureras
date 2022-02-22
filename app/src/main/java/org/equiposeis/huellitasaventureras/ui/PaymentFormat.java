@@ -3,6 +3,7 @@ package org.equiposeis.huellitasaventureras.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ public class PaymentFormat extends Fragment {
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
         binding.bttnEndPayment.setOnClickListener(v -> {
 
             TitularCard = Objects.requireNonNull(binding.txtTitularCard.getText()).toString();
@@ -47,12 +49,14 @@ public class PaymentFormat extends Fragment {
 
             //Método para mandar datos a la base.
 
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_payment_to_navigation_profile, null);
         });
 
-        binding.bttnCancelPayment.setOnClickListener(v -> getActivity().onBackPressed(
 
-                //Regresar a la navegación.
-        ));
+
+        binding.bttnCancelPayment.setOnClickListener(v ->
+
+                NavHostFragment.findNavController(this).navigate(R.id.action_navigation_payment_to_navigation_profile, null));
 
         return root;
     }
