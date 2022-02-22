@@ -3,6 +3,7 @@ package org.equiposeis.huellitasaventureras.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,8 +45,6 @@ public class RideRequestClientFragment extends Fragment {
             //Rellenado de datos de Mascotas registradas subidos en la BD
 
 
-
-
             if (binding.txtTime.getText().toString().equals("30 Mint")) {
                 RideQuestClientTime = 0;
             } else if (binding.txtTime.getText().toString().equals("45 Mint")) {
@@ -72,17 +71,14 @@ public class RideRequestClientFragment extends Fragment {
 
 
             //Metodo para mandar datos a la base de datos.
-                requireActivity().onBackPressed();
-
-
+            NavHostFragment.findNavController(this).navigate(R.id. action_rideRequestClientFragment_to_navigation_home, null);
 
         });
 
-        binding.bttnCancelClientRequest.setOnClickListener(v -> getActivity().onBackPressed(
-
-                //Regresar navegación.
-
-        ));
+        binding.bttnCancelClientRequest.setOnClickListener(v ->
+            //Regresar navegación.
+             NavHostFragment.findNavController(this).navigate(R.id. action_rideRequestClientFragment_to_navigation_home, null)
+                );
 
         return inflater.inflate(R.layout.fragment_ride_request_client, container, false);
     }
