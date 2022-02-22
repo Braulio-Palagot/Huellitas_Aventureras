@@ -3,6 +3,7 @@ package org.equiposeis.huellitasaventureras.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,12 +35,13 @@ public class RideDetailsFragment extends Fragment {
 
         binding.bttnAccept.setOnClickListener(v ->{
             //Mandar a BD la respuesta de aceptar
-            requireActivity().onBackPressed();
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_profile_to_navigation_add_pet, null);
         });
 
         binding.bttnReject.setOnClickListener(v ->{
-            //Mandar a BD la respuesta de rechazar
-            requireActivity().onBackPressed();
+            //Mandar a BD la respuesta de rechaza
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_profile_to_navigation_add_pet, null);
+
         });
 
         return root;

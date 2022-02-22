@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
+import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -37,7 +40,7 @@ if (user==0){
 
     binding.bttnAddPet.setOnClickListener( v -> {
         //Navegación hacia el fragment agregar mascota
-
+        NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_details_to_navigation_home, null);
     }
 );
 
