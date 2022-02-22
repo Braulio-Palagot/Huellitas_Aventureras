@@ -9,11 +9,83 @@
         android:id="@+id/navigation_home"
         android:name="org.equiposeis.huellitasaventureras.ui.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_ride_details"
+            app:destination="@id/navigation_ride_details" />
+        <action
+            android:id="@+id/action_navigation_home_to_rideRequestClientFragment"
+            app:destination="@id/rideRequestClientFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="org.equiposeis.huellitasaventureras.ui.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_add_pet"
+            app:destination="@id/navigation_add_pet" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_edit_profile"
+            app:destination="@id/navigation_edit_profile" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_payment"
+            app:destination="@id/navigation_payment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_pet"
+        android:name="org.equiposeis.huellitasaventureras.ui.AddPetFragment"
+        android:label="fragment_add_pet"
+        tools:layout="@layout/fragment_add_pet" >
+        <action
+            android:id="@+id/action_navigation_add_pet_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_edit_profile"
+        android:name="org.equiposeis.huellitasaventureras.ui.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_navigation_edit_profile_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_payment"
+        android:name="org.equiposeis.huellitasaventureras.ui.PaymentFormat"
+        android:label="fragment_payment_format"
+        tools:layout="@layout/fragment_payment_format" >
+        <action
+            android:id="@+id/action_navigation_payment_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_ride_details"
+        android:name="org.equiposeis.huellitasaventureras.ui.RideDetailsFragment"
+        android:label="fragment_ride_details"
+        tools:layout="@layout/fragment_ride_details" >
+        <action
+            android:id="@+id/action_navigation_ride_details_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/rideRequestClientFragment"
+        android:name="org.equiposeis.huellitasaventureras.ui.RideRequestClientFragment"
+        android:label="fragment_ride_request_client"
+        tools:layout="@layout/fragment_ride_request_client" >
+        <action
+            android:id="@+id/action_rideRequestClientFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
