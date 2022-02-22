@@ -90,7 +90,7 @@ public class AddPetFragment extends Fragment {
 
         binding.bttnCancelPetRegister.setOnClickListener(v ->
                         //Regresar navegación.
-                        NavHostFragment.findNavController(this).navigate(R.id. action_navigation_add_pet_to_navigation_profile, null)
+                        NavHostFragment.findNavController(this).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null)
                 );
 
 
