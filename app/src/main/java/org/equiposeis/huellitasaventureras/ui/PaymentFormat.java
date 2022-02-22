@@ -33,11 +33,11 @@ public class PaymentFormat extends Fragment {
 
         binding.bttnEndPayment.setOnClickListener(v -> {
 
-            TitularCard = Objects.requireNonNull(binding.txtTitularCard.getEditText()).toString();
+            TitularCard = Objects.requireNonNull(binding.txtTitularCard.getText()).toString();
 
-            if (binding.txtCardDetails.getEditText().toString().equals("CLABE")){
+            if (binding.txtCardDetails.getText().toString().equals("CLABE")){
                 CardOption = 0;
-            }else if(binding.txtCardDetails.getEditText().toString().equals("Número de tarjeta")){
+            }else if(binding.txtCardDetails.getText().toString().equals("Número de tarjeta")){
                 CardOption = 1;
             }else {
                 CardOption = 2;
