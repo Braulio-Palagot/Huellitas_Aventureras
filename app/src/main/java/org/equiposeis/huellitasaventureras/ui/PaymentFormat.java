@@ -3,6 +3,7 @@ package org.equiposeis.huellitasaventureras.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,28 +32,31 @@ public class PaymentFormat extends Fragment {
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
         binding.bttnEndPayment.setOnClickListener(v -> {
 
-            TitularCard = Objects.requireNonNull(binding.txtTitularCard.getEditText()).toString();
+            TitularCard = Objects.requireNonNull(binding.txtTitularCard.getText()).toString();
 
-            if (binding.txtCardDetails.getEditText().toString().equals("CLABE")){
+            if (binding.txtCardDetails.getText().toString().equals("CLABE")){
                 CardOption = 0;
-            }else if(binding.txtCardDetails.getEditText().toString().equals("Número de tarjeta")){
+            }else if(binding.txtCardDetails.getText().toString().equals("Número de tarjeta")){
                 CardOption = 1;
             }else {
                 CardOption = 2;
             }
 
-            CVV = Integer.parseInt(Objects.requireNonNull(binding.txtCVV.getEditText().toString()));
+            CVV = Integer.parseInt(Objects.requireNonNull(binding.txtCVV.getEditText().getText().toString()));
 
             //Método para mandar datos a la base.
 
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_payment_to_navigation_profile, null);
         });
 
-        binding.bttnCancelPayment.setOnClickListener(v -> getActivity().onBackPressed(
 
-                //Regresar a la navegación.
-        ));
+
+        binding.bttnCancelPayment.setOnClickListener(v ->
+
+                NavHostFragment.findNavController(this).navigate(R.id.action_navigation_payment_to_navigation_profile, null));
 
         return root;
     }

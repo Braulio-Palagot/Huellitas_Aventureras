@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,16 +80,20 @@ public class AddPetFragment extends Fragment {
 
             if (!petname.isEmpty() && race!=10) {
                     //Mandar datos a la base de datos.
-                    requireActivity().onBackPressed();
+
+                NavHostFragment.findNavController(this).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                 } else {
                     Toast.makeText(requireActivity(), R.string.not_loged, Toast.LENGTH_SHORT).show();
                 }
 
         });
 
-        binding.bttnCancelPetRegister.setOnClickListener(v -> getActivity().onBackPressed(
-                //Regresar navegación.
-        ));
+        binding.bttnCancelPetRegister.setOnClickListener(v ->
+                        //Regresar navegación.
+                        NavHostFragment.findNavController(this).navigate(R.id. action_navigation_add_pet_to_navigation_profile, null)
+                );
+
+
 
         return root;
     }
