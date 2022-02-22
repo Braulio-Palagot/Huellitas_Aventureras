@@ -35,7 +35,7 @@ private int user =0;
 
         binding.bttnQuestRide.setOnClickListener(v ->
                 //Solicitar Paseo
-                NavHostFragment.findNavController(this).navigate(R.id. navigation_ride_request, null)
+                NavHostFragment.findNavController(this).navigate(R.id.navigation_ride_request, null)
         );
 
 
