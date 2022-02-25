@@ -3,6 +3,7 @@ package org.equiposeis.huellitasaventureras.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import org.equiposeis.huellitasaventureras.R;
-import org.equiposeis.huellitasaventureras.databinding.FragmentAddPetBinding;
 import org.equiposeis.huellitasaventureras.databinding.FragmentRideRequestClientBinding;
 
 public class RideRequestClientFragment extends Fragment {
@@ -19,15 +19,18 @@ public class RideRequestClientFragment extends Fragment {
     private FragmentRideRequestClientBinding binding;
     private int RideQuestClientEmployee,RideQuestClientPets,RideQuestClientTime;
 
-    private final String[] Employees = getResources().getStringArray(R.array.Employees);
-    private final String[] Pets = getResources().getStringArray(R.array.Pets);
-    private final String[] Times = getResources().getStringArray(R.array.Times);
+    private String[] Employees = null;
+    private String[] Pets = null;
+    private String[] Times = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRideRequestClientBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        Employees = getResources().getStringArray(R.array.Employees);
+        Pets = getResources().getStringArray(R.array.Pets);
+        Times = getResources().getStringArray(R.array.Times);
 
         binding.txtEmployee.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Employees));
         binding.txtPet.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Pets));
@@ -42,8 +45,6 @@ public class RideRequestClientFragment extends Fragment {
 
 
             //Rellenado de datos de Mascotas registradas subidos en la BD
-
-
 
 
             if (binding.txtTime.getText().toString().equals("30 Mint")) {
@@ -72,19 +73,15 @@ public class RideRequestClientFragment extends Fragment {
 
 
             //Metodo para mandar datos a la base de datos.
-                requireActivity().onBackPressed();
-
-
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_request_to_navigation_home, null);
 
         });
 
-        binding.bttnCancelClientRequest.setOnClickListener(v -> getActivity().onBackPressed(
+        binding.bttnCancelClientRequest.setOnClickListener(v -> {
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_request_to_navigation_home, null);
+        });
 
-                //Regresar navegación.
-
-        ));
-
-        return inflater.inflate(R.layout.fragment_ride_request_client, container, false);
+        return root;
     }
     @Override
     public void onDestroyView() {

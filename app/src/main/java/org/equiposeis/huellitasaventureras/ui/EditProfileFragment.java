@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -95,11 +96,11 @@ public class EditProfileFragment extends Fragment {
         });
 
         binding.bttnPaymentMethod.setOnClickListener(v -> {
-            // Navegación al PaymentFormatFragment:
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_edit_profile_to_navigation_payment, null);
         });
 
         binding.bttnCancel.setOnClickListener(v -> {
-            requireActivity().onBackPressed();
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_edit_profile_to_navigation_profile, null);
         });
 
         return root;
