@@ -21,8 +21,8 @@ public class PaymentFormat extends Fragment {
 
     //Variables de PaymentFormat
     private FragmentPaymentFormatBinding binding;
-    private String TitularCard;
-    private int CVV, CardOption;
+    private String TitularCard = "";
+    private int CVV = 0, CardOption = 0;
 
     private String[] CardDetails = null;
 
@@ -31,11 +31,12 @@ public class PaymentFormat extends Fragment {
                              Bundle savedInstanceState){
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        CardDetails = getResources().getStringArray(R.array.CardDetails);
 
         binding.bttnEndPayment.setOnClickListener(v -> {
 
-            TitularCard = Objects.requireNonNull(binding.txtTitularCard.getText()).toString();
+            if(!binding.txtTitularCard.getText().toString().isEmpty()){
+                TitularCard = binding.txtTitularCard.getText().toString();
+            }
 
             if (binding.txtCardDetails.getText().toString().equals("CLABE")){
                 CardOption = 0;
@@ -45,13 +46,16 @@ public class PaymentFormat extends Fragment {
                 CardOption = 2;
             }
 
-            CVV = Integer.parseInt(Objects.requireNonNull(binding.txtCVV.getEditText().getText().toString()));
+            if(!binding.txtCVV.getEditText().getText().toString().isEmpty()){
+                CVV = Integer.parseInt(binding.txtCVV.getEditText().getText().toString());
+            }
 
             //Método para mandar datos a la base.
 
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_payment_to_navigation_profile, null);
         });
 
+        CardDetails = getResources().getStringArray(R.array.CardDetails);
 
 
         binding.bttnCancelPayment.setOnClickListener(v ->
