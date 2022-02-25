@@ -24,14 +24,14 @@ public class PaymentFormat extends Fragment {
     private String TitularCard;
     private int CVV, CardOption;
 
-    private final String[] CardDetails = getResources().getStringArray(R.array.CardDetails);
+    private String[] CardDetails = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        CardDetails = getResources().getStringArray(R.array.CardDetails);
 
         binding.bttnEndPayment.setOnClickListener(v -> {
 
