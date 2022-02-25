@@ -35,7 +35,10 @@ public class PaymentFormat extends Fragment {
 
         binding.bttnEndPayment.setOnClickListener(v -> {
 
-            TitularCard = Objects.requireNonNull(binding.txtTitularCard.getText()).toString();
+
+            if(binding.txtTitularCard.getText().toString().isEmpty()){
+                TitularCard = binding.txtTitularCard.getText().toString();
+            }
 
             if (binding.txtCardDetails.getText().toString().equals("CLABE")){
                 CardOption = 0;
@@ -44,8 +47,10 @@ public class PaymentFormat extends Fragment {
             }else {
                 CardOption = 2;
             }
-
-            CVV = Integer.parseInt(Objects.requireNonNull(binding.txtCVV.getEditText().getText().toString()));
+          
+            if (binding.txtCVV.getEditText().getText().toString().isEmpty()){
+                CVV = Integer.parseInt(binding.txtCVV.getEditText().getText().toString());
+            }
 
             //Método para mandar datos a la base.
 
