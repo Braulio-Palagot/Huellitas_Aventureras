@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "342180196294",
+    "project_id": "huellitas-aventureras",
+    "storage_bucket": "huellitas-aventureras.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342180196294:android:45c2e1f34f4c54697e4cc7",
+        "android_client_info": {
+          "package_name": "org.equiposeis.huellitasaventureras"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342180196294-pvq345n81t6k2n4tpu74k332hf03b0vm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMyXB2v6leFtTXBOVbLAOJw4LQUEpG5OI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342180196294-pvq345n81t6k2n4tpu74k332hf03b0vm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
