@@ -21,8 +21,8 @@ public class PaymentFormat extends Fragment {
 
     //Variables de PaymentFormat
     private FragmentPaymentFormatBinding binding;
-    private String TitularCard;
-    private int CVV, CardOption;
+    private String TitularCard = "";
+    private int CVV = 0, CardOption = 0;
 
     private String[] CardDetails = null;
 
@@ -31,7 +31,6 @@ public class PaymentFormat extends Fragment {
                              Bundle savedInstanceState){
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        CardDetails = getResources().getStringArray(R.array.CardDetails);
 
         binding.bttnEndPayment.setOnClickListener(v -> {
 
@@ -57,6 +56,7 @@ public class PaymentFormat extends Fragment {
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_payment_to_navigation_profile, null);
         });
 
+        CardDetails = getResources().getStringArray(R.array.CardDetails);
 
 
         binding.bttnCancelPayment.setOnClickListener(v ->
