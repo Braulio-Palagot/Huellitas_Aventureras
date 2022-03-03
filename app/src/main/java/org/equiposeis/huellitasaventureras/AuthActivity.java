@@ -13,6 +13,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+
+
 import org.equiposeis.huellitasaventureras.databinding.ActivityAuthBinding;
 
 public class AuthActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class AuthActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "org.equiposeis.huellitasaventureras.sharedpreferences";
     public static final String IS_LOGGED = "IS_LOGGED";
     public static final int PERMISSION_ID = 34;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
