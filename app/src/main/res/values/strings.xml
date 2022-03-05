@@ -25,6 +25,7 @@
     <string name="user_type_hint">Tipo de usuario</string>
     <string name="mexico_prefix">+52</string>
     <string name="not_loged">No se ha podido iniciar sesión.</string>
+    <string name="not_registered">No se ha podido registrar el usuario.</string>
     <string-array name="genders">
         <item>Masculino</item>
         <item>Femenino</item>

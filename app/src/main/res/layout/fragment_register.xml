@@ -27,7 +27,7 @@
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName|textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -98,7 +98,7 @@
                     android:id="@+id/txtMail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number" />
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -106,13 +106,14 @@
                 style="@style/BaseOutlinedTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password_hint">
+                android:hint="@string/password_hint"
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number" />
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -120,13 +121,14 @@
                 style="@style/BaseOutlinedTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/repeat_password_hint">
+                android:hint="@string/repeat_password_hint"
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtRepeatPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number" />
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

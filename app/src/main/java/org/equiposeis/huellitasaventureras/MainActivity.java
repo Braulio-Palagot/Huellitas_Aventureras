@@ -1,7 +1,12 @@
 package org.equiposeis.huellitasaventureras;
 
+import static org.equiposeis.huellitasaventureras.AuthActivity.DONT_KEEP_LOGGED;
+import static org.equiposeis.huellitasaventureras.AuthActivity.preferences;
+
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -32,4 +37,20 @@ public static int IMAGE_REQUEST_CODE = 10;
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (preferences.getBoolean(DONT_KEEP_LOGGED, false)) {
+            FirebaseAuth.getInstance().signOut();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (preferences.getBoolean(DONT_KEEP_LOGGED, false)) {
+            FirebaseAuth.getInstance().signOut();
+        }
+    }
 }
