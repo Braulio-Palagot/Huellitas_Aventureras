@@ -5,6 +5,9 @@ import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -33,6 +36,7 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        setHasOptionsMenu(true);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
@@ -73,6 +77,18 @@ public class ProfileFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_options_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        NavHostFragment.findNavController(this).navigate(item.getItemId());
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
