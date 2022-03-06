@@ -116,19 +116,21 @@ public class RegisterFragment extends Fragment {
                                         age,
                                         phone,
                                         addres,
-                                        mail
+                                        mail,
+                                        userType
                                 );
-                                usuario.put("ID_Cliente", cliente.getId_cliente());
-                                usuario.put("Mascotas_Alta", cliente.getMascotas_alta());
-                                usuario.put("Metodo_Pago", cliente.getMetodo_pago());
-                                usuario.put("Nombre", cliente.getNombre());
-                                usuario.put("Genero", cliente.getGenero());
-                                usuario.put("Edad", cliente.getEdad());
-                                usuario.put("Numero_Telefonico", cliente.getNumero_telefonico());
-                                usuario.put("Domicilio", cliente.getDomicilio());
-                                usuario.put("Correo_Electronico", cliente.getCorreo_electronico());
+                                usuario.put(getResources().getString(R.string.ID_USUARIO), cliente.getId_cliente());
+                                usuario.put(getResources().getString(R.string.MASCOTAS_USUARIO), cliente.getMascotas_alta());
+                                usuario.put(getResources().getString(R.string.METODO_PAGO_COBRO), cliente.getMetodo_pago());
+                                usuario.put(getResources().getString(R.string.NOMBRE_USUARIO), cliente.getNombre());
+                                usuario.put(getResources().getString(R.string.GENERO_USUARIO), cliente.getGenero());
+                                usuario.put(getResources().getString(R.string.EDAD_USUARIO), cliente.getEdad());
+                                usuario.put(getResources().getString(R.string.TELEFONO_USUARIO), cliente.getNumero_telefonico());
+                                usuario.put(getResources().getString(R.string.DOMICILIO_USUARIO), cliente.getDomicilio());
+                                usuario.put(getResources().getString(R.string.EMAIL_USUARIO), cliente.getCorreo_electronico());
+                                usuario.put(getResources().getString(R.string.TIPO_USUARIO), cliente.getTipo_usuario());
 
-                                db.collection("Usuarios").document(cliente.getId_cliente()).set(usuario);
+                                db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(cliente.getId_cliente()).set(usuario);
                             } else if (userType == 1) {
                                 UsuarioPaseador paseador = new UsuarioPaseador(
                                         auth.getCurrentUser().getUid(),
@@ -139,19 +141,21 @@ public class RegisterFragment extends Fragment {
                                         age,
                                         phone,
                                         addres,
-                                        mail
+                                        mail,
+                                        userType
                                 );
-                                usuario.put("ID_Cliente", paseador.getId_paseador());
-                                usuario.put("Capacitacion", paseador.getCapacitacion());
-                                usuario.put("Metodo_Cobro", paseador.getMetodo_cobro());
-                                usuario.put("Nombre", paseador.getNombre());
-                                usuario.put("Genero", paseador.getGenero());
-                                usuario.put("Edad", paseador.getEdad());
-                                usuario.put("Numero_Telefonico", paseador.getNumero_telefonico());
-                                usuario.put("Domicilio", paseador.getDomicilio());
-                                usuario.put("Correo_Electronico", paseador.getCorreo_electronico());
+                                usuario.put(getResources().getString(R.string.ID_USUARIO), paseador.getId_paseador());
+                                usuario.put(getResources().getString(R.string.CAPACITACION_USUARIO), paseador.getCapacitacion());
+                                usuario.put(getResources().getString(R.string.METODO_PAGO_COBRO), paseador.getMetodo_cobro());
+                                usuario.put(getResources().getString(R.string.NOMBRE_USUARIO), paseador.getNombre());
+                                usuario.put(getResources().getString(R.string.GENERO_USUARIO), paseador.getGenero());
+                                usuario.put(getResources().getString(R.string.EDAD_USUARIO), paseador.getEdad());
+                                usuario.put(getResources().getString(R.string.TELEFONO_USUARIO), paseador.getNumero_telefonico());
+                                usuario.put(getResources().getString(R.string.DOMICILIO_USUARIO), paseador.getDomicilio());
+                                usuario.put(getResources().getString(R.string.EMAIL_USUARIO), paseador.getCorreo_electronico());
+                                usuario.put(getResources().getString(R.string.TIPO_USUARIO), paseador.getTipo_usuario());
 
-                                db.collection("Usuarios").document(paseador.getId_paseador()).set(usuario);
+                                db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(paseador.getId_paseador()).set(usuario);
                             }
 
                             auth.signOut();

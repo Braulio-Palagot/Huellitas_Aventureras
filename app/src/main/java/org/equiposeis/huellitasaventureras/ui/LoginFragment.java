@@ -36,7 +36,7 @@ public class LoginFragment extends Fragment {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         binding.bttnRegister.setOnClickListener(v -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_dashboard_to_navigation_notifications, null);
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_login_to_navigation_register, null);
         });
 
         binding.bttnLogin.setOnClickListener(v -> {

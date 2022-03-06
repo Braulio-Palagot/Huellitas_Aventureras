@@ -37,21 +37,21 @@ public class ProfileFragment extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
         user = auth.getCurrentUser();
-        db.collection("Usuarios").document(user.getUid()).get().addOnCompleteListener(task -> {
+        db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    binding.txtName.setText(document.get("Nombre").toString());
-                    binding.txtAddress.setText(document.get("Domicilio").toString());
+                    binding.txtName.setText(document.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString());
+                    binding.txtAddress.setText(document.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString());
 
                     //Ocultar datos de paseador
-                    if (Integer.parseInt(document.get("Tipo_Usuario").toString()) == 0) {
+                    if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0) {
                         binding.txtViewPet.setVisibility(View.VISIBLE);
                         binding.rclrPet.setVisibility(View.VISIBLE);
                         binding.bttnAddPet.setVisibility(View.VISIBLE);
                         binding.txtViewWalker.setVisibility(View.GONE);
                         binding.rclrRides.setVisibility(View.GONE);
-                    } else if (Integer.parseInt(document.get("Tipo_Usuario").toString()) == 1) { //ocultar datos de cliente
+                    } else if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) { //ocultar datos de cliente
                         binding.txtViewPet.setVisibility(View.GONE);
                         binding.rclrPet.setVisibility(View.GONE);
                         binding.bttnAddPet.setVisibility(View.GONE);
