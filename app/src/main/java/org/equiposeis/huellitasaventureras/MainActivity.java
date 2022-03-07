@@ -18,11 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
 private ActivityMainBinding binding;
 public static int IMAGE_REQUEST_CODE = 10;
+public static FirebaseFirestore db = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+     db = FirebaseFirestore.getInstance();
      binding = ActivityMainBinding.inflate(getLayoutInflater());
      setContentView(binding.getRoot());
 

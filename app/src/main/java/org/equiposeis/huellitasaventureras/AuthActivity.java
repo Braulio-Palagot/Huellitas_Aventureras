@@ -12,7 +12,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,6 +26,7 @@ public class AuthActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "org.equiposeis.huellitasaventureras.sharedpreferences";
     public static final String DONT_KEEP_LOGGED = "IS_LOGGED";
     public static final int PERMISSION_ID = 34;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
