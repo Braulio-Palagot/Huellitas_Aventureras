@@ -10,6 +10,7 @@
     <string name="login">Iniciar Sesión</string>
     <string name="accept">Aceptar</string>
     <string name="reject">Rechazar</string>
+    <string name="edit">Editar</string>
     <string name="payment_method">Método de %1$s</string>
     <string name="select_media_app">Selecciona su galería</string>
 
@@ -25,6 +26,7 @@
     <string name="user_type_hint">Tipo de usuario</string>
     <string name="mexico_prefix">+52</string>
     <string name="not_loged">No se ha podido iniciar sesión.</string>
+    <string name="not_registered">No se ha podido registrar el usuario.</string>
     <string-array name="genders">
         <item>Masculino</item>
         <item>Femenino</item>
@@ -111,4 +113,17 @@
     <string name="ongoing_rides_title">Paseos en curso</string>
     <string name="pending_rides_title">Paseos en solicitud</string>
 
+    <!--  Tablas de la BD  -->
+    <string name="USUARIOS_TABLE">Usuarios</string>
+    <string name="ID_USUARIO">ID_Usuario</string>
+    <string name="NOMBRE_USUARIO">Nombre</string>
+    <string name="GENERO_USUARIO">Genero</string>
+    <string name="EDAD_USUARIO">Edad</string>
+    <string name="TELEFONO_USUARIO">Numero_Telefonico</string>
+    <string name="DOMICILIO_USUARIO">Domicilio</string>
+    <string name="EMAIL_USUARIO">Correo_Electronico</string>
+    <string name="TIPO_USUARIO">Tipo_Usuario</string>
+    <string name="MASCOTAS_USUARIO">Mascotas_Alta</string>
+    <string name="CAPACITACION_USUARIO">Capacitacion</string>
+    <string name="METODO_PAGO_COBRO">Metodo_Pago_Cobro</string>
 </resources>

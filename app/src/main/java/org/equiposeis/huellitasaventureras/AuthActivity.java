@@ -12,17 +12,19 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.equiposeis.huellitasaventureras.databinding.ActivityAuthBinding;
 
 public class AuthActivity extends AppCompatActivity {
 
     private ActivityAuthBinding binding;
+    public static FirebaseAuth auth = null;
+
     public static SharedPreferences preferences;
     public static final String PREFS_NAME = "org.equiposeis.huellitasaventureras.sharedpreferences";
-    public static final String IS_LOGGED = "IS_LOGGED";
+    public static final String DONT_KEEP_LOGGED = "IS_LOGGED";
     public static final int PERMISSION_ID = 34;
 
 
@@ -33,15 +35,15 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        auth = FirebaseAuth.getInstance();
 
-        if (preferences.getBoolean(IS_LOGGED, false)) {
+        if ((auth.getCurrentUser() != null)) {
             startActivity(new Intent(this, MainActivity.class));
             this.finish();
         }
 
-        if (!checkPermission()) {
+        if (!checkPermission())
             requestPermissions();
-        }
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

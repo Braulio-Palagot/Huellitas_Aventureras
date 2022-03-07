@@ -1,8 +1,11 @@
 package org.equiposeis.huellitasaventureras;
 
+import static org.equiposeis.huellitasaventureras.AuthActivity.DONT_KEEP_LOGGED;
+import static org.equiposeis.huellitasaventureras.AuthActivity.preferences;
+
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -28,11 +31,28 @@ public static FirebaseFirestore db = null;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_profile)
+                R.id.navigation_home, R.id.navigation_profile, R.id.navigation_edit_profile, R.id.navigation_add_pet,
+                R.id.navigation_payment, R.id.navigation_ride_details, R.id.navigation_ride_request)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (preferences.getBoolean(DONT_KEEP_LOGGED, false)) {
+            FirebaseAuth.getInstance().signOut();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (preferences.getBoolean(DONT_KEEP_LOGGED, false)) {
+            FirebaseAuth.getInstance().signOut();
+        }
+    }
 }
