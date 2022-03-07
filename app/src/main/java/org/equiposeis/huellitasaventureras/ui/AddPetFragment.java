@@ -48,6 +48,7 @@ public class AddPetFragment extends Fragment {
         user = auth.getCurrentUser();
 
         Mascota mascota = new Mascota(id_persona,petname,petage,petfecha,race,otherrace);
+        String id_persona = mascota.getId_persona();
         String nombre_mascota = mascota.getNombre_mascota();
         Integer edad_mascota = mascota.getEdad_mascota();
         Integer raza = mascota.getRaza();
@@ -104,7 +105,7 @@ public class AddPetFragment extends Fragment {
             } else {
                 race = 11;
             }
-
+            mascota.setId_persona(user.getUid());
             mascota.setNombre_mascota(petname);
             mascota.setFecha_mascota(petfecha);
             mascota.setRaza(race);
@@ -114,6 +115,7 @@ public class AddPetFragment extends Fragment {
                 //Mandar a la BD todos los datos
 
                 Map<String, Object> Mascota_db = new HashMap<>();
+                Mascota_db.put("ID_Cliente", mascota.getId_persona());
                 Mascota_db.put("Nombre", mascota.getNombre_mascota());
                 Mascota_db.put("Fecha", mascota.getFecha_mascota());
                 Mascota_db.put("Raza", mascota.getRaza());
@@ -162,7 +164,6 @@ public class AddPetFragment extends Fragment {
             }else{
                 Toast.makeText(requireActivity(),"Campos Incompletos", Toast.LENGTH_SHORT).show(); }
         });
-
         binding.bttnCancelPetRegister.setOnClickListener(v ->
                 //Regresar navegación.
                 NavHostFragment.findNavController(this).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null)
