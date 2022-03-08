@@ -38,6 +38,12 @@ public class ProfileFragment extends Fragment {
         View root = binding.getRoot();
         setHasOptionsMenu(true);
 
+        binding.txtViewPet.setVisibility(View.GONE);
+        binding.rclrPet.setVisibility(View.GONE);
+        binding.bttnAddPet.setVisibility(View.GONE);
+        binding.txtViewWalker.setVisibility(View.GONE);
+        binding.rclrRides.setVisibility(View.GONE);
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
         user = auth.getCurrentUser();
@@ -53,12 +59,7 @@ public class ProfileFragment extends Fragment {
                         binding.txtViewPet.setVisibility(View.VISIBLE);
                         binding.rclrPet.setVisibility(View.VISIBLE);
                         binding.bttnAddPet.setVisibility(View.VISIBLE);
-                        binding.txtViewWalker.setVisibility(View.GONE);
-                        binding.rclrRides.setVisibility(View.GONE);
                     } else if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) { //ocultar datos de cliente
-                        binding.txtViewPet.setVisibility(View.GONE);
-                        binding.rclrPet.setVisibility(View.GONE);
-                        binding.bttnAddPet.setVisibility(View.GONE);
                         binding.txtViewWalker.setVisibility(View.VISIBLE);
                         binding.rclrRides.setVisibility(View.VISIBLE);
                     }

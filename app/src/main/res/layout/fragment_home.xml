@@ -6,21 +6,29 @@
     tools:context=".ui.HomeFragment"
     android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bttnQuestRide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/request_ride" />
-
         <TextView
             android:id="@+id/textViewRideInProgress"
             style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ongoing_rides_title" />
+            android:text="Paseos en Curso" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rclrRideInProgress"
+            android:id="@+id/rclrRide"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textViewRideInFinish"
+            style="@style/BaseTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paseos Finalizados" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclrRideInFinish"
             android:layout_width="match_parent"
             android:layout_height="120dp" />
 
@@ -29,10 +37,30 @@
             style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pending_rides_title" />
+            android:text="Paseos en Solicitud" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRideInRequest"
             android:layout_width="match_parent"
+            android:layout_height="120dp" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textViewRideInRequest2"
+            style="@style/BaseTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paseos Finalizados" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclrRideInRequestFinish"
+            android:layout_width="match_parent"
             android:layout_height="120dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bttnQuestRide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/request_ride" />
 </androidx.appcompat.widget.LinearLayoutCompat>
