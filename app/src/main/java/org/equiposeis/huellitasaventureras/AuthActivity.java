@@ -37,6 +37,9 @@ public class AuthActivity extends AppCompatActivity {
         preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         auth = FirebaseAuth.getInstance();
 
+        if (preferences.getBoolean(DONT_KEEP_LOGGED,false))
+            auth.signOut();
+
         if ((auth.getCurrentUser() != null)) {
             startActivity(new Intent(this, MainActivity.class));
             this.finish();

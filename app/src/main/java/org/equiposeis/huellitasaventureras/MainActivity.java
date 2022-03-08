@@ -40,15 +40,6 @@ public static FirebaseFirestore db = null;
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (preferences.getBoolean(DONT_KEEP_LOGGED, false)) {
-            FirebaseAuth.getInstance().signOut();
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
