@@ -140,8 +140,10 @@ public class AddPetFragment extends Fragment {
                 //Mandar a la BD todos los datos cuando race es otro
                 if (!binding.txtOtherRace.getText().toString().isEmpty()) {
                     otherrace = binding.txtOtherRace.getText().toString();
+                    mascota.setOtraraza(otherrace);
                 }
                 Map<String, Object> Mascota_db = new HashMap<>();
+                Mascota_db.put("ID_Cliente", mascota.getId_persona());
                 Mascota_db.put("Nombre", mascota.getNombre_mascota());
                 Mascota_db.put("Fecha", mascota.getFecha_mascota());
                 Mascota_db.put("Raza", mascota.getOtraraza());
