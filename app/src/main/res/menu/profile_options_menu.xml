@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/action_navigation_profile_to_navigation_edit_profile"
-        android:title="@string/edit"
-        android:icon="@drawable/ic_edit"
-        app:showAsAction="ifRoom"
-        android:visible="true" />
+        android:id="@+id/optionsMenu"
+        android:icon="@drawable/ic_menu"
+        app:showAsAction="always"
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/action_navigation_profile_to_navigation_edit_profile"
+                android:icon="@drawable/ic_edit"
+                android:title="@string/edit"
+                android:visible="true" />
+
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/logout"
+                android:visible="true" />
+        </menu>
+    </item>
 </menu>

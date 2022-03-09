@@ -2,6 +2,7 @@ package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.equiposeis.huellitasaventureras.AuthActivity;
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.databinding.FragmentProfileBinding;
 
@@ -88,7 +90,18 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        NavHostFragment.findNavController(this).navigate(item.getItemId());
+        switch (item.getItemId()) {
+            case R.id.action_navigation_profile_to_navigation_edit_profile:
+                NavHostFragment.findNavController(this).navigate(item.getItemId());
+                break;
+            case R.id.logout:
+                auth.signOut();
+                startActivity(new Intent(requireActivity(), AuthActivity.class));
+                getActivity().finish();
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
