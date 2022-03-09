@@ -8,6 +8,7 @@
     <string name="finish">Finalizar</string>
     <string name="register">Registrarse</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="logout">Cerrar Sesión</string>
     <string name="accept">Aceptar</string>
     <string name="reject">Rechazar</string>
     <string name="edit">Editar</string>
