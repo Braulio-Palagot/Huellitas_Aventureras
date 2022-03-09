@@ -34,7 +34,7 @@ import java.util.Objects;
 public class AddPetFragment extends Fragment {
 
     private FragmentAddPetBinding binding;
-    private String petname = "",otherrace="",id_persona="",petfecha="";
+    private String petname = "",otherrace="",id_persona="",petfecha="",race1="";
     private int race = 0, petage = 0;
     private String[] races = null;
     private FirebaseUser user = null;
@@ -47,11 +47,11 @@ public class AddPetFragment extends Fragment {
         races = getResources().getStringArray(R.array.races);
         user = auth.getCurrentUser();
 
-        Mascota mascota = new Mascota(id_persona,petname,petage,petfecha,race,otherrace);
+        Mascota mascota = new Mascota(id_persona,petname,petage,petfecha,race1,otherrace);
         String id_persona = mascota.getId_persona();
         String nombre_mascota = mascota.getNombre_mascota();
         Integer edad_mascota = mascota.getEdad_mascota();
-        Integer raza = mascota.getRaza();
+        String raza = mascota.getRaza();
         String Otraraza = mascota.getOtraraza();
         String petfech = mascota.getFecha_mascota();
 
@@ -82,33 +82,45 @@ public class AddPetFragment extends Fragment {
 
             if (binding.txtRace.getText().toString().equals("Husky siberiano")) {
                 race = 0;
+                race1 ="Husky siberiano";
             } else if (binding.txtRace.getText().toString().equals("Golden retrieve")) {
                 race = 1;
+                race1 ="Golden retrieve";
             } else if (binding.txtRace.getText().toString().equals("Caniche")) {
                 race = 2;
+                race1 ="Caniche";
             } else if (binding.txtRace.getText().toString().equals("Pastor alemán")) {
                 race = 3;
+                race1 ="Pastor alemán";
             } else if (binding.txtRace.getText().toString().equals("Yorkshire terrier")) {
                 race = 4;
+                race1 ="Yorkshire terrier";
             } else if (binding.txtRace.getText().toString().equals("Dálmata")) {
                 race = 5;
+                race1 ="Dálmata";
             } else if (binding.txtRace.getText().toString().equals("Bóxer")) {
                 race = 6;
+                race1 ="Bóxer";
             } else if (binding.txtRace.getText().toString().equals("Chihuahua")) {
                 race = 7;
+                race1 ="Chihuahua";
             } else if (binding.txtRace.getText().toString().equals("Bulldog inglés")) {
                 race = 8;
+                race1 ="Bulldog inglés";
             } else if (binding.txtRace.getText().toString().equals("Beagle")) {
                 race = 9;
+                race1 ="Beagle";
             } else if (binding.txtRace.getText().toString().equals("Schnauzer")) {
                 race = 10;
+                race1 ="Schnauzer";
             } else {
                 race = 11;
             }
+
             mascota.setId_persona(user.getUid());
             mascota.setNombre_mascota(petname);
             mascota.setFecha_mascota(petfecha);
-            mascota.setRaza(race);
+            mascota.setRaza(race1);
             mascota.setOtraraza(otherrace);
 
             if (!petname.isEmpty() && race != 11) {
