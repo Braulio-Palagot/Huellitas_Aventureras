@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.equiposeis.huellitasaventureras.R;
+import org.equiposeis.huellitasaventureras.dataModels.Paseo;
 import org.equiposeis.huellitasaventureras.databinding.FragmentRideDetailsBinding;
+
+import java.util.HashMap;
 
 public class RideDetailsFragment extends Fragment {
 

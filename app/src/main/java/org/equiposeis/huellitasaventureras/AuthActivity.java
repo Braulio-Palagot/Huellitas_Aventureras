@@ -26,13 +26,15 @@ public class AuthActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "org.equiposeis.huellitasaventureras.sharedpreferences";
     public static final String DONT_KEEP_LOGGED = "IS_LOGGED";
     public static final int PERMISSION_ID = 34;
-
+    public static FirebaseFirestore db = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        db = FirebaseFirestore.getInstance();
 
         preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         auth = FirebaseAuth.getInstance();
