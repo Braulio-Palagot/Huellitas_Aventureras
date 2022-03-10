@@ -24,7 +24,7 @@
         style="@style/BaseDropDown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/bank_acount_identifier_hint">
+        android:hint="Tipo de identificador">
 
         <AutoCompleteTextView
             android:id="@+id/txtCardDetails"

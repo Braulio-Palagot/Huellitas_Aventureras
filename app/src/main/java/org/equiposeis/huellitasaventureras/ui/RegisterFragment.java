@@ -111,6 +111,8 @@ public class RegisterFragment extends Fragment {
                                         auth.getCurrentUser().getUid(),
                                         0,
                                         "",
+                                        0,
+                                        0,
                                         name,
                                         gender,
                                         age,
