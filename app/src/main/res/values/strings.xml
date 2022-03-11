@@ -12,6 +12,7 @@
     <string name="accept">Aceptar</string>
     <string name="reject">Rechazar</string>
     <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
     <string name="payment_method">Método de %1$s</string>
     <string name="select_media_app">Selecciona su galería</string>
 
@@ -67,7 +68,7 @@
         <item>Chihuahua</item>
         <item>Bulldog inglés</item>
         <item>Beagle</item>
-        <item>schnauzer</item>
+        <item>Schnauzer</item>
         <item>Otro</item>
     </string-array>
     <string name="other_race">Otra raza</string>
