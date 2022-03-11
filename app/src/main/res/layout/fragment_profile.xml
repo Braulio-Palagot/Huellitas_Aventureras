@@ -54,7 +54,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrPet"
             android:layout_width="match_parent"
-            android:layout_height="120dp" />
+            android:layout_height="120dp"
+            tools:listitem="@layout/rclr_item_pet" />
 
         <Button
             android:id="@+id/bttnAddPet"
@@ -72,6 +73,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRides"
+            style="@style/BaseRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"/>

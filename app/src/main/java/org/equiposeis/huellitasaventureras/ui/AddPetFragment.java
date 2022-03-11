@@ -1,17 +1,22 @@
 package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
+import static org.equiposeis.huellitasaventureras.MainActivity.ADD_PET_TYPE;
 import static org.equiposeis.huellitasaventureras.MainActivity.db;
+import static org.equiposeis.huellitasaventureras.MainActivity.mascotaSeleccionada;
+import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.mascotas;
+import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.rclrPetsAdapter;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,11 +30,9 @@ import com.google.firebase.auth.FirebaseUser;
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
 import org.equiposeis.huellitasaventureras.databinding.FragmentAddPetBinding;
-import org.equiposeis.huellitasaventureras.databinding.FragmentRegisterBinding;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class AddPetFragment extends Fragment {
 
@@ -44,10 +47,36 @@ public class AddPetFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAddPetBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        setHasOptionsMenu(true);
         races = getResources().getStringArray(R.array.races);
         user = auth.getCurrentUser();
 
         Mascota mascota = new Mascota(id_persona,petname,petage,petfecha,race1,otherrace);
+
+        binding.txtlytOtherRace.setVisibility(View.GONE);
+        binding.txtOtherRace.setVisibility(View.GONE);
+
+        if (ADD_PET_TYPE.equals("EDIT_PET")) {
+            binding.txtPetName.setText(mascotaSeleccionada.getNombre_mascota());
+            binding.txtPetfecha.setText(mascotaSeleccionada.getFecha_mascota());
+            binding.txtRace.setText(mascotaSeleccionada.getRaza());
+            if (!mascotaSeleccionada.getRaza().equals("Husky siberiano") &&
+                    !mascotaSeleccionada.getRaza().equals("Golden retriever") &&
+                    !mascotaSeleccionada.getRaza().equals("Caniche") &&
+                    !mascotaSeleccionada.getRaza().equals("Pastor alemán") &&
+                    !mascotaSeleccionada.getRaza().equals("Yorkshire terrier") &&
+                    !mascotaSeleccionada.getRaza().equals("Dálmata") &&
+                    !mascotaSeleccionada.getRaza().equals("Bóxer") &&
+                    !mascotaSeleccionada.getRaza().equals("Chihuahua") &&
+                    !mascotaSeleccionada.getRaza().equals("Bulldog inglés") &&
+                    !mascotaSeleccionada.getRaza().equals("Beagle") &&
+                    !mascotaSeleccionada.getRaza().equals("Schnauzer")) {
+                binding.txtOtherRace.setText(mascotaSeleccionada.getOtraraza());
+                binding.txtlytOtherRace.setVisibility(View.VISIBLE);
+                binding.txtOtherRace.setVisibility(View.VISIBLE);
+            }
+        }
+
         String id_persona = mascota.getId_persona();
         String nombre_mascota = mascota.getNombre_mascota();
         Integer edad_mascota = mascota.getEdad_mascota();
@@ -58,15 +87,16 @@ public class AddPetFragment extends Fragment {
 
         binding.txtRace.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, races));
 
-        binding.txtOtherRace.setVisibility(View.GONE);
-
         //Listener para el cambio de visibilidad de txtOtherrace en condición de selección Otos
         binding.txtRace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==11) {
+                if (i == 11) {
+                    binding.txtlytOtherRace.setVisibility(View.VISIBLE);
                     binding.txtOtherRace.setVisibility(View.VISIBLE);
                 } else {
+                    binding.txtlytOtherRace.setVisibility(View.GONE);
+                    binding.txtOtherRace.setVisibility(View.GONE);
                 }
             }
         });
@@ -83,9 +113,9 @@ public class AddPetFragment extends Fragment {
             if (binding.txtRace.getText().toString().equals("Husky siberiano")) {
                 race = 0;
                 race1 ="Husky siberiano";
-            } else if (binding.txtRace.getText().toString().equals("Golden retrieve")) {
+            } else if (binding.txtRace.getText().toString().equals("Golden retriever")) {
                 race = 1;
-                race1 ="Golden retrieve";
+                race1 ="Golden retriever";
             } else if (binding.txtRace.getText().toString().equals("Caniche")) {
                 race = 2;
                 race1 ="Caniche";
@@ -137,6 +167,7 @@ public class AddPetFragment extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                mascotas.add(mascota);
                                 Toast.makeText(requireActivity(),"Registro Exitoso", Toast.LENGTH_SHORT).show();
                                 NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                             }
@@ -165,6 +196,7 @@ public class AddPetFragment extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                mascotas.add(mascota);
                                 Toast.makeText(requireActivity(),"Registro Exitoso", Toast.LENGTH_SHORT).show();
                                 NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                             }
@@ -191,5 +223,40 @@ public class AddPetFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_options_menu, menu);
+        menu.findItem(R.id.delete_pet).setVisible(true);
+        menu.findItem(R.id.action_navigation_profile_to_navigation_edit_profile).setVisible(false);
+        menu.findItem(R.id.logout).setVisible(false);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_pet:
+                db.collection("Mascota").document(user.getUid() + mascotaSeleccionada.getNombre_mascota())
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                mascotas.remove(mascotaSeleccionada);
+                                NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(requireActivity(), "Intentelo de nuevo", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

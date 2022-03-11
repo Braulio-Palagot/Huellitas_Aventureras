@@ -46,4 +46,23 @@
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textSize">16sp</item>
     </style>
+
+    <!-- Base RecyclerView style. -->
+    <style name="BaseRecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginVertical">4dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:fadeScrollbars">false</item>
+        <item name="android:isScrollContainer">false</item>
+        <item name="android:nestedScrollingEnabled">false</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollIndicators">none</item>
+        <item name="android:scrollbarAlwaysDrawHorizontalTrack">false</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">false</item>
+        <item name="android:scrollbarDefaultDelayBeforeFade">0</item>
+        <item name="android:scrollbarFadeDuration">0</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:fastScrollEnabled">false</item>
+    </style>
 </resources>
