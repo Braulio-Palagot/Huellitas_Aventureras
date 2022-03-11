@@ -53,8 +53,7 @@ public class PaymentFormat extends Fragment {
         binding.bttnEndPayment.setOnClickListener(v -> {
 
 
-            UsuarioCliente met = new UsuarioCliente("",0,"",0,0,"",0,0,0,"","",0);
-            String id_cliente = met.getId_cliente();
+            Persona met = new Persona("",0,0,0,"","",0,"",0,0);
             String Titurlar = met.getNombre();
             Integer Number_pago = met.getNumer_pago();
             Integer CVVS = met.getCVV();
@@ -98,12 +97,12 @@ public class PaymentFormat extends Fragment {
             met.setCVV(CVV);
 
             //Método para mandar datos a la base.
-            Map<String, Object> Mascota_db = new HashMap<>();
-            Mascota_db.put(Type, user.getUid());
-            Mascota_db.put("Nombre", met.getNombre());
-            Mascota_db.put("Tipo de Pago", met.getMetodo_pago());
-            Mascota_db.put("Numero", met.getNumer_pago());
-            Mascota_db.put("CVV", met.getCVV());
+            Map<String, Object> MetPago_db = new HashMap<>();
+            MetPago_db.put(Type, user.getUid());
+            MetPago_db.put("Nombre", met.getNombre());
+            MetPago_db.put("Tipo de Pago", met.getMetodo_pago());
+            MetPago_db.put("Numero", met.getNumer_pago());
+            MetPago_db.put("CVV", met.getCVV());
 
             db.collection("Metodo de Pago").document(user.getUid()+CardOption1)
                     .set(met)

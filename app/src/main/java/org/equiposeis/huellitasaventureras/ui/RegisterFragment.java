@@ -110,9 +110,6 @@ public class RegisterFragment extends Fragment {
                                 UsuarioCliente cliente = new UsuarioCliente(
                                         auth.getCurrentUser().getUid(),
                                         0,
-                                        "",
-                                        0,
-                                        0,
                                         name,
                                         gender,
                                         age,
