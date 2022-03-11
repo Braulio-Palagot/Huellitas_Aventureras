@@ -6,6 +6,7 @@ import static org.equiposeis.huellitasaventureras.AuthActivity.preferences;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -37,15 +38,6 @@ public static FirebaseFirestore db = null;
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (preferences.getBoolean(DONT_KEEP_LOGGED, false)) {
-            FirebaseAuth.getInstance().signOut();
-        }
     }
 
     @Override

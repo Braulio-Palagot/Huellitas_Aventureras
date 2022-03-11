@@ -2,6 +2,7 @@ package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.equiposeis.huellitasaventureras.AuthActivity;
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.databinding.FragmentProfileBinding;
 
@@ -37,6 +39,12 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         setHasOptionsMenu(true);
+
+        binding.txtViewPet.setVisibility(View.GONE);
+        binding.rclrPet.setVisibility(View.GONE);
+        binding.bttnAddPet.setVisibility(View.GONE);
+        binding.txtViewWalker.setVisibility(View.GONE);
+        binding.rclrRides.setVisibility(View.GONE);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
@@ -53,12 +61,7 @@ public class ProfileFragment extends Fragment {
                         binding.txtViewPet.setVisibility(View.VISIBLE);
                         binding.rclrPet.setVisibility(View.VISIBLE);
                         binding.bttnAddPet.setVisibility(View.VISIBLE);
-                        binding.txtViewWalker.setVisibility(View.GONE);
-                        binding.rclrRides.setVisibility(View.GONE);
                     } else if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) { //ocultar datos de cliente
-                        binding.txtViewPet.setVisibility(View.GONE);
-                        binding.rclrPet.setVisibility(View.GONE);
-                        binding.bttnAddPet.setVisibility(View.GONE);
                         binding.txtViewWalker.setVisibility(View.VISIBLE);
                         binding.rclrRides.setVisibility(View.VISIBLE);
                     }
@@ -87,7 +90,18 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        NavHostFragment.findNavController(this).navigate(item.getItemId());
+        switch (item.getItemId()) {
+            case R.id.action_navigation_profile_to_navigation_edit_profile:
+                NavHostFragment.findNavController(this).navigate(item.getItemId());
+                break;
+            case R.id.logout:
+                auth.signOut();
+                startActivity(new Intent(requireActivity(), AuthActivity.class));
+                getActivity().finish();
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
