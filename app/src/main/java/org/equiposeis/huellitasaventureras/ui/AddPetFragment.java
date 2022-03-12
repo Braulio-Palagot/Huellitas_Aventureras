@@ -83,6 +83,7 @@ public class AddPetFragment extends Fragment {
                     !mascotaSeleccionada.getRaza().equals("Bulldog inglés") &&
                     !mascotaSeleccionada.getRaza().equals("Beagle") &&
                     !mascotaSeleccionada.getRaza().equals("Schnauzer")) {
+                binding.txtRace.setText("Otro");
                 binding.txtOtherRace.setText(mascotaSeleccionada.getRaza());
                 binding.txtlytOtherRace.setVisibility(View.VISIBLE);
                 binding.txtOtherRace.setVisibility(View.VISIBLE);
@@ -171,7 +172,10 @@ public class AddPetFragment extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                mascotas.add(mascota);
+                                if (ADD_PET_TYPE.equals("ADD_PET"))
+                                    mascotas.add(mascota);
+                                else if (ADD_PET_TYPE.equals("EDIT_PET"))
+                                    mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
                                 Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
                                 NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                             }
@@ -200,7 +204,10 @@ public class AddPetFragment extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                mascotas.add(mascota);
+                                if (ADD_PET_TYPE.equals("ADD_PET"))
+                                    mascotas.add(mascota);
+                                else if (ADD_PET_TYPE.equals("EDIT_PET"))
+                                    mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
                                 Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
                                 NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                             }
@@ -267,11 +274,11 @@ public class AddPetFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     private String setDate(Long dateTimeStamp) {
         int offsetFromUTC = TimeZone.getDefault().getOffset(new Date().getTime()) * -1;
         DateFormat dateFormat = new SimpleDateFormat("dd/MMMM/yyyy", Locale.getDefault());
 
-        return (dateFormat.format((dateTimeStamp+offsetFromUTC)));
+        return (dateFormat.format((dateTimeStamp + offsetFromUTC)));
     }
 }

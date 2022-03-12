@@ -20,7 +20,7 @@ import org.equiposeis.huellitasaventureras.databinding.ActivityAuthBinding;
 public class AuthActivity extends AppCompatActivity {
 
     private ActivityAuthBinding binding;
-    public static FirebaseAuth auth = null;
+    public static FirebaseAuth auth = FirebaseAuth.getInstance();
 
     public static SharedPreferences preferences;
     public static final String PREFS_NAME = "org.equiposeis.huellitasaventureras.sharedpreferences";
@@ -35,7 +35,6 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        auth = FirebaseAuth.getInstance();
 
         if (preferences.getBoolean(DONT_KEEP_LOGGED,false))
             auth.signOut();

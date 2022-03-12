@@ -1,6 +1,7 @@
 package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
+import static org.equiposeis.huellitasaventureras.MainActivity.userQuery;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -45,10 +46,11 @@ private FirebaseUser user = null;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
         user = auth.getCurrentUser();
-        db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).get().addOnCompleteListener(task -> {
+        userQuery.addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                     //Mostrar datos de Cliente
+                try {
                     if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0) {
                         binding.textViewRideInProgress.setVisibility(View.VISIBLE);
                         binding.textViewRideInFinish.setVisibility(View.VISIBLE);
@@ -63,6 +65,9 @@ private FirebaseUser user = null;
                         binding.rclrRideInRequestFinish.setVisibility(View.VISIBLE);
 
                     }
+                } catch (Exception e) {
+                    Log.e("Error:", "Exception: "+e);
+                }
                     // Se cargan las mascotas al RecyclerView.
             } else {
                 Log.e("USER_NOT_FOUND", "El usuario no se halló: ", task.getException());
