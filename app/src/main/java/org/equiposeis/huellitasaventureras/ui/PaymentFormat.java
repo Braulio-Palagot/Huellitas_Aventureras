@@ -49,6 +49,9 @@ public class PaymentFormat extends Fragment {
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         user = auth.getCurrentUser();
+        CardDetails = getResources().getStringArray(R.array.CardDetails);
+
+        binding.txtCardDetails.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, CardDetails));
 
         binding.bttnEndPayment.setOnClickListener(v -> {
 
@@ -58,7 +61,7 @@ public class PaymentFormat extends Fragment {
             Integer Number_pago = met.getNumer_pago();
             Integer CVVS = met.getCVV();
 
-            if(binding.txtTitularCard.getText().toString().isEmpty()){
+            if(!binding.txtTitularCard.getText().toString().isEmpty()){
                 TitularCard = binding.txtTitularCard.getText().toString();
             }
             if (binding.txtCardDetails.getText().toString().equals("CLABE")){
@@ -74,7 +77,7 @@ public class PaymentFormat extends Fragment {
             if (!binding.txtIntroduce.getText().toString().isEmpty()) {
                 Numero = Integer.parseInt(binding.txtIntroduce.getText().toString().trim());
             }
-            if (binding.txtCVV.getText().toString().isEmpty()){
+            if (!binding.txtCVV.getText().toString().isEmpty()){
                 CVV = Integer.parseInt(binding.txtCVV.getText().toString());
             }
 
@@ -91,6 +94,7 @@ public class PaymentFormat extends Fragment {
                 }
             });
 
+            if (!TitularCard.isEmpty() && !CardOption1.isEmpty()&& Numero!=0 && CVV!=0) {
             met.setNombre(TitularCard);
             met.setMetodo_pago(CardOption1);
             met.setNumer_pago(Numero);
@@ -117,12 +121,14 @@ public class PaymentFormat extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(requireActivity(),"Fallo en el Registro", Toast.LENGTH_SHORT).show();
-                            NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_payment_to_navigation_profile, null);
                         }
                     });
-        });
-        CardDetails = getResources().getStringArray(R.array.CardDetails);
 
+            }else{
+                Toast.makeText(requireActivity(), "Campos Incompletos", Toast.LENGTH_SHORT).show();
+            }
+
+        });
 
         binding.bttnCancelPayment.setOnClickListener(v ->
                 NavHostFragment.findNavController(this).navigate(R.id.action_navigation_payment_to_navigation_profile, null));
