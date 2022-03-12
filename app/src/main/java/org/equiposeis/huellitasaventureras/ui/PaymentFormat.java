@@ -4,11 +4,6 @@ import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 import static org.equiposeis.huellitasaventureras.MainActivity.db;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,22 +11,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.equiposeis.huellitasaventureras.R;
-import org.equiposeis.huellitasaventureras.dataModels.Mascota;
 import org.equiposeis.huellitasaventureras.dataModels.Persona;
-import org.equiposeis.huellitasaventureras.dataModels.UsuarioCliente;
 import org.equiposeis.huellitasaventureras.databinding.FragmentPaymentFormatBinding;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class PaymentFormat extends Fragment {
