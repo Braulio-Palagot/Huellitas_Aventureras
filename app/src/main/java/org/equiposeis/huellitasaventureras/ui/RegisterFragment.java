@@ -108,8 +108,8 @@ public class RegisterFragment extends Fragment {
                         if (task.isSuccessful()) {
                             if (userType == 0) {
                                 UsuarioCliente cliente = new UsuarioCliente(
-                                        auth.getCurrentUser().getUid(),
                                         0,
+                                        auth.getCurrentUser().getUid(),
                                         name,
                                         gender,
                                         age,
@@ -118,7 +118,7 @@ public class RegisterFragment extends Fragment {
                                         mail,
                                         userType
                                 );
-                                usuario.put(getResources().getString(R.string.ID_USUARIO), cliente.getId_cliente());
+                                usuario.put(getResources().getString(R.string.ID_USUARIO), cliente.getId_usuaio());
                                 usuario.put(getResources().getString(R.string.MASCOTAS_USUARIO), cliente.getMascotas_alta());
                                 usuario.put(getResources().getString(R.string.METODO_PAGO_COBRO), cliente.getMetodo_pago());
                                 usuario.put(getResources().getString(R.string.NOMBRE_USUARIO), cliente.getNombre());
@@ -129,12 +129,11 @@ public class RegisterFragment extends Fragment {
                                 usuario.put(getResources().getString(R.string.EMAIL_USUARIO), cliente.getCorreo_electronico());
                                 usuario.put(getResources().getString(R.string.TIPO_USUARIO), cliente.getTipo_usuario());
 
-                                db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(cliente.getId_cliente()).set(usuario);
+                                db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(cliente.getId_usuaio()).set(usuario);
                             } else if (userType == 1) {
                                 UsuarioPaseador paseador = new UsuarioPaseador(
+                                        "",
                                         auth.getCurrentUser().getUid(),
-                                        "",
-                                        "",
                                         name,
                                         gender,
                                         age,
@@ -143,9 +142,8 @@ public class RegisterFragment extends Fragment {
                                         mail,
                                         userType
                                 );
-                                usuario.put(getResources().getString(R.string.ID_USUARIO), paseador.getId_paseador());
+                                usuario.put(getResources().getString(R.string.ID_USUARIO), paseador.getId_usuaio());
                                 usuario.put(getResources().getString(R.string.CAPACITACION_USUARIO), paseador.getCapacitacion());
-                                usuario.put(getResources().getString(R.string.METODO_PAGO_COBRO), paseador.getMetodo_cobro());
                                 usuario.put(getResources().getString(R.string.NOMBRE_USUARIO), paseador.getNombre());
                                 usuario.put(getResources().getString(R.string.GENERO_USUARIO), paseador.getGenero());
                                 usuario.put(getResources().getString(R.string.EDAD_USUARIO), paseador.getEdad());
@@ -154,7 +152,7 @@ public class RegisterFragment extends Fragment {
                                 usuario.put(getResources().getString(R.string.EMAIL_USUARIO), paseador.getCorreo_electronico());
                                 usuario.put(getResources().getString(R.string.TIPO_USUARIO), paseador.getTipo_usuario());
 
-                                db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(paseador.getId_paseador()).set(usuario);
+                                db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(paseador.getId_usuaio()).set(usuario);
                             }
 
                             auth.signOut();

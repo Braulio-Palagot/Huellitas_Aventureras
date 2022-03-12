@@ -1,6 +1,7 @@
 package org.equiposeis.huellitasaventureras.dataModels
 
 open class Persona(
+    var id_usuaio: String,
     var nombre:String,
     var genero:Int,
     var edad:Int,

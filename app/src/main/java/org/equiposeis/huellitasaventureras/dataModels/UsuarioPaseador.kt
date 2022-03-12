@@ -1,9 +1,8 @@
 package org.equiposeis.huellitasaventureras.dataModels
 
 class UsuarioPaseador(
-    var id_paseador: String = "",
     var capacitacion: String = "",
-    var metodo_cobro: String = "",
+    id_paseador: String = "",
     nombre:String = "",
     genero:Int = 0,
     edad:Int = 0,
@@ -11,4 +10,4 @@ class UsuarioPaseador(
     domicilio:String = "",
     correo_electronico:String = "",
     tipo_usuario:Int
-): Persona(nombre, genero, edad, numero_telefonico, domicilio, correo_electronico, tipo_usuario)
+): Persona(id_paseador, nombre, genero, edad, numero_telefonico, domicilio, correo_electronico, tipo_usuario)

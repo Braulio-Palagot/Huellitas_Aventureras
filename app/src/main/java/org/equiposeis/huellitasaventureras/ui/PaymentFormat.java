@@ -53,12 +53,12 @@ public class PaymentFormat extends Fragment {
         binding.bttnEndPayment.setOnClickListener(v -> {
 
 
-            Persona met = new Persona("",0,0,0,"","",0,"",0,0);
+            Persona met = new Persona("","",0,0,0L,"","",0,"",0, 0);
             String Titurlar = met.getNombre();
             Integer Number_pago = met.getNumer_pago();
             Integer CVVS = met.getCVV();
 
-            if(binding.txtTitularCard.getText().toString().isEmpty()){
+            if(!binding.txtTitularCard.getText().toString().isEmpty()){
                 TitularCard = binding.txtTitularCard.getText().toString();
             }
             if (binding.txtCardDetails.getText().toString().equals("CLABE")){
@@ -74,7 +74,7 @@ public class PaymentFormat extends Fragment {
             if (!binding.txtIntroduce.getText().toString().isEmpty()) {
                 Numero = Integer.parseInt(binding.txtIntroduce.getText().toString().trim());
             }
-            if (binding.txtCVV.getText().toString().isEmpty()){
+            if (!binding.txtCVV.getText().toString().isEmpty()){
                 CVV = Integer.parseInt(binding.txtCVV.getText().toString());
             }
 

@@ -112,42 +112,16 @@ public class ProfileFragment extends Fragment {
             String fecha = document.get("Fecha").toString();
             int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/')+1));
             int edadMascota = 2022 - anhoMascota;
-            if (document.get("Raza").toString().equals("Husky siberiano") ||
-                    document.get("Raza").toString().equals("Golden retriever") ||
-                    document.get("Raza").toString().equals("Caniche") ||
-                    document.get("Raza").toString().equals("Pastor alemán") ||
-                    document.get("Raza").toString().equals("Yorkshire terrier") ||
-                    document.get("Raza").toString().equals("Dálmata") ||
-                    document.get("Raza").toString().equals("Bóxer") ||
-                    document.get("Raza").toString().equals("Chihuahua") ||
-                    document.get("Raza").toString().equals("Bulldog inglés") ||
-                    document.get("Raza").toString().equals("Beagle") ||
-                    document.get("Raza").toString().equals("Schnauzer")) {
-                Mascota addingPet = new Mascota(
-                        document.get("ID_Cliente").toString(),
-                        document.get("Nombre").toString(),
-                        edadMascota,
-                        document.get("Fecha").toString(),
-                        document.get("Raza").toString(),
-                        ""
-                );
-                if (!mascotas.contains(addingPet)) {
-                    mascotas.add(addingPet);
-                    binding.rclrPet.getAdapter().notifyItemInserted(mascotas.indexOf(addingPet));
-                }
-            } else {
-                Mascota addingPet = new Mascota(
-                        document.get("ID_Cliente").toString(),
-                        document.get("Nombre").toString(),
-                        edadMascota,
-                        document.get("Fecha").toString(),
-                        "Otro",
-                        document.get("Raza").toString()
-                );
-                if (!mascotas.contains(addingPet)) {
-                    mascotas.add(addingPet);
-                    binding.rclrPet.getAdapter().notifyItemInserted(mascotas.indexOf(addingPet));
-                }
+            Mascota addingPet = new Mascota(
+                    document.get("ID_Cliente").toString(),
+                    document.get("Nombre").toString(),
+                    edadMascota,
+                    document.get("Fecha").toString(),
+                    document.get("Raza").toString()
+            );
+            if (!mascotas.contains(addingPet)) {
+                mascotas.add(addingPet);
+                binding.rclrPet.getAdapter().notifyItemInserted(mascotas.indexOf(addingPet));
             }
         }
     }

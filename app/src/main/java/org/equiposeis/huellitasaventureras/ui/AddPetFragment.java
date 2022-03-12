@@ -5,7 +5,6 @@ import static org.equiposeis.huellitasaventureras.MainActivity.ADD_PET_TYPE;
 import static org.equiposeis.huellitasaventureras.MainActivity.db;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotaSeleccionada;
 import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.mascotas;
-import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.rclrPetsAdapter;
 
 import android.os.Bundle;
 
@@ -21,13 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.equiposeis.huellitasaventureras.R;
@@ -49,6 +46,7 @@ public class AddPetFragment extends Fragment {
     private int race = 0, petage = 0;
     private String[] races = null;
     private FirebaseUser user = null;
+    private Mascota mascota = new Mascota();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,20 +57,15 @@ public class AddPetFragment extends Fragment {
         races = getResources().getStringArray(R.array.races);
         user = auth.getCurrentUser();
 
-        Mascota mascota = new Mascota(id_persona, petname, petage, petfecha, race1, otherrace);
-
         binding.txtlytOtherRace.setVisibility(View.GONE);
         binding.txtOtherRace.setVisibility(View.GONE);
-        binding.txtPetfecha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Fecha de Nacimiento")
-                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                        .build();
-                datePicker.addOnPositiveButtonClickListener(selection -> binding.txtPetfecha.setText(setDate(selection)));
-                datePicker.show(getActivity().getSupportFragmentManager(), "tag");
-            }
+        binding.txtPetfecha.setOnClickListener(view -> {
+            MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Fecha de Nacimiento")
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .build();
+            datePicker.addOnPositiveButtonClickListener(selection -> binding.txtPetfecha.setText(setDate(selection)));
+            datePicker.show(getActivity().getSupportFragmentManager(), "tag");
         });
 
         if (ADD_PET_TYPE.equals("EDIT_PET")) {
@@ -90,18 +83,11 @@ public class AddPetFragment extends Fragment {
                     !mascotaSeleccionada.getRaza().equals("Bulldog inglés") &&
                     !mascotaSeleccionada.getRaza().equals("Beagle") &&
                     !mascotaSeleccionada.getRaza().equals("Schnauzer")) {
-                binding.txtOtherRace.setText(mascotaSeleccionada.getOtraraza());
+                binding.txtOtherRace.setText(mascotaSeleccionada.getRaza());
                 binding.txtlytOtherRace.setVisibility(View.VISIBLE);
                 binding.txtOtherRace.setVisibility(View.VISIBLE);
             }
         }
-
-        String id_persona = mascota.getId_persona();
-        String nombre_mascota = mascota.getNombre_mascota();
-        Integer edad_mascota = mascota.getEdad_mascota();
-        String raza = mascota.getRaza();
-        String Otraraza = mascota.getOtraraza();
-        String petfech = mascota.getFecha_mascota();
 
 
         binding.txtRace.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, races));
@@ -166,17 +152,16 @@ public class AddPetFragment extends Fragment {
                 race = 11;
             }
 
-            mascota.setId_persona(user.getUid());
+            mascota.setId_usuario(user.getUid());
             mascota.setNombre_mascota(petname);
             mascota.setFecha_mascota(petfecha);
             mascota.setRaza(race1);
-            mascota.setOtraraza(otherrace);
 
             if (!petname.isEmpty() && race != 11) {
                 //Mandar a la BD todos los datos
 
                 Map<String, Object> Mascota_db = new HashMap<>();
-                Mascota_db.put("ID_Cliente", mascota.getId_persona());
+                Mascota_db.put("ID_Cliente", mascota.getId_usuario());
                 Mascota_db.put("Nombre", mascota.getNombre_mascota());
                 Mascota_db.put("Fecha", mascota.getFecha_mascota());
                 Mascota_db.put("Raza", mascota.getRaza());
@@ -202,13 +187,13 @@ public class AddPetFragment extends Fragment {
                 //Mandar a la BD todos los datos cuando race es otro
                 if (!binding.txtOtherRace.getText().toString().isEmpty()) {
                     otherrace = binding.txtOtherRace.getText().toString();
-                    mascota.setOtraraza(otherrace);
+                    mascota.setRaza(otherrace);
                 }
                 Map<String, Object> Mascota_db = new HashMap<>();
-                Mascota_db.put("ID_Cliente", mascota.getId_persona());
+                Mascota_db.put("ID_Cliente", mascota.getId_usuario());
                 Mascota_db.put("Nombre", mascota.getNombre_mascota());
                 Mascota_db.put("Fecha", mascota.getFecha_mascota());
-                Mascota_db.put("Raza", mascota.getOtraraza());
+                Mascota_db.put("Raza", mascota.getRaza());
 
                 db.collection("Mascota").document(user.getUid() + petname)
                         .set(Mascota_db)
