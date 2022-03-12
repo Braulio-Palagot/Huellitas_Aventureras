@@ -44,7 +44,7 @@ public class PaymentFormat extends Fragment {
     private String[] CardDetails = null;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -71,11 +71,11 @@ public class PaymentFormat extends Fragment {
                 CardOption = 2;
                 CardOption1="Número de cuenta";
             }
-            if (!binding.txtIntroduce.getEditText().toString().isEmpty()) {
-                Numero = Integer.parseInt(binding.txtIntroduce.getEditText().toString().trim());
+            if (!binding.txtIntroduce.getText().toString().isEmpty()) {
+                Numero = Integer.parseInt(binding.txtIntroduce.getText().toString().trim());
             }
-            if (binding.txtCVV.getEditText().getText().toString().isEmpty()){
-                CVV = Integer.parseInt(binding.txtCVV.getEditText().getText().toString());
+            if (binding.txtCVV.getText().toString().isEmpty()){
+                CVV = Integer.parseInt(binding.txtCVV.getText().toString());
             }
 
             db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).get().addOnCompleteListener(task -> {

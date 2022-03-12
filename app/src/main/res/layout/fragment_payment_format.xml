@@ -35,28 +35,28 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtIntroduce"
+            android:id="@+id/txtlytIntroduce"
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/bank_acount_identifier_hint">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@id/txtIntroduce"
+            android:id="@+id/txtIntroduce"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtCVV"
+            android:id="@+id/txtlytCVV"
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/cvv_hint" >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@id/txtCVV"
+                android:id="@+id/txtCVV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"/>
