@@ -21,23 +21,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
 import org.equiposeis.huellitasaventureras.databinding.FragmentAddPetBinding;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class AddPetFragment extends Fragment {
 
     private FragmentAddPetBinding binding;
-    private String petname = "",otherrace="",id_persona="",petfecha="",race1="";
+    private String petname = "", otherrace = "", id_persona = "", petfecha = "", race1 = "";
     private int race = 0, petage = 0;
     private String[] races = null;
     private FirebaseUser user = null;
@@ -51,10 +59,21 @@ public class AddPetFragment extends Fragment {
         races = getResources().getStringArray(R.array.races);
         user = auth.getCurrentUser();
 
-        Mascota mascota = new Mascota(id_persona,petname,petage,petfecha,race1,otherrace);
+        Mascota mascota = new Mascota(id_persona, petname, petage, petfecha, race1, otherrace);
 
         binding.txtlytOtherRace.setVisibility(View.GONE);
         binding.txtOtherRace.setVisibility(View.GONE);
+        binding.txtPetfecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                        .setTitleText("Fecha de Nacimiento")
+                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                        .build();
+                datePicker.addOnPositiveButtonClickListener(selection -> binding.txtPetfecha.setText(setDate(selection)));
+                datePicker.show(getActivity().getSupportFragmentManager(), "tag");
+            }
+        });
 
         if (ADD_PET_TYPE.equals("EDIT_PET")) {
             binding.txtPetName.setText(mascotaSeleccionada.getNombre_mascota());
@@ -112,37 +131,37 @@ public class AddPetFragment extends Fragment {
 
             if (binding.txtRace.getText().toString().equals("Husky siberiano")) {
                 race = 0;
-                race1 ="Husky siberiano";
+                race1 = "Husky siberiano";
             } else if (binding.txtRace.getText().toString().equals("Golden retriever")) {
                 race = 1;
-                race1 ="Golden retriever";
+                race1 = "Golden retriever";
             } else if (binding.txtRace.getText().toString().equals("Caniche")) {
                 race = 2;
-                race1 ="Caniche";
+                race1 = "Caniche";
             } else if (binding.txtRace.getText().toString().equals("Pastor alemán")) {
                 race = 3;
-                race1 ="Pastor alemán";
+                race1 = "Pastor alemán";
             } else if (binding.txtRace.getText().toString().equals("Yorkshire terrier")) {
                 race = 4;
-                race1 ="Yorkshire terrier";
+                race1 = "Yorkshire terrier";
             } else if (binding.txtRace.getText().toString().equals("Dálmata")) {
                 race = 5;
-                race1 ="Dálmata";
+                race1 = "Dálmata";
             } else if (binding.txtRace.getText().toString().equals("Bóxer")) {
                 race = 6;
-                race1 ="Bóxer";
+                race1 = "Bóxer";
             } else if (binding.txtRace.getText().toString().equals("Chihuahua")) {
                 race = 7;
-                race1 ="Chihuahua";
+                race1 = "Chihuahua";
             } else if (binding.txtRace.getText().toString().equals("Bulldog inglés")) {
                 race = 8;
-                race1 ="Bulldog inglés";
+                race1 = "Bulldog inglés";
             } else if (binding.txtRace.getText().toString().equals("Beagle")) {
                 race = 9;
-                race1 ="Beagle";
+                race1 = "Beagle";
             } else if (binding.txtRace.getText().toString().equals("Schnauzer")) {
                 race = 10;
-                race1 ="Schnauzer";
+                race1 = "Schnauzer";
             } else {
                 race = 11;
             }
@@ -162,24 +181,24 @@ public class AddPetFragment extends Fragment {
                 Mascota_db.put("Fecha", mascota.getFecha_mascota());
                 Mascota_db.put("Raza", mascota.getRaza());
 
-                db.collection("Mascota").document(user.getUid()+petname)
+                db.collection("Mascota").document(user.getUid() + petname)
                         .set(Mascota_db)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 mascotas.add(mascota);
-                                Toast.makeText(requireActivity(),"Registro Exitoso", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
                                 NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(requireActivity(),"Fallo en el Registro", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show();
                             }
                         });
 
-            } else if(!petname.isEmpty() && race==11){
+            } else if (!petname.isEmpty() && race == 11) {
                 //Mandar a la BD todos los datos cuando race es otro
                 if (!binding.txtOtherRace.getText().toString().isEmpty()) {
                     otherrace = binding.txtOtherRace.getText().toString();
@@ -191,24 +210,25 @@ public class AddPetFragment extends Fragment {
                 Mascota_db.put("Fecha", mascota.getFecha_mascota());
                 Mascota_db.put("Raza", mascota.getOtraraza());
 
-                db.collection("Mascota").document(user.getUid()+petname)
+                db.collection("Mascota").document(user.getUid() + petname)
                         .set(Mascota_db)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 mascotas.add(mascota);
-                                Toast.makeText(requireActivity(),"Registro Exitoso", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
                                 NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(requireActivity(),"Fallo en el Registro", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show();
                             }
                         });
-            }else{
-                Toast.makeText(requireActivity(),"Campos Incompletos", Toast.LENGTH_SHORT).show(); }
+            } else {
+                Toast.makeText(requireActivity(), "Campos Incompletos", Toast.LENGTH_SHORT).show();
+            }
         });
         binding.bttnCancelPetRegister.setOnClickListener(v ->
                 //Regresar navegación.
@@ -228,7 +248,10 @@ public class AddPetFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.profile_options_menu, menu);
-        menu.findItem(R.id.delete_pet).setVisible(true);
+        if (ADD_PET_TYPE.equals("EDIT_PET"))
+            menu.findItem(R.id.delete_pet).setVisible(true);
+        else
+            menu.findItem(R.id.optionsMenu).setVisible(false);
         menu.findItem(R.id.action_navigation_profile_to_navigation_edit_profile).setVisible(false);
         menu.findItem(R.id.logout).setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
@@ -258,5 +281,12 @@ public class AddPetFragment extends Fragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    private String setDate(Long dateTimeStamp) {
+        int offsetFromUTC = TimeZone.getDefault().getOffset(new Date().getTime()) * -1;
+        DateFormat dateFormat = new SimpleDateFormat("dd/MMMM/yyyy", Locale.getDefault());
+
+        return (dateFormat.format((dateTimeStamp+offsetFromUTC)));
     }
 }

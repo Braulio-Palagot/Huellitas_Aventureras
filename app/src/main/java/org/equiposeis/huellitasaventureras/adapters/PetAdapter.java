@@ -1,14 +1,25 @@
 package org.equiposeis.huellitasaventureras.adapters;
 
+import static org.equiposeis.huellitasaventureras.MainActivity.db;
+import static org.equiposeis.huellitasaventureras.MainActivity.mascotaSeleccionada;
+import static org.equiposeis.huellitasaventureras.MainActivity.user;
+import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.mascotas;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
@@ -41,6 +52,18 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
         holder.bind(mascota, context);
 
         holder.itemView.setOnClickListener(view -> PetAdapter.this.clickListener.invoke(mascota));
+        holder.bttnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.collection("Mascota").document(user.getUid() + mascotas.get(holder.getAdapterPosition()).getNombre_mascota())
+                        .delete()
+                        .addOnSuccessListener(unused -> {
+                            mascotas.remove(holder.getAdapterPosition());
+                            PetAdapter.this.notifyItemRemoved(holder.getAdapterPosition());
+                        })
+                        .addOnFailureListener(e -> Toast.makeText(PetAdapter.this.context, "Intentelo de nuevo", Toast.LENGTH_SHORT).show());
+            }
+        });
     }
 
     @Override
@@ -50,10 +73,12 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView petName;
+        private final ImageButton bttnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.petName = itemView.findViewById(R.id.txtViewPetName);
+            this.bttnDelete = itemView.findViewById(R.id.bttnDelete);
         }
 
         public void bind(Mascota mascota, Context context) {

@@ -109,7 +109,8 @@ public class ProfileFragment extends Fragment {
 
     private void showPets() {
         for (QueryDocumentSnapshot document : mascotasQuery.getResult()) {
-            int anhoMascota = Integer.parseInt(document.get("Fecha").toString().substring(6));
+            String fecha = document.get("Fecha").toString();
+            int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/')+1));
             int edadMascota = 2022 - anhoMascota;
             if (document.get("Raza").toString().equals("Husky siberiano") ||
                     document.get("Raza").toString().equals("Golden retriever") ||

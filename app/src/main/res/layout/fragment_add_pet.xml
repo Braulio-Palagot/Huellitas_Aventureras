@@ -29,13 +29,15 @@
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha: 07/03/2022">
+            android:hint="Fecha de Nacimiento">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPetfecha"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text" />
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

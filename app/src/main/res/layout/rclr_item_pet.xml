@@ -11,26 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
-        android:gravity="center_vertical">
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/icPet"
-            android:layout_width="64dp"
+            android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_pet"/>
+            android:layout_weight="4"
+            android:src="@drawable/ic_pet" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtViewPetName"
             style="@style/BaseTextView"
             android:layout_width="match_parent"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:layout_marginStart="4dp"
             android:layout_weight="1"
-            android:text="Nombre de la Mascota"/>
+            android:text="Nombre de la Mascota"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/bttnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_weight="4"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_delete" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
