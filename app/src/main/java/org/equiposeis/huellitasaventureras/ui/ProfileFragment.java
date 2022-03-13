@@ -3,6 +3,7 @@ package org.equiposeis.huellitasaventureras.ui;
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 import static org.equiposeis.huellitasaventureras.MainActivity.ADD_PET_TYPE;
 import static org.equiposeis.huellitasaventureras.MainActivity.ALREADY_DOWNLOADED;
+import static org.equiposeis.huellitasaventureras.MainActivity.PROFILE_PHOTO_REFERENCE;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotaSeleccionada;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotasQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.userQuery;
@@ -22,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.equiposeis.huellitasaventureras.AuthActivity;
+import org.equiposeis.huellitasaventureras.Glide.GlideApp;
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.adapters.PetAdapter;
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
@@ -77,26 +80,28 @@ public class ProfileFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
-        userQuery.addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                DocumentSnapshot userData = userQuery.getResult();
-                if (userData.exists()) {
-                    binding.txtName.setText(userData.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString());
-                    binding.txtAddress.setText(userData.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString());
+        userQuery.addOnSuccessListener(documentSnapshot -> {
+            DocumentSnapshot userData = userQuery.getResult();
+            if (userData.exists()) {
+                binding.txtName.setText(userData.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString());
+                binding.txtAddress.setText(userData.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString());
+                GlideApp.with(ProfileFragment.this)
+                        .load(PROFILE_PHOTO_REFERENCE)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                        .into(binding.imgUserPhoto);
 
-                    //Ocultar datos de paseador
-                    if (Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0) {
-                        binding.txtViewPet.setVisibility(View.VISIBLE);
-                        binding.rclrPet.setVisibility(View.VISIBLE);
-                        binding.bttnAddPet.setVisibility(View.VISIBLE);
-                    } else if (Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) { //ocultar datos de cliente
-                        binding.txtViewWalker.setVisibility(View.VISIBLE);
-                        binding.rclrRides.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    Toast.makeText(requireActivity(), "No es posible cargar los datos del usuario en este momento.", Toast.LENGTH_SHORT).show();
+                //Ocultar datos de paseador
+                if (Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0) {
+                    binding.txtViewPet.setVisibility(View.VISIBLE);
+                    binding.rclrPet.setVisibility(View.VISIBLE);
+                    binding.bttnAddPet.setVisibility(View.VISIBLE);
+                } else if (Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) { //ocultar datos de cliente
+                    binding.txtViewWalker.setVisibility(View.VISIBLE);
+                    binding.rclrRides.setVisibility(View.VISIBLE);
                 }
+            } else {
+                Toast.makeText(requireActivity(), "No es posible cargar los datos del usuario en este momento.", Toast.LENGTH_SHORT).show();
             }
         });
 

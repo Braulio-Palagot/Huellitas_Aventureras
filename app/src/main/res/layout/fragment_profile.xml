@@ -11,10 +11,12 @@
             android:id="@+id/imgUserPhoto"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginVertical="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/BaseProfileImageView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtlytName"

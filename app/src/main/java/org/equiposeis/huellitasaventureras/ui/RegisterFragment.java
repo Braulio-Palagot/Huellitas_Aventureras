@@ -106,6 +106,7 @@ public class RegisterFragment extends Fragment {
                             if (userType == 0) {
                                 UsuarioCliente cliente = new UsuarioCliente(
                                         0,
+                                        "",
                                         auth.getCurrentUser().getUid(),
                                         name,
                                         gender,
@@ -129,6 +130,7 @@ public class RegisterFragment extends Fragment {
                                 db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(cliente.getId_usuaio()).set(usuario);
                             } else if (userType == 1) {
                                 UsuarioPaseador paseador = new UsuarioPaseador(
+                                        "",
                                         "",
                                         auth.getCurrentUser().getUid(),
                                         name,

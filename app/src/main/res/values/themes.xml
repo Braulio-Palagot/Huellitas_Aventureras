@@ -65,4 +65,9 @@
         <item name="android:scrollbars">none</item>
         <item name="android:fastScrollEnabled">false</item>
     </style>
+
+    <!--  Base Profile ImageView  -->
+    <style name="BaseProfileImageView" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

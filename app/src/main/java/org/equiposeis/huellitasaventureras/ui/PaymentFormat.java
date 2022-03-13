@@ -50,7 +50,7 @@ public class PaymentFormat extends Fragment {
         binding.bttnEndPayment.setOnClickListener(v -> {
 
 
-            Persona met = new Persona("","",0,0,0L,"","",0,"",0, 0);
+            Persona met = new Persona("", "", "", 0, 0, 0L, "", "", 0, "", 0, 0);
             String Titurlar = met.getNombre();
             Integer Number_pago = met.getNumer_pago();
             Integer CVVS = met.getCVV();

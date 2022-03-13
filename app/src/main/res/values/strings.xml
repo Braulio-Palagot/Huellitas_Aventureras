@@ -117,6 +117,7 @@
 
     <!--  Tablas de la BD  -->
     <string name="USUARIOS_TABLE">Usuarios</string>
+    <string name="FOTO_USUARIO">Foto_Usuario</string>
     <string name="ID_USUARIO">ID_Usuario</string>
     <string name="NOMBRE_USUARIO">Nombre</string>
     <string name="GENERO_USUARIO">Genero</string>

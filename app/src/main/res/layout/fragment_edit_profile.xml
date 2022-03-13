@@ -11,7 +11,8 @@
         android:id="@+id/imgUserPhoto"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginVertical="32dp"
+        app:shapeAppearanceOverlay="@style/BaseProfileImageView"
+        android:layout_marginVertical="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -119,34 +120,6 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtMail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtlytPassword"
-                style="@style/BaseOutlinedTextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/password_hint">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtlytRepeatPassword"
-                style="@style/BaseOutlinedTextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/repeat_password_hint">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtRepeatPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number" />

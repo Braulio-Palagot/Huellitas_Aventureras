@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
 import org.equiposeis.huellitasaventureras.databinding.ActivityMainBinding;
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public static boolean ALREADY_DOWNLOADED = false;
     public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
     public static Task<DocumentSnapshot> userQuery = db.collection("Usuarios").document(user.getUid()).get();
+    public static FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    public static StorageReference PROFILE_PHOTO_REFERENCE = storage.getReference().child("ProfilePictures/" + user.getUid());
+    public static boolean PROFILE_PHOTO_EDITED = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
