@@ -78,19 +78,6 @@ public class PaymentFormat extends Fragment {
                 CVV = Integer.parseInt(binding.txtCVV.getText().toString());
             }
 
-            db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0) {
-                        Type="ID_Cliente";
-                    } else if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) {
-                        Type="ID_Paseador";
-                    }
-                } else {
-                    Log.e("USER_NOT_FOUND", "El usuario no se halló: ", task.getException());
-                }
-            });
-
             if (!TitularCard.isEmpty() && !CardOption1.isEmpty() && !Numero.isEmpty() && CVV!=0) {
 
             met.setID_Usuario(user.getUid());
@@ -101,14 +88,14 @@ public class PaymentFormat extends Fragment {
 
             //Método para mandar datos a la base.
             Map<String, Object> MetPago_db = new HashMap<>();
-            MetPago_db.put(Type, met.getID_Usuario());
+            MetPago_db.put("ID_Usuario", met.getID_Usuario());
             MetPago_db.put("Nombre", met.getTitular());
             MetPago_db.put("Tipo de Pago", met.getMetodo_pago());
             MetPago_db.put("Numero", met.getNumero_pago());
             MetPago_db.put("CVV", met.getCVV());
 
             db.collection("Metodo de Pago").document(user.getUid()+CardOption1)
-                    .set(met)
+                    .set(MetPago_db)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
