@@ -6,4 +6,5 @@ data class MetodoPago(
         var Metodo_pago: String = "",
         var Numero_pago: String = "",
         var CVV: Int = 0,
+
 )

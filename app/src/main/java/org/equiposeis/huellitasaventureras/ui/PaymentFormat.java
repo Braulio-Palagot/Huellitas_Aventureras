@@ -38,6 +38,7 @@ public class PaymentFormat extends Fragment {
     private FirebaseUser user = null;
     private String[] CardDetails = null;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
