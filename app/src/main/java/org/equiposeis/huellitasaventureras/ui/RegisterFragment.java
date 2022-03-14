@@ -118,7 +118,6 @@ public class RegisterFragment extends Fragment {
                                 );
                                 usuario.put(getResources().getString(R.string.ID_USUARIO), cliente.getId_usuaio());
                                 usuario.put(getResources().getString(R.string.MASCOTAS_USUARIO), cliente.getMascotas_alta());
-                                usuario.put(getResources().getString(R.string.METODO_PAGO_COBRO), cliente.getMetodo_pago());
                                 usuario.put(getResources().getString(R.string.NOMBRE_USUARIO), cliente.getNombre());
                                 usuario.put(getResources().getString(R.string.GENERO_USUARIO), cliente.getGenero());
                                 usuario.put(getResources().getString(R.string.EDAD_USUARIO), cliente.getEdad());

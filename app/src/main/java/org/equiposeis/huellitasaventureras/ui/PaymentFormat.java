@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.equiposeis.huellitasaventureras.R;
+import org.equiposeis.huellitasaventureras.dataModels.MetodoPago;
 import org.equiposeis.huellitasaventureras.dataModels.Persona;
 import org.equiposeis.huellitasaventureras.databinding.FragmentPaymentFormatBinding;
 
@@ -32,8 +33,8 @@ public class PaymentFormat extends Fragment {
 
     //Variables de PaymentFormat
     private FragmentPaymentFormatBinding binding;
-    private String TitularCard = "",CardOption1="",Type="";
-    private int CVV = 0, CardOption = 0,Numero=0;
+    private String TitularCard = "",CardOption1="",Type="",Numero="";
+    private int CVV = 0, CardOption = 0;
     private FirebaseUser user = null;
     private String[] CardDetails = null;
 
@@ -50,9 +51,10 @@ public class PaymentFormat extends Fragment {
         binding.bttnEndPayment.setOnClickListener(v -> {
 
 
-            Persona met = new Persona("", "", "", 0, 0, 0L, "", "", 0, "", 0, 0);
-            String Titurlar = met.getNombre();
-            Integer Number_pago = met.getNumer_pago();
+            MetodoPago met = new MetodoPago("","","","",0);
+            String ID_Usuario = met.getID_Usuario();
+            String Titurlar = met.getTitular();
+            String Numbero_pago = met.getNumero_pago();
             Integer CVVS = met.getCVV();
 
             if(!binding.txtTitularCard.getText().toString().isEmpty()){
@@ -69,7 +71,7 @@ public class PaymentFormat extends Fragment {
                 CardOption1="Número de cuenta";
             }
             if (!binding.txtIntroduce.getText().toString().isEmpty()) {
-                Numero = Integer.parseInt(binding.txtIntroduce.getText().toString().trim());
+                Numero = binding.txtIntroduce.getText().toString();
             }
             if (!binding.txtCVV.getText().toString().isEmpty()){
                 CVV = Integer.parseInt(binding.txtCVV.getText().toString());
@@ -88,18 +90,20 @@ public class PaymentFormat extends Fragment {
                 }
             });
 
-            if (!TitularCard.isEmpty() && !CardOption1.isEmpty()&& Numero!=0 && CVV!=0) {
-            met.setNombre(TitularCard);
+            if (!TitularCard.isEmpty() && !CardOption1.isEmpty() && !Numero.isEmpty() && CVV!=0) {
+
+            met.setID_Usuario(user.getUid());
+            met.setTitular(TitularCard);
             met.setMetodo_pago(CardOption1);
-            met.setNumer_pago(Numero);
+            met.setNumero_pago(Numero);
             met.setCVV(CVV);
 
             //Método para mandar datos a la base.
             Map<String, Object> MetPago_db = new HashMap<>();
-            MetPago_db.put(Type, user.getUid());
-            MetPago_db.put("Nombre", met.getNombre());
+            MetPago_db.put(Type, met.getID_Usuario());
+            MetPago_db.put("Nombre", met.getTitular());
             MetPago_db.put("Tipo de Pago", met.getMetodo_pago());
-            MetPago_db.put("Numero", met.getNumer_pago());
+            MetPago_db.put("Numero", met.getNumero_pago());
             MetPago_db.put("CVV", met.getCVV());
 
             db.collection("Metodo de Pago").document(user.getUid()+CardOption1)
