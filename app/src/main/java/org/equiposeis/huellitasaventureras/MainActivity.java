@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public static boolean ALREADY_DOWNLOADED = false;
     public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
     public static Task<DocumentSnapshot> userQuery = db.collection("Usuarios").document(user.getUid()).get();
+    public static Task<QuerySnapshot> employeesQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 1).get();
     public static FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public static StorageReference PROFILE_PHOTO_REFERENCE = storage.getReference().child("ProfilePictures/" + user.getUid());
