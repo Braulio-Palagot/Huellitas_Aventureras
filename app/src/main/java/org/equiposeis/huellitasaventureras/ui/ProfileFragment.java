@@ -78,6 +78,7 @@ public class ProfileFragment extends Fragment {
         binding.rclrPet.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         binding.rclrPet.setAdapter(rclrPetsAdapter);
 
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
         userQuery.addOnSuccessListener(documentSnapshot -> {
