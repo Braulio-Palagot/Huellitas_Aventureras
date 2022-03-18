@@ -22,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
+import org.equiposeis.huellitasaventureras.dataModels.Paseo;
 import org.equiposeis.huellitasaventureras.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,11 +33,14 @@ public class MainActivity extends AppCompatActivity {
     public static int IMAGE_REQUEST_CODE = 10;
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static Mascota mascotaSeleccionada = null;
+    public static Paseo paseoSeleccionado = null;
     public static String ADD_PET_TYPE = "ADD_PET";
     public static boolean ALREADY_DOWNLOADED = false;
-    public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
+    public static Task<QuerySnapshot> mascotasUsuarioQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
+    public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").get();
     public static Task<DocumentSnapshot> userQuery = db.collection("Usuarios").document(user.getUid()).get();
     public static Task<QuerySnapshot> employeesQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 1).get();
+    public static Task<QuerySnapshot> clientsQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 0).get();
     public static FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public static StorageReference PROFILE_PHOTO_REFERENCE = storage.getReference().child("ProfilePictures/" + user.getUid());

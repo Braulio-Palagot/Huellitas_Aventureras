@@ -2,7 +2,7 @@ package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.MainActivity.db;
 import static org.equiposeis.huellitasaventureras.MainActivity.employeesQuery;
-import static org.equiposeis.huellitasaventureras.MainActivity.mascotasQuery;
+import static org.equiposeis.huellitasaventureras.MainActivity.mascotasUsuarioQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.user;
 
 import android.os.Bundle;
@@ -55,10 +55,10 @@ public class RideRequestClientFragment extends Fragment {
         binding.txtTime.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Times));
 
 //Rellenado de datos Empleados Disponibles subidos en la  BD
-        mascotasQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        mascotasUsuarioQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : mascotasQuery.getResult()) {
+                for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
                     String nombre = document.get("Nombre").toString();
                     Pets.add(nombre);
                 }

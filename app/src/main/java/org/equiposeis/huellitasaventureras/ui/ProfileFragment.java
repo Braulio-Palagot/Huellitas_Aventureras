@@ -5,7 +5,7 @@ import static org.equiposeis.huellitasaventureras.MainActivity.ADD_PET_TYPE;
 import static org.equiposeis.huellitasaventureras.MainActivity.ALREADY_DOWNLOADED;
 import static org.equiposeis.huellitasaventureras.MainActivity.PROFILE_PHOTO_REFERENCE;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotaSeleccionada;
-import static org.equiposeis.huellitasaventureras.MainActivity.mascotasQuery;
+import static org.equiposeis.huellitasaventureras.MainActivity.mascotasUsuarioQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.userQuery;
 
 import android.content.Intent;
@@ -121,10 +121,10 @@ public class ProfileFragment extends Fragment {
     }
 
     private void showPets() {
-        mascotasQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        mascotasUsuarioQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : mascotasQuery.getResult()) {
+                for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
                     String fecha = document.get("Fecha").toString();
                     int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/')+1));
                     int edadMascota = 2022 - anhoMascota;
