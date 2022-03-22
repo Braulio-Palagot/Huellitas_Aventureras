@@ -16,7 +16,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRide"
             android:layout_width="match_parent"
-            android:layout_height="120dp" >
+            android:layout_height="120dp"
+            tools:listitem="@layout/rclr_item_requestprogress" >
 
         </androidx.recyclerview.widget.RecyclerView>
 
