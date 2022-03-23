@@ -11,6 +11,7 @@
         android:id="@+id/imgUserPhoto"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:src="@drawable/no_user_photo"
         app:shapeAppearanceOverlay="@style/BaseProfileImageView"
         android:layout_marginVertical="24dp"
         app:layout_constraintEnd_toEndOf="parent"

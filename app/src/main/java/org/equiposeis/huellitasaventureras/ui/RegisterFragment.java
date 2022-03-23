@@ -1,5 +1,7 @@
 package org.equiposeis.huellitasaventureras.ui;
 
+import static org.equiposeis.huellitasaventureras.AuthActivity.BASE_USER_PHOTO;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,7 +108,7 @@ public class RegisterFragment extends Fragment {
                             if (userType == 0) {
                                 UsuarioCliente cliente = new UsuarioCliente(
                                         0,
-                                        "",
+                                        BASE_USER_PHOTO,
                                         auth.getCurrentUser().getUid(),
                                         name,
                                         gender,
@@ -125,12 +127,13 @@ public class RegisterFragment extends Fragment {
                                 usuario.put(getResources().getString(R.string.DOMICILIO_USUARIO), cliente.getDomicilio());
                                 usuario.put(getResources().getString(R.string.EMAIL_USUARIO), cliente.getCorreo_electronico());
                                 usuario.put(getResources().getString(R.string.TIPO_USUARIO), cliente.getTipo_usuario());
+                                usuario.put(getResources().getString(R.string.FOTO_USUARIO), cliente.getFoto_perfil());
 
                                 db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(cliente.getId_usuaio()).set(usuario);
                             } else if (userType == 1) {
                                 UsuarioPaseador paseador = new UsuarioPaseador(
                                         "",
-                                        "",
+                                        BASE_USER_PHOTO,
                                         auth.getCurrentUser().getUid(),
                                         name,
                                         gender,
@@ -149,6 +152,7 @@ public class RegisterFragment extends Fragment {
                                 usuario.put(getResources().getString(R.string.DOMICILIO_USUARIO), paseador.getDomicilio());
                                 usuario.put(getResources().getString(R.string.EMAIL_USUARIO), paseador.getCorreo_electronico());
                                 usuario.put(getResources().getString(R.string.TIPO_USUARIO), paseador.getTipo_usuario());
+                                usuario.put(getResources().getString(R.string.FOTO_USUARIO), paseador.getFoto_perfil());
 
                                 db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(paseador.getId_usuaio()).set(usuario);
                             }
