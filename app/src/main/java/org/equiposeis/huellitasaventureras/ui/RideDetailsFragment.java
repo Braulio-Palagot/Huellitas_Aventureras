@@ -47,11 +47,13 @@ public class RideDetailsFragment extends Fragment {
                                 document.get("Nombre").toString(),
                                 Integer.parseInt(document.get("Genero").toString()),
                                 Integer.parseInt(document.get("Edad").toString()),
-                                Integer.parseInt(document.get("Numero_Telefonico").toString()),
+                                Long.parseLong(document.get("Numero_Telefonico").toString()),
                                 document.get("Domicilio").toString(),
                                 document.get("Correo_Electronico").toString(),
                                 Integer.parseInt(document.get("Tipo_Usuario").toString())
                         );
+                        binding.txtName.setText(cliente.getNombre());
+                        binding.txtAddress.setText(cliente.getDomicilio());
                         break;
                     }
                 }
@@ -62,10 +64,10 @@ public class RideDetailsFragment extends Fragment {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot document : mascotasQuery.getResult()) {
-                    if (document.get("ID_Usuario").toString().equals(paseoSeleccionado.getId_usuario()) &&
-                            document.get("Mascota").toString().equals(paseoSeleccionado.getMascota())) {
+                    if (document.get("ID_Cliente").toString().equals(paseoSeleccionado.getId_usuario()) &&
+                            document.get("Nombre").toString().equals(paseoSeleccionado.getMascota())) {
                         String fecha = document.get("Fecha").toString();
-                        int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/')+1));
+                        int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
                         int edadMascota = 2022 - anhoMascota;
                         mascota = new Mascota(
                                 document.get("ID_Cliente").toString(),
@@ -74,21 +76,19 @@ public class RideDetailsFragment extends Fragment {
                                 document.get("Fecha").toString(),
                                 document.get("Raza").toString()
                         );
+                        binding.txtPetName.setText(mascota.getNombre_mascota());
+                        binding.txtPetfecha.setText(mascota.getFecha_mascota());
+                        binding.txtRace.setText(mascota.getRaza());
                         break;
                     }
                 }
             }
         });
 
-        binding.txtName.setText(cliente.getNombre());
-        binding.txtAddress.setText(cliente.getDomicilio());
-        binding.txtPetName.setText(mascota.getNombre_mascota());
-        binding.txtPetfecha.setText(mascota.getEdad_mascota());
-        binding.txtRace.setText(mascota.getRaza());
         binding.txtTime.setText(paseoSeleccionado.getDuracionPaseo());
 
         //Ocultar datos de solicitud
-        if (ride==0){
+        if (ride == 0) {
             binding.bttnAccept.setVisibility(View.GONE);
             binding.bttnReject.setVisibility(View.GONE);
         } else { //ocultar datos de paseo en curso
