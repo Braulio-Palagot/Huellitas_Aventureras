@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public static Task<DocumentSnapshot> userQuery = db.collection("Usuarios").document(user.getUid()).get();
     public static Task<QuerySnapshot> employeesQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 1).get();
     public static Task<QuerySnapshot> clientsQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 0).get();
+    public static Task<QuerySnapshot> walksQuery = db.collection("Solicitudes de Paseos").get();
     public static FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public static StorageReference PROFILE_PHOTO_REFERENCE = storage.getReference().child("ProfilePictures/" + user.getUid());
