@@ -5,5 +5,5 @@ data class Paseo(
         var id_paseador: String = "",
         var mascota: String,
         var duracionPaseo:String= "",
-        var Time: String="",
+        var estado: Int=0
 )

@@ -2,7 +2,7 @@ package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 import static org.equiposeis.huellitasaventureras.MainActivity.ADD_PET_TYPE;
-import static org.equiposeis.huellitasaventureras.MainActivity.ALREADY_DOWNLOADED;
+import static org.equiposeis.huellitasaventureras.MainActivity.PETS_ALREADY_DOWNLOADED;
 import static org.equiposeis.huellitasaventureras.MainActivity.PROFILE_PHOTO_REFERENCE;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotaSeleccionada;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotasUsuarioQuery;
@@ -106,9 +106,9 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        if (!ALREADY_DOWNLOADED) {
+        if (!PETS_ALREADY_DOWNLOADED) {
             showPets();
-            ALREADY_DOWNLOADED = true;
+            PETS_ALREADY_DOWNLOADED = true;
         }
 
         binding.bttnAddPet.setOnClickListener(v -> {

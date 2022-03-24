@@ -48,7 +48,7 @@ public class RideRequestClientFragment extends Fragment {
         View root = binding.getRoot();
         Times = getResources().getStringArray(R.array.Times);
 
-        Paseo paseo = new Paseo("", "", "", "", "");
+        Paseo paseo = new Paseo("", "", "", "", 0);
 
         binding.txtEmployee.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, employees));
         binding.txtPet.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Pets));
@@ -130,16 +130,16 @@ public class RideRequestClientFragment extends Fragment {
             }
             paseo.setId_usuario(user.getUid());
             paseo.setMascota(mascota);
-            paseo.setTime(Times1);
+            paseo.setDuracionPaseo(Times1);
 
             //Metodo para mandar datos a la base de datos.
             Map<String, Object> Paseo_db = new HashMap<>();
             Paseo_db.put("ID_Usuario", paseo.getId_usuario());
             Paseo_db.put("Mascota", paseo.getMascota());
             Paseo_db.put("ID_Paseador", paseo.getId_paseador());
-            Paseo_db.put("Duracion_Paseo", paseo.getTime());
+            Paseo_db.put("Duracion_Paseo", paseo.getDuracionPaseo());
 
-            db.collection("Solicitudes de Paseos").document(user.getUid() + mascota)
+            db.collection("Paseos").document(user.getUid() + mascota)
                     .set(Paseo_db)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

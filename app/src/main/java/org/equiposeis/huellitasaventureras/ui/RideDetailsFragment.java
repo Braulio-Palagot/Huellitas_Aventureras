@@ -1,8 +1,10 @@
 package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.MainActivity.clientsQuery;
+import static org.equiposeis.huellitasaventureras.MainActivity.db;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotasQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.paseoSeleccionado;
+import static org.equiposeis.huellitasaventureras.ui.HomeFragment.paseosPendientes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +14,15 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
 import org.equiposeis.huellitasaventureras.dataModels.UsuarioCliente;
 import org.equiposeis.huellitasaventureras.databinding.FragmentRideDetailsBinding;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RideDetailsFragment extends Fragment {
 
@@ -35,70 +38,66 @@ public class RideDetailsFragment extends Fragment {
         View root=binding.getRoot();
 
         // Rellenar datos del Paseo Seleccionado:
-        clientsQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot document : clientsQuery.getResult()) {
-                    if (document.get("ID_Usuario").toString().equals(paseoSeleccionado.getId_usuario())) {
-                        cliente = new UsuarioCliente(
-                                Integer.parseInt(document.get("Mascotas_Alta").toString()),
-                                document.get("Foto_Usuario").toString(),
-                                document.get("ID_Usuario").toString(),
-                                document.get("Nombre").toString(),
-                                Integer.parseInt(document.get("Genero").toString()),
-                                Integer.parseInt(document.get("Edad").toString()),
-                                Long.parseLong(document.get("Numero_Telefonico").toString()),
-                                document.get("Domicilio").toString(),
-                                document.get("Correo_Electronico").toString(),
-                                Integer.parseInt(document.get("Tipo_Usuario").toString())
-                        );
-                        binding.txtName.setText(cliente.getNombre());
-                        binding.txtAddress.setText(cliente.getDomicilio());
-                        break;
-                    }
-                }
+        for (DocumentSnapshot document : clientsQuery.getResult()) {
+            if (document.get("ID_Usuario").toString().equals(paseoSeleccionado.getId_usuario())) {
+                cliente = new UsuarioCliente(
+                        Integer.parseInt(document.get("Mascotas_Alta").toString()),
+                        document.get("Foto_Usuario").toString(),
+                        document.get("ID_Usuario").toString(),
+                        document.get("Nombre").toString(),
+                        Integer.parseInt(document.get("Genero").toString()),
+                        Integer.parseInt(document.get("Edad").toString()),
+                        Long.parseLong(document.get("Numero_Telefonico").toString()),
+                        document.get("Domicilio").toString(),
+                        document.get("Correo_Electronico").toString(),
+                        Integer.parseInt(document.get("Tipo_Usuario").toString())
+                );
+                binding.txtName.setText(cliente.getNombre());
+                binding.txtAddress.setText(cliente.getDomicilio());
+                break;
             }
-        });
+        }
 
-        mascotasQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot document : mascotasQuery.getResult()) {
-                    if (document.get("ID_Cliente").toString().equals(paseoSeleccionado.getId_usuario()) &&
-                            document.get("Nombre").toString().equals(paseoSeleccionado.getMascota())) {
-                        String fecha = document.get("Fecha").toString();
-                        int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
-                        int edadMascota = 2022 - anhoMascota;
-                        mascota = new Mascota(
-                                document.get("ID_Cliente").toString(),
-                                document.get("Nombre").toString(),
-                                edadMascota,
-                                document.get("Fecha").toString(),
-                                document.get("Raza").toString()
-                        );
-                        binding.txtPetName.setText(mascota.getNombre_mascota());
-                        binding.txtPetfecha.setText(mascota.getFecha_mascota());
-                        binding.txtRace.setText(mascota.getRaza());
-                        break;
-                    }
-                }
+        for (DocumentSnapshot document : mascotasQuery.getResult()) {
+            if (document.get("ID_Cliente").toString().equals(paseoSeleccionado.getId_usuario()) &&
+                    document.get("Nombre").toString().equals(paseoSeleccionado.getMascota())) {
+                String fecha = document.get("Fecha").toString();
+                int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
+                int edadMascota = 2022 - anhoMascota;
+                mascota = new Mascota(
+                        document.get("ID_Cliente").toString(),
+                        document.get("Nombre").toString(),
+                        edadMascota,
+                        document.get("Fecha").toString(),
+                        document.get("Raza").toString()
+                );
+                binding.txtPetName.setText(mascota.getNombre_mascota());
+                binding.txtPetfecha.setText(mascota.getFecha_mascota());
+                binding.txtRace.setText(mascota.getRaza());
+                break;
             }
-        });
+        }
+
 
         binding.txtTime.setText(paseoSeleccionado.getDuracionPaseo());
 
         //Ocultar datos de solicitud
-        if (ride == 0) {
-            binding.bttnAccept.setVisibility(View.GONE);
-            binding.bttnReject.setVisibility(View.GONE);
-        } else { //ocultar datos de paseo en curso
+        if (paseoSeleccionado.getEstado() == 0) {
             binding.bttnAccept.setVisibility(View.VISIBLE);
             binding.bttnReject.setVisibility(View.VISIBLE);
+        } else { //ocultar datos de paseo en curso
+            binding.bttnAccept.setVisibility(View.GONE);
+            binding.bttnReject.setVisibility(View.GONE);
         }
 
         binding.bttnAccept.setOnClickListener(v ->{
             //Mandar a BD la respuesta de aceptar
-            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_profile_to_navigation_add_pet, null);
+            String documentPath = paseoSeleccionado.getId_usuario() + paseoSeleccionado.getMascota();
+            Map<String, Object> updateRideStatus = new HashMap<>();
+            updateRideStatus.put("Estado", 1);
+            db.collection("Paseos").document(documentPath).update(updateRideStatus);
+            paseosPendientes.remove(paseoSeleccionado);
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_details_to_navigation_home, null);
         });
 
         binding.bttnReject.setOnClickListener(v ->{
