@@ -79,6 +79,7 @@
             style="@style/BaseRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:listitem="@layout/rclr_item_ride"/>
 
 </LinearLayout>

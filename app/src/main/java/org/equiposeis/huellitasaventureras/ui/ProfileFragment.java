@@ -4,12 +4,18 @@ import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 import static org.equiposeis.huellitasaventureras.MainActivity.ADD_PET_TYPE;
 import static org.equiposeis.huellitasaventureras.MainActivity.PETS_ALREADY_DOWNLOADED;
 import static org.equiposeis.huellitasaventureras.MainActivity.PROFILE_PHOTO_REFERENCE;
+import static org.equiposeis.huellitasaventureras.MainActivity.PROFILE_RIDES_ALREADY_DOWNLOADED;
+import static org.equiposeis.huellitasaventureras.MainActivity.clientsQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotaSeleccionada;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotasUsuarioQuery;
+import static org.equiposeis.huellitasaventureras.MainActivity.paseoSeleccionado;
+import static org.equiposeis.huellitasaventureras.MainActivity.user;
 import static org.equiposeis.huellitasaventureras.MainActivity.userQuery;
+import static org.equiposeis.huellitasaventureras.MainActivity.walksQuery;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +40,9 @@ import org.equiposeis.huellitasaventureras.AuthActivity;
 import org.equiposeis.huellitasaventureras.Glide.GlideApp;
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.adapters.PetAdapter;
+import org.equiposeis.huellitasaventureras.adapters.RidesCompletedAdapter;
 import org.equiposeis.huellitasaventureras.dataModels.Mascota;
+import org.equiposeis.huellitasaventureras.dataModels.Paseo;
 import org.equiposeis.huellitasaventureras.databinding.FragmentProfileBinding;
 
 import java.util.ArrayList;
@@ -46,7 +54,7 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
 
-    private final Function1 onClickListener = (new Function1() {
+    private final Function1 onPetClickListener = (new Function1() {
         @Override
         public Object invoke(Object o) {
             this.invoke((Mascota)o);
@@ -60,7 +68,21 @@ public class ProfileFragment extends Fragment {
         }
     });
     public static ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
+    public static ArrayList<Paseo> paseosFinalizados = new ArrayList<Paseo>();
     public static PetAdapter rclrPetsAdapter = null;
+    public static RidesCompletedAdapter rclrPaseosFinalizadosAdapter = null;
+    private final Function1 onRideClickListener = (new Function1() {
+        @Override
+        public Object invoke(Object o) {
+            this.invoke((Paseo) o);
+            return Unit.INSTANCE;
+        }
+
+        public void invoke(Paseo paseo) {
+            paseoSeleccionado = paseo;
+            NavHostFragment.findNavController(ProfileFragment.this).navigate(R.id.action_navigation_profile_to_navigation_ride_details);
+        }
+    });
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -68,7 +90,8 @@ public class ProfileFragment extends Fragment {
         View root = binding.getRoot();
         binding.rclrPet.setHasFixedSize(false);
         setHasOptionsMenu(true);
-        rclrPetsAdapter = new PetAdapter(getActivity(), mascotas, onClickListener);
+        rclrPetsAdapter = new PetAdapter(getActivity(), mascotas, onPetClickListener);
+        rclrPaseosFinalizadosAdapter = new RidesCompletedAdapter(requireContext(), paseosFinalizados, clientsQuery, onRideClickListener);
 
         binding.txtViewPet.setVisibility(View.GONE);
         binding.rclrPet.setVisibility(View.GONE);
@@ -77,6 +100,8 @@ public class ProfileFragment extends Fragment {
         binding.rclrRides.setVisibility(View.GONE);
         binding.rclrPet.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         binding.rclrPet.setAdapter(rclrPetsAdapter);
+        binding.rclrRides.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        binding.rclrRides.setAdapter(rclrPaseosFinalizadosAdapter);
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -106,9 +131,20 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        if (!PETS_ALREADY_DOWNLOADED) {
-            showPets();
-            PETS_ALREADY_DOWNLOADED = true;
+        try {
+            if (!PETS_ALREADY_DOWNLOADED) {
+                showPets();
+                PETS_ALREADY_DOWNLOADED = true;
+            }
+        } catch (Exception e) {
+            Log.e("Error:", e.toString());
+        }
+        try {
+            if (!PROFILE_RIDES_ALREADY_DOWNLOADED) {
+                showRides();
+            }
+        } catch (Exception e) {
+            Log.e("Error:", e.toString());
         }
 
         binding.bttnAddPet.setOnClickListener(v -> {
@@ -118,6 +154,32 @@ public class ProfileFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void showRides() {
+        walksQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : walksQuery.getResult()) {
+                    if (document.get("ID_Paseador").toString().equals(user.getUid())) {
+                        Paseo addingWalk = new Paseo(
+                                document.get("ID_Usuario").toString(),
+                                document.get("ID_Paseador").toString(),
+                                document.get("Mascota").toString(),
+                                document.get("Duracion_Paseo").toString(),
+                                Integer.parseInt(document.get("Estado").toString())
+                        );
+                        if (addingWalk.getEstado() == 2) {
+                            // Finalizado
+                            if (!paseosFinalizados.contains(addingWalk)) {
+                                paseosFinalizados.add(addingWalk);
+                                binding.rclrRides.getAdapter().notifyDataSetChanged();
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 
     private void showPets() {

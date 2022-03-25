@@ -112,5 +112,9 @@
         android:layout_height="wrap_content"
         android:text="@string/reject" />
 
-
+    <Button
+        android:id="@+id/bttnFinish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/finish" />
 </LinearLayout>

@@ -1,13 +1,13 @@
 package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
-import static org.equiposeis.huellitasaventureras.MainActivity.PETS_ALREADY_DOWNLOADED;
-import static org.equiposeis.huellitasaventureras.MainActivity.RIDES_ALREADY_DOWNLOADED;
+import static org.equiposeis.huellitasaventureras.MainActivity.HOME_RIDES_ALREADY_DOWNLOADED;
 import static org.equiposeis.huellitasaventureras.MainActivity.clientsQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.employeesQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.paseoSeleccionado;
 import static org.equiposeis.huellitasaventureras.MainActivity.userQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.walksQuery;
+import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.paseosFinalizados;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -73,13 +73,17 @@ public class HomeFragment extends Fragment {
                     rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, clientsQuery, onClickListener);
                 }
 
-                binding.rclrRidesRequested.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-                binding.rclrRidesRequested.setAdapter(rclrPaseosPendientesAdapter);
-                binding.rclrRidesInProgress.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-                binding.rclrRidesInProgress.setAdapter(rclrPaseosEnCursoAdapter);
-                if (!RIDES_ALREADY_DOWNLOADED) {
-                    showWalks();
-                    RIDES_ALREADY_DOWNLOADED = true;
+                try {
+                    binding.rclrRidesRequested.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                    binding.rclrRidesRequested.setAdapter(rclrPaseosPendientesAdapter);
+                    binding.rclrRidesInProgress.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                    binding.rclrRidesInProgress.setAdapter(rclrPaseosEnCursoAdapter);
+                    if (!HOME_RIDES_ALREADY_DOWNLOADED) {
+                        showWalks();
+                        HOME_RIDES_ALREADY_DOWNLOADED = true;
+                    }
+                } catch (Exception e) {
+                    Log.e("Error:", e.toString());
                 }
             }
         });
@@ -129,7 +133,7 @@ public class HomeFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot document : walksQuery.getResult()) {
                     if (document.get("ID_Paseador").toString().equals(user.getUid())) {
-                        Paseo addingWalk = new Paseo(
+                         Paseo addingWalk = new Paseo(
                                 document.get("ID_Usuario").toString(),
                                 document.get("ID_Paseador").toString(),
                                 document.get("Mascota").toString(),

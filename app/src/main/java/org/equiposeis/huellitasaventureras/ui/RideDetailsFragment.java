@@ -4,7 +4,9 @@ import static org.equiposeis.huellitasaventureras.MainActivity.clientsQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.db;
 import static org.equiposeis.huellitasaventureras.MainActivity.mascotasQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.paseoSeleccionado;
+import static org.equiposeis.huellitasaventureras.ui.HomeFragment.paseosEnCurso;
 import static org.equiposeis.huellitasaventureras.ui.HomeFragment.paseosPendientes;
+import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.paseosFinalizados;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -85,9 +87,15 @@ public class RideDetailsFragment extends Fragment {
         if (paseoSeleccionado.getEstado() == 0) {
             binding.bttnAccept.setVisibility(View.VISIBLE);
             binding.bttnReject.setVisibility(View.VISIBLE);
-        } else { //ocultar datos de paseo en curso
+            binding.bttnFinish.setVisibility(View.GONE);
+        } else if (paseoSeleccionado.getEstado() == 1){ //ocultar datos de paseo en curso
             binding.bttnAccept.setVisibility(View.GONE);
             binding.bttnReject.setVisibility(View.GONE);
+            binding.bttnFinish.setVisibility(View.VISIBLE);
+        } else {
+            binding.bttnAccept.setVisibility(View.GONE);
+            binding.bttnReject.setVisibility(View.GONE);
+            binding.bttnFinish.setVisibility(View.GONE);
         }
 
         binding.bttnAccept.setOnClickListener(v ->{
@@ -97,13 +105,28 @@ public class RideDetailsFragment extends Fragment {
             updateRideStatus.put("Estado", 1);
             db.collection("Paseos").document(documentPath).update(updateRideStatus);
             paseosPendientes.remove(paseoSeleccionado);
+            paseoSeleccionado.setEstado(1);
+            paseosEnCurso.add(paseoSeleccionado);
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_details_to_navigation_home, null);
         });
 
         binding.bttnReject.setOnClickListener(v ->{
             //Mandar a BD la respuesta de rechaza
+            String documentPath = paseoSeleccionado.getId_usuario() + paseoSeleccionado.getMascota();
+            db.collection("Paseos").document(documentPath).delete();
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_profile_to_navigation_add_pet, null);
+        });
 
+        binding.bttnFinish.setOnClickListener(view -> {
+            //Mandar a BD la finalización
+            String documentPath = paseoSeleccionado.getId_usuario() + paseoSeleccionado.getMascota();
+            Map<String, Object> updateRideStatus = new HashMap<>();
+            updateRideStatus.put("Estado", 2);
+            db.collection("Paseos").document(documentPath).update(updateRideStatus);
+            paseosEnCurso.remove(paseoSeleccionado);
+            paseoSeleccionado.setEstado(2);
+            paseosFinalizados.add(paseoSeleccionado);
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_details_to_navigation_home, null);
         });
 
         return root;

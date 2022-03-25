@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_navigation_payment"
             app:destination="@id/navigation_payment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_ride_details"
+            app:destination="@id/navigation_ride_details" />
     </fragment>
     <fragment
         android:id="@+id/navigation_add_pet"

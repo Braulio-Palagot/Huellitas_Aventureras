@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     public static Paseo paseoSeleccionado = null;
     public static String ADD_PET_TYPE = "ADD_PET";
     public static boolean PETS_ALREADY_DOWNLOADED = false;
-    public static boolean RIDES_ALREADY_DOWNLOADED = false;
+    public static boolean HOME_RIDES_ALREADY_DOWNLOADED = false;
+    public static boolean PROFILE_RIDES_ALREADY_DOWNLOADED = false;
     public static Task<QuerySnapshot> mascotasUsuarioQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
     public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").get();
     public static Task<DocumentSnapshot> userQuery = db.collection("Usuarios").document(user.getUid()).get();
