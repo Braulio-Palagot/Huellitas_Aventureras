@@ -17,7 +17,7 @@
             android:id="@+id/rclrRidesRequested"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            tools:listitem="@layout/rclr_item_rides_requested" />
+            tools:listitem="@layout/rclr_item_ride" />
 
         <TextView
             android:id="@+id/textViewRideInProgress"
@@ -29,9 +29,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesInProgress"
             android:layout_width="match_parent"
-            android:layout_height="120dp" >
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="120dp"
+            tools:listitem="@layout/rclr_item_ride" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnQuestRide"

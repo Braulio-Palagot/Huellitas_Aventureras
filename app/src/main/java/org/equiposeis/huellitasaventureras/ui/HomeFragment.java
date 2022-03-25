@@ -1,6 +1,8 @@
 package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
+import static org.equiposeis.huellitasaventureras.MainActivity.PETS_ALREADY_DOWNLOADED;
+import static org.equiposeis.huellitasaventureras.MainActivity.RIDES_ALREADY_DOWNLOADED;
 import static org.equiposeis.huellitasaventureras.MainActivity.clientsQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.employeesQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.paseoSeleccionado;
@@ -26,6 +28,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.equiposeis.huellitasaventureras.R;
+import org.equiposeis.huellitasaventureras.adapters.RidesInProgressAdapter;
 import org.equiposeis.huellitasaventureras.adapters.RidesRequestedAdapter;
 import org.equiposeis.huellitasaventureras.dataModels.Paseo;
 import org.equiposeis.huellitasaventureras.databinding.FragmentHomeBinding;
@@ -51,8 +54,10 @@ public class HomeFragment extends Fragment {
             NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_navigation_home_to_navigation_ride_details);
         }
     });
-    public static ArrayList<Paseo> paseos = new ArrayList<>();
-    public static RidesRequestedAdapter rclrWalksInProgressAdapter = null;
+    public static ArrayList<Paseo> paseosPendientes = new ArrayList<>();
+    public static ArrayList<Paseo> paseosEnCurso = new ArrayList<>();
+    public static RidesRequestedAdapter rclrPaseosPendientesAdapter = null;
+    public static RidesInProgressAdapter rclrPaseosEnCursoAdapter = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,14 +67,20 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (Integer.parseInt(userQuery.getResult().get("Tipo_Usuario").toString()) == 0) {
-                    rclrWalksInProgressAdapter = new RidesRequestedAdapter(requireContext(), paseos, employeesQuery, onClickListener);
+                    rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, employeesQuery, onClickListener);
                 } else {
-                    rclrWalksInProgressAdapter = new RidesRequestedAdapter(requireContext(), paseos, clientsQuery, onClickListener);
+                    rclrPaseosPendientesAdapter = new RidesRequestedAdapter(requireContext(), paseosPendientes, clientsQuery, onClickListener);
+                    rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, clientsQuery, onClickListener);
                 }
 
                 binding.rclrRidesRequested.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-                binding.rclrRidesRequested.setAdapter(rclrWalksInProgressAdapter);
-                showWalks();
+                binding.rclrRidesRequested.setAdapter(rclrPaseosPendientesAdapter);
+                binding.rclrRidesInProgress.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                binding.rclrRidesInProgress.setAdapter(rclrPaseosEnCursoAdapter);
+                if (!RIDES_ALREADY_DOWNLOADED) {
+                    showWalks();
+                    RIDES_ALREADY_DOWNLOADED = true;
+                }
             }
         });
 
@@ -123,11 +134,35 @@ public class HomeFragment extends Fragment {
                                 document.get("ID_Paseador").toString(),
                                 document.get("Mascota").toString(),
                                 document.get("Duracion_Paseo").toString(),
-                                document.get("Duracion_Paseo").toString()
+                                Integer.parseInt(document.get("Estado").toString())
                         );
-                        if (!paseos.contains(addingWalk)) {
-                            paseos.add(addingWalk);
-                            binding.rclrRidesRequested.getAdapter().notifyItemInserted(paseos.indexOf(addingWalk));
+                        if (addingWalk.getEstado() == 0) {
+                            // Pendiente
+                            if (!paseosPendientes.contains(addingWalk)) {
+                                paseosPendientes.add(addingWalk);
+                                binding.rclrRidesRequested.getAdapter().notifyDataSetChanged();
+                            }
+                        } else if (addingWalk.getEstado() == 1) {
+                            // En curso
+                            if (!paseosEnCurso.contains(addingWalk)) {
+                                paseosEnCurso.add(addingWalk);
+                                binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
+                            }
+                        }
+                    } else if (document.get("ID_Usuario").toString().equals(user.getUid())) {
+                        Paseo addingWalk = new Paseo(
+                                document.get("ID_Usuario").toString(),
+                                document.get("ID_Paseador").toString(),
+                                document.get("Mascota").toString(),
+                                document.get("Duracion_Paseo").toString(),
+                                Integer.parseInt(document.get("Estado").toString())
+                        );
+                        if (Integer.parseInt(document.get("Estado").toString()) == 1) {
+                            // En curso
+                            if (!paseosEnCurso.contains(addingWalk)) {
+                                paseosEnCurso.add(addingWalk);
+                                binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
+                            }
                         }
                     }
                 }

@@ -27,13 +27,13 @@ import java.util.ArrayList;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import kotlin.jvm.functions.Function1;
 
-public class RidesRequestedAdapter extends RecyclerView.Adapter<RidesRequestedAdapter.ViewHolder> {
+public class RidesInProgressAdapter extends RecyclerView.Adapter<RidesInProgressAdapter.ViewHolder> {
     private final Context context;
     private final ArrayList<Paseo> paseos;
     private final Task<QuerySnapshot> users;
     private final Function1 clickListener;
 
-    public RidesRequestedAdapter(Context context, ArrayList<Paseo> paseos, Task<QuerySnapshot> users, Function1 clickListener) {
+    public RidesInProgressAdapter(Context context, ArrayList<Paseo> paseos, Task<QuerySnapshot> users, Function1 clickListener) {
         this.context = context;
         this.paseos = paseos;
         this.users = users;
@@ -42,19 +42,19 @@ public class RidesRequestedAdapter extends RecyclerView.Adapter<RidesRequestedAd
 
     @NonNull
     @Override
-    public RidesRequestedAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RidesInProgressAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rclr_item_ride, parent, false);
-        return new RidesRequestedAdapter.ViewHolder(view);
+        return new RidesInProgressAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RidesRequestedAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RidesInProgressAdapter.ViewHolder holder, int position) {
         Paseo paseo = paseos.get(position);
         users.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot user : users.getResult()) {
-                    if (user.get("ID_Usuario").toString().equals(paseo.getId_usuario())) {
+                    if (user.get("ID_Usuario").toString().equals(paseo.getId_usuario()) || user.get("ID_Usuario").toString().equals(paseo.getId_paseador())) {
                         if (Integer.parseInt(user.get("Tipo_Usuario").toString()) == 0) {
                             UsuarioCliente cliente = new UsuarioCliente(
                                     Integer.parseInt(user.get("Mascotas_Alta").toString()),
@@ -91,7 +91,7 @@ public class RidesRequestedAdapter extends RecyclerView.Adapter<RidesRequestedAd
             }
         });
 
-        holder.itemView.setOnClickListener(view -> RidesRequestedAdapter.this.clickListener.invoke(paseo));
+        holder.itemView.setOnClickListener(view -> RidesInProgressAdapter.this.clickListener.invoke(paseo));
     }
 
     @Override
@@ -129,9 +129,10 @@ public class RidesRequestedAdapter extends RecyclerView.Adapter<RidesRequestedAd
                 txtUser.setText(paseador.getNombre().substring(0, 14) + "...");
             else
                 txtUser.setText(paseador.getNombre());
-            txtTime.setText(Paseo.getDuracionPaseo().substring(0, 14) + "...");
+            txtTime.setText(Paseo.getDuracionPaseo());
             GlideApp.with(context)
                     .load(paseador.getFoto_perfil())
+                    .apply(RequestOptions.bitmapTransform(new CropCircleTransformation()))
                     .into(imgUserPhoto);
         }
     }
