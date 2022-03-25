@@ -131,6 +131,7 @@ public class RideRequestClientFragment extends Fragment {
             paseo.setId_usuario(user.getUid());
             paseo.setMascota(mascota);
             paseo.setDuracionPaseo(Times1);
+            paseo.setEstado(0);
 
             //Metodo para mandar datos a la base de datos.
             Map<String, Object> Paseo_db = new HashMap<>();
@@ -138,6 +139,7 @@ public class RideRequestClientFragment extends Fragment {
             Paseo_db.put("Mascota", paseo.getMascota());
             Paseo_db.put("ID_Paseador", paseo.getId_paseador());
             Paseo_db.put("Duracion_Paseo", paseo.getDuracionPaseo());
+            Paseo_db.put("Estado", paseo.getEstado());
 
             db.collection("Paseos").document(user.getUid() + mascota)
                     .set(Paseo_db)
