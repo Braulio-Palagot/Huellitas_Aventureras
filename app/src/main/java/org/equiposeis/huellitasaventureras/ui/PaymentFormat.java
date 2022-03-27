@@ -44,6 +44,31 @@ public class PaymentFormat extends Fragment {
 
         binding.txtCardDetails.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, CardDetails));
 
+        //Pago del servicio
+
+        UsuarioCliente pago = new UsuarioCliente("",0,"PagoServ","",0,0,0,"","",0);
+        String metodo_pago = pago.getMetodo_pago();
+
+        Map<String, Object> pago_db = new HashMap<>();
+        pago_db.put("metodo_pago", pago.getMetodo_pago());
+
+        db.collection("UsuarioCliente").document("LA")
+                .set(pago_db)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireActivity(),"No se pudo",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
         binding.bttnEndPayment.setOnClickListener(v -> {
 
 
