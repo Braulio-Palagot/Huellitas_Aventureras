@@ -4,7 +4,6 @@ import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 import static org.equiposeis.huellitasaventureras.MainActivity.db;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.dataModels.MetodoPago;
-import org.equiposeis.huellitasaventureras.dataModels.Persona;
 import org.equiposeis.huellitasaventureras.databinding.FragmentPaymentFormatBinding;
 
 import java.util.HashMap;
@@ -48,6 +43,31 @@ public class PaymentFormat extends Fragment {
         CardDetails = getResources().getStringArray(R.array.CardDetails);
 
         binding.txtCardDetails.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, CardDetails));
+
+        //Pago del servicio
+
+        UsuarioCliente pago = new UsuarioCliente("",0,"PagoServ","",0,0,0,"","",0);
+        String metodo_pago = pago.getMetodo_pago();
+
+        Map<String, Object> pago_db = new HashMap<>();
+        pago_db.put("metodo_pago", pago.getMetodo_pago());
+
+        db.collection("UsuarioCliente").document("LA")
+                .set(pago_db)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireActivity(),"No se pudo",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
 
         binding.bttnEndPayment.setOnClickListener(v -> {
 
