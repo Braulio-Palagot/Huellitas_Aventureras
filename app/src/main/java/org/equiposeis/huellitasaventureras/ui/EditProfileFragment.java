@@ -43,7 +43,7 @@ public class EditProfileFragment extends Fragment {
 
     private FragmentEditProfileBinding binding;
     // Creación de variables para mandar a la BD:
-    private String name = "", addres = "", mail = "", passOne = "", passTwo = "";
+    private String name = "", addres = "", mail = "";
     private int gender = 0;
     private int age = 0;
     private long phone = 0;
@@ -147,21 +147,18 @@ public class EditProfileFragment extends Fragment {
                 updateUser.put(getResources().getString(R.string.TIPO_USUARIO), userType);
             } else {
                 UploadTask uploadTask = profilePhotoReference.putFile(cropedUri);
-                profilePhotoReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Map<String, Object> updateUser = new HashMap<>();
-                        updateUser.put(getResources().getString(R.string.NOMBRE_USUARIO), name);
-                        updateUser.put(getResources().getString(R.string.GENERO_USUARIO), gender);
-                        updateUser.put(getResources().getString(R.string.EDAD_USUARIO), age);
-                        updateUser.put(getResources().getString(R.string.TELEFONO_USUARIO), phone);
-                        updateUser.put(getResources().getString(R.string.DOMICILIO_USUARIO), addres);
-                        updateUser.put(getResources().getString(R.string.EMAIL_USUARIO), mail);
-                        updateUser.put(getResources().getString(R.string.TIPO_USUARIO), userType);
-                        updateUser.put(getResources().getString(R.string.FOTO_USUARIO), uri.toString());
-                        db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).update(updateUser);
-                        NavHostFragment.findNavController(EditProfileFragment.this).navigate(R.id.action_navigation_edit_profile_to_navigation_profile, null);
-                    }
+                profilePhotoReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                    Map<String, Object> updateUser = new HashMap<>();
+                    updateUser.put(getResources().getString(R.string.NOMBRE_USUARIO), name);
+                    updateUser.put(getResources().getString(R.string.GENERO_USUARIO), gender);
+                    updateUser.put(getResources().getString(R.string.EDAD_USUARIO), age);
+                    updateUser.put(getResources().getString(R.string.TELEFONO_USUARIO), phone);
+                    updateUser.put(getResources().getString(R.string.DOMICILIO_USUARIO), addres);
+                    updateUser.put(getResources().getString(R.string.EMAIL_USUARIO), mail);
+                    updateUser.put(getResources().getString(R.string.TIPO_USUARIO), userType);
+                    updateUser.put(getResources().getString(R.string.FOTO_USUARIO), uri.toString());
+                    db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).update(updateUser);
+                    NavHostFragment.findNavController(EditProfileFragment.this).navigate(R.id.action_navigation_edit_profile_to_navigation_profile, null);
                 });
             }
         });

@@ -7,7 +7,6 @@ import static org.equiposeis.huellitasaventureras.MainActivity.employeesQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.paseoSeleccionado;
 import static org.equiposeis.huellitasaventureras.MainActivity.userQuery;
 import static org.equiposeis.huellitasaventureras.MainActivity.walksQuery;
-import static org.equiposeis.huellitasaventureras.ui.ProfileFragment.paseosFinalizados;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -63,28 +62,25 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        userQuery.addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (Integer.parseInt(userQuery.getResult().get("Tipo_Usuario").toString()) == 0) {
-                    rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, employeesQuery, onClickListener);
-                } else {
-                    rclrPaseosPendientesAdapter = new RidesRequestedAdapter(requireContext(), paseosPendientes, clientsQuery, onClickListener);
-                    rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, clientsQuery, onClickListener);
-                }
+        userQuery.addOnSuccessListener(documentSnapshot -> {
+            if (Integer.parseInt(userQuery.getResult().get("Tipo_Usuario").toString()) == 0) {
+                rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, employeesQuery, onClickListener);
+            } else {
+                rclrPaseosPendientesAdapter = new RidesRequestedAdapter(requireContext(), paseosPendientes, clientsQuery, onClickListener);
+                rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, clientsQuery, onClickListener);
+            }
 
-                try {
-                    binding.rclrRidesRequested.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-                    binding.rclrRidesRequested.setAdapter(rclrPaseosPendientesAdapter);
-                    binding.rclrRidesInProgress.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-                    binding.rclrRidesInProgress.setAdapter(rclrPaseosEnCursoAdapter);
-                    if (!HOME_RIDES_ALREADY_DOWNLOADED) {
-                        showWalks();
-                        HOME_RIDES_ALREADY_DOWNLOADED = true;
-                    }
-                } catch (Exception e) {
-                    Log.e("Error:", e.toString());
+            try {
+                binding.rclrRidesRequested.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                binding.rclrRidesRequested.setAdapter(rclrPaseosPendientesAdapter);
+                binding.rclrRidesInProgress.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                binding.rclrRidesInProgress.setAdapter(rclrPaseosEnCursoAdapter);
+                if (!HOME_RIDES_ALREADY_DOWNLOADED) {
+                    showWalks();
+                    HOME_RIDES_ALREADY_DOWNLOADED = true;
                 }
+            } catch (Exception e) {
+                Log.e("Error:", e.toString());
             }
         });
 
@@ -92,7 +88,6 @@ public class HomeFragment extends Fragment {
         binding.rclrRidesRequested.setVisibility(View.GONE);
         binding.bttnQuestRide.setVisibility(View.GONE);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
         user = auth.getCurrentUser();
         userQuery.addOnCompleteListener(task -> {
@@ -128,45 +123,42 @@ public class HomeFragment extends Fragment {
     }
 
     private void showWalks() {
-        walksQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : walksQuery.getResult()) {
-                    if (document.get("ID_Paseador").toString().equals(user.getUid())) {
-                         Paseo addingWalk = new Paseo(
-                                document.get("ID_Usuario").toString(),
-                                document.get("ID_Paseador").toString(),
-                                document.get("Mascota").toString(),
-                                document.get("Duracion_Paseo").toString(),
-                                Integer.parseInt(document.get("Estado").toString())
-                        );
-                        if (addingWalk.getEstado() == 0) {
-                            // Pendiente
-                            if (!paseosPendientes.contains(addingWalk)) {
-                                paseosPendientes.add(addingWalk);
-                                binding.rclrRidesRequested.getAdapter().notifyDataSetChanged();
-                            }
-                        } else if (addingWalk.getEstado() == 1) {
-                            // En curso
-                            if (!paseosEnCurso.contains(addingWalk)) {
-                                paseosEnCurso.add(addingWalk);
-                                binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
-                            }
+        walksQuery.addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot document : walksQuery.getResult()) {
+                if (document.get("ID_Paseador").toString().equals(user.getUid())) {
+                     Paseo addingWalk = new Paseo(
+                            document.get("ID_Usuario").toString(),
+                            document.get("ID_Paseador").toString(),
+                            document.get("Mascota").toString(),
+                            document.get("Duracion_Paseo").toString(),
+                            Integer.parseInt(document.get("Estado").toString())
+                    );
+                    if (addingWalk.getEstado() == 0) {
+                        // Pendiente
+                        if (!paseosPendientes.contains(addingWalk)) {
+                            paseosPendientes.add(addingWalk);
+                            binding.rclrRidesRequested.getAdapter().notifyDataSetChanged();
                         }
-                    } else if (document.get("ID_Usuario").toString().equals(user.getUid())) {
-                        Paseo addingWalk = new Paseo(
-                                document.get("ID_Usuario").toString(),
-                                document.get("ID_Paseador").toString(),
-                                document.get("Mascota").toString(),
-                                document.get("Duracion_Paseo").toString(),
-                                Integer.parseInt(document.get("Estado").toString())
-                        );
-                        if (Integer.parseInt(document.get("Estado").toString()) == 1) {
-                            // En curso
-                            if (!paseosEnCurso.contains(addingWalk)) {
-                                paseosEnCurso.add(addingWalk);
-                                binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
-                            }
+                    } else if (addingWalk.getEstado() == 1) {
+                        // En curso
+                        if (!paseosEnCurso.contains(addingWalk)) {
+                            paseosEnCurso.add(addingWalk);
+                            binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
+                        }
+                    }
+                } else if (document.get("ID_Usuario").toString().equals(user.getUid())) {
+                    Paseo addingWalk = new Paseo(
+                            document.get("ID_Usuario").toString(),
+                            document.get("ID_Paseador").toString(),
+                            document.get("Mascota").toString(),
+                            document.get("Duracion_Paseo").toString(),
+                            Integer.parseInt(document.get("Estado").toString())
+                    );
+                    if (Integer.parseInt(document.get("Estado").toString()) == 1) {
+                        // En curso
+                        if (!paseosEnCurso.contains(addingWalk)) {
+                            paseosEnCurso.add(addingWalk);
+                            binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
                         }
                     }
                 }

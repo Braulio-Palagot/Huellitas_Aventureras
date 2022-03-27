@@ -41,8 +41,8 @@ import java.util.TimeZone;
 public class AddPetFragment extends Fragment {
 
     private FragmentAddPetBinding binding;
-    private String petname = "", otherrace = "", id_persona = "", petfecha = "", race1 = "";
-    private int race = 0, petage = 0;
+    private String petname = "", otherrace = "", petfecha = "", race1 = "";
+    private int race = 0;
     private String[] races = null;
     private FirebaseUser user = null;
     private Mascota mascota = new Mascota();
@@ -93,16 +93,13 @@ public class AddPetFragment extends Fragment {
         binding.txtRace.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, races));
 
         //Listener para el cambio de visibilidad de txtOtherrace en condición de selección Otos
-        binding.txtRace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 11) {
-                    binding.txtlytOtherRace.setVisibility(View.VISIBLE);
-                    binding.txtOtherRace.setVisibility(View.VISIBLE);
-                } else {
-                    binding.txtlytOtherRace.setVisibility(View.GONE);
-                    binding.txtOtherRace.setVisibility(View.GONE);
-                }
+        binding.txtRace.setOnItemClickListener((adapterView, view, i, l) -> {
+            if (i == 11) {
+                binding.txtlytOtherRace.setVisibility(View.VISIBLE);
+                binding.txtOtherRace.setVisibility(View.VISIBLE);
+            } else {
+                binding.txtlytOtherRace.setVisibility(View.GONE);
+                binding.txtOtherRace.setVisibility(View.GONE);
             }
         });
 

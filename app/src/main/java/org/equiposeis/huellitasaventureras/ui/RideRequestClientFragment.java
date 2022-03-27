@@ -12,15 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.dataModels.Paseo;
@@ -33,7 +29,7 @@ import java.util.Map;
 public class RideRequestClientFragment extends Fragment {
 
     private FragmentRideRequestClientBinding binding;
-    private int RideQuestClientEmployee, RideQuestClientPets, RideQuestClientTime;
+    private int RideQuestClientTime;
 
     private ArrayList<String> employees = new ArrayList<>();
     private ArrayList<String> Pets = new ArrayList<>();
@@ -55,37 +51,30 @@ public class RideRequestClientFragment extends Fragment {
         binding.txtTime.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Times));
 
 //Rellenado de datos Empleados Disponibles subidos en la  BD
-        mascotasUsuarioQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
-                    String nombre = document.get("Nombre").toString();
-                    Pets.add(nombre);
-                }
-                binding.txtPet.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Pets));
+        mascotasUsuarioQuery.addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
+                String nombre = document.get("Nombre").toString();
+                Pets.add(nombre);
             }
+            binding.txtPet.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Pets));
         });
 
 
         //Rellenado de datos de Mascotas registradas subidos en la BD
-        employeesQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : employeesQuery.getResult()) {
-                    String nombre = document.get("Nombre").toString();
-                    employees.add(nombre);
-                }
-                binding.txtEmployee.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, employees));
+        employeesQuery.addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot document : employeesQuery.getResult()) {
+                String nombre = document.get("Nombre").toString();
+                employees.add(nombre);
             }
+            binding.txtEmployee.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, employees));
         });
-
 
 
         binding.bttnClientRequest.setOnClickListener(v -> {
 
             if (binding.txtTime.getText().toString().equals("30 Mint")) {
                 RideQuestClientTime = 0;
-                Times1="30 Mint";
+                Times1 = "30 Mint";
             } else if (binding.txtTime.getText().toString().equals("45 Mint")) {
                 RideQuestClientTime = 1;
                 Times1="45 Mint";
@@ -143,20 +132,12 @@ public class RideRequestClientFragment extends Fragment {
 
             db.collection("Paseos").document(user.getUid() + mascota)
                     .set(Paseo_db)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(requireActivity(), "Registro de paseo exitoso", Toast.LENGTH_SHORT).show();
+                    .addOnSuccessListener(unused -> {
+                        Toast.makeText(requireActivity(), "Registro de paseo exitoso", Toast.LENGTH_SHORT).show();
 
-                            NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_ride_request_to_navigation_home, null);
-                        }
+                        NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_ride_request_to_navigation_home, null);
                     })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(requireActivity(),"No se pudo realizar el registro del paseo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    .addOnFailureListener(e -> Toast.makeText(requireActivity(), "No se pudo realizar el registro del paseo", Toast.LENGTH_SHORT).show());
         });
 
         binding.bttnCancelClientRequest.setOnClickListener(v -> {

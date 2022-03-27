@@ -4,7 +4,6 @@ import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
 import static org.equiposeis.huellitasaventureras.MainActivity.db;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.dataModels.MetodoPago;
-import org.equiposeis.huellitasaventureras.dataModels.Persona;
 import org.equiposeis.huellitasaventureras.databinding.FragmentPaymentFormatBinding;
 
 import java.util.HashMap;
@@ -33,7 +28,7 @@ public class PaymentFormat extends Fragment {
 
     //Variables de PaymentFormat
     private FragmentPaymentFormatBinding binding;
-    private String TitularCard = "",CardOption1="",Type="",Numero="";
+    private String TitularCard = "", CardOption1 = "", Numero = "";
     private int CVV = 0, CardOption = 0;
     private FirebaseUser user = null;
     private String[] CardDetails = null;
@@ -41,7 +36,7 @@ public class PaymentFormat extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
         binding = FragmentPaymentFormatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         user = auth.getCurrentUser();
@@ -52,7 +47,7 @@ public class PaymentFormat extends Fragment {
         binding.bttnEndPayment.setOnClickListener(v -> {
 
 
-            MetodoPago met = new MetodoPago("","","","",0);
+            MetodoPago met = new MetodoPago("", "", "", "", 0);
             String ID_Usuario = met.getID_Usuario();
             String Titurlar = met.getTitular();
             String Numbero_pago = met.getNumero_pago();
@@ -94,21 +89,13 @@ public class PaymentFormat extends Fragment {
             MetPago_db.put("Numero", met.getNumero_pago());
             MetPago_db.put("CVV", met.getCVV());
 
-            db.collection("Metodo de Pago").document(user.getUid()+CardOption1)
-                    .set(MetPago_db)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(requireActivity(),"Registro Exitoso", Toast.LENGTH_SHORT).show();
+                db.collection("Metodo de Pago").document(user.getUid() + CardOption1)
+                        .set(MetPago_db)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
                             NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_payment_to_navigation_profile, null);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(requireActivity(),"Fallo en el Registro", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        })
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show());
 
             }else{
                 Toast.makeText(requireActivity(), "Campos Incompletos", Toast.LENGTH_SHORT).show();

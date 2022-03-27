@@ -30,11 +30,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.equiposeis.huellitasaventureras.AuthActivity;
 import org.equiposeis.huellitasaventureras.Glide.GlideApp;
@@ -103,8 +100,6 @@ public class ProfileFragment extends Fragment {
         binding.rclrRides.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         binding.rclrRides.setAdapter(rclrPaseosFinalizadosAdapter);
 
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         //Jalar datos de la BD
         userQuery.addOnSuccessListener(documentSnapshot -> {
             DocumentSnapshot userData = userQuery.getResult();
@@ -157,24 +152,21 @@ public class ProfileFragment extends Fragment {
     }
 
     private void showRides() {
-        walksQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : walksQuery.getResult()) {
-                    if (document.get("ID_Paseador").toString().equals(user.getUid())) {
-                        Paseo addingWalk = new Paseo(
-                                document.get("ID_Usuario").toString(),
-                                document.get("ID_Paseador").toString(),
-                                document.get("Mascota").toString(),
-                                document.get("Duracion_Paseo").toString(),
-                                Integer.parseInt(document.get("Estado").toString())
-                        );
-                        if (addingWalk.getEstado() == 2) {
-                            // Finalizado
-                            if (!paseosFinalizados.contains(addingWalk)) {
-                                paseosFinalizados.add(addingWalk);
-                                binding.rclrRides.getAdapter().notifyDataSetChanged();
-                            }
+        walksQuery.addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot document : walksQuery.getResult()) {
+                if (document.get("ID_Paseador").toString().equals(user.getUid())) {
+                    Paseo addingWalk = new Paseo(
+                            document.get("ID_Usuario").toString(),
+                            document.get("ID_Paseador").toString(),
+                            document.get("Mascota").toString(),
+                            document.get("Duracion_Paseo").toString(),
+                            Integer.parseInt(document.get("Estado").toString())
+                    );
+                    if (addingWalk.getEstado() == 2) {
+                        // Finalizado
+                        if (!paseosFinalizados.contains(addingWalk)) {
+                            paseosFinalizados.add(addingWalk);
+                            binding.rclrRides.getAdapter().notifyDataSetChanged();
                         }
                     }
                 }
@@ -183,24 +175,21 @@ public class ProfileFragment extends Fragment {
     }
 
     private void showPets() {
-        mascotasUsuarioQuery.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
-                    String fecha = document.get("Fecha").toString();
-                    int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/')+1));
-                    int edadMascota = 2022 - anhoMascota;
-                    Mascota addingPet = new Mascota(
-                            document.get("ID_Cliente").toString(),
-                            document.get("Nombre").toString(),
-                            edadMascota,
-                            document.get("Fecha").toString(),
-                            document.get("Raza").toString()
-                    );
-                    if (!mascotas.contains(addingPet)) {
-                        mascotas.add(addingPet);
-                        binding.rclrPet.getAdapter().notifyItemInserted(mascotas.indexOf(addingPet));
-                    }
+        mascotasUsuarioQuery.addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
+                String fecha = document.get("Fecha").toString();
+                int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
+                int edadMascota = 2022 - anhoMascota;
+                Mascota addingPet = new Mascota(
+                        document.get("ID_Cliente").toString(),
+                        document.get("Nombre").toString(),
+                        edadMascota,
+                        document.get("Fecha").toString(),
+                        document.get("Raza").toString()
+                );
+                if (!mascotas.contains(addingPet)) {
+                    mascotas.add(addingPet);
+                    binding.rclrPet.getAdapter().notifyItemInserted(mascotas.indexOf(addingPet));
                 }
             }
         });

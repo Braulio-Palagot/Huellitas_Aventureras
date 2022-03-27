@@ -29,7 +29,6 @@ import java.util.Map;
 public class RideDetailsFragment extends Fragment {
 
     private FragmentRideDetailsBinding binding;
-    private int ride =0;
     private UsuarioCliente cliente = null;
     private Mascota mascota = null;
 
