@@ -28,8 +28,8 @@ public class PaymentFormat extends Fragment {
 
     //Variables de PaymentFormat
     private FragmentPaymentFormatBinding binding;
-    private String TitularCard = "", CardOption1 = "", Numero = "";
-    private int CVV = 0, CardOption = 0;
+    private String TitularCard = "", CardOption = "", Numero = "";
+    private int CVV = 0;
     private FirebaseUser user = null;
     private String[] CardDetails = null;
 
@@ -72,49 +72,38 @@ public class PaymentFormat extends Fragment {
         binding.bttnEndPayment.setOnClickListener(v -> {
 
 
-            MetodoPago met = new MetodoPago("", "", "", "", 0);
-            String ID_Usuario = met.getID_Usuario();
-            String Titurlar = met.getTitular();
-            String Numbero_pago = met.getNumero_pago();
-            Integer CVVS = met.getCVV();
+            MetodoPago met = new MetodoPago();
 
-            if(!binding.txtTitularCard.getText().toString().isEmpty()){
+            if (!binding.txtTitularCard.getText().toString().isEmpty()) {
                 TitularCard = binding.txtTitularCard.getText().toString();
             }
-            if (binding.txtCardDetails.getText().toString().equals("CLABE")){
-                CardOption = 0;
-                CardOption1="CLABE";
-            }else if(binding.txtCardDetails.getText().toString().equals("Número de tarjeta")){
-                CardOption = 1;
-                CardOption1="Número de tarjeta";
-            }else {
-                CardOption = 2;
-                CardOption1="Número de cuenta";
+            if (!binding.txtCardDetails.getText().toString().isEmpty()) {
+                CardOption = binding.txtCardDetails.getText().toString();
             }
             if (!binding.txtIntroduce.getText().toString().isEmpty()) {
                 Numero = binding.txtIntroduce.getText().toString();
             }
-            if (!binding.txtCVV.getText().toString().isEmpty()){
+            if (!binding.txtCVV.getText().toString().isEmpty()) {
                 CVV = Integer.parseInt(binding.txtCVV.getText().toString());
             }
 
-            if (!TitularCard.isEmpty() && !CardOption1.isEmpty() && !Numero.isEmpty() && CVV!=0) {
+            if (!TitularCard.isEmpty() && !CardOption.isEmpty() && !Numero.isEmpty() && CVV != 0) {
 
-            met.setID_Usuario(user.getUid());
-            met.setTitular(TitularCard);
-            met.setMetodo_pago(CardOption1);
-            met.setNumero_pago(Numero);
-            met.setCVV(CVV);
+                met.setID_Usuario(user.getUid());
+                met.setTitular(TitularCard);
+                met.setMetodo_pago(CardOption);
+                met.setNumero_pago(Numero);
+                met.setCVV(CVV);
 
-            //Método para mandar datos a la base.
-            Map<String, Object> MetPago_db = new HashMap<>();
-            MetPago_db.put("ID_Usuario", met.getID_Usuario());
+                //Método para mandar datos a la base.
+                Map<String, Object> MetPago_db = new HashMap<>();
+                MetPago_db.put("ID_Usuario", met.getID_Usuario());
             MetPago_db.put("Nombre", met.getTitular());
             MetPago_db.put("Tipo de Pago", met.getMetodo_pago());
             MetPago_db.put("Numero", met.getNumero_pago());
             MetPago_db.put("CVV", met.getCVV());
 
-                db.collection("Metodo de Pago").document(user.getUid() + CardOption1)
+                db.collection("Metodo de Pago").document(user.getUid() + CardOption)
                         .set(MetPago_db)
                         .addOnSuccessListener(aVoid -> {
                             Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();

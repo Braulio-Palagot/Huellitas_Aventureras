@@ -19,12 +19,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.equiposeis.huellitasaventureras.R;
 import org.equiposeis.huellitasaventureras.adapters.RidesInProgressAdapter;
@@ -83,10 +80,6 @@ public class HomeFragment extends Fragment {
                 Log.e("Error:", e.toString());
             }
         });
-
-        binding.textViewRideInRequest.setVisibility(View.GONE);
-        binding.rclrRidesRequested.setVisibility(View.GONE);
-        binding.bttnQuestRide.setVisibility(View.GONE);
 
         //Jalar datos de la BD
         user = auth.getCurrentUser();

@@ -49,6 +49,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtViewPet"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pets_title"
@@ -56,12 +57,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrPet"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             tools:listitem="@layout/rclr_item_pet" />
 
         <Button
             android:id="@+id/bttnAddPet"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_pet"/>

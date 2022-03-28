@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -49,26 +48,24 @@ public class RidesCompletedAdapter extends RecyclerView.Adapter<RidesCompletedAd
     @Override
     public void onBindViewHolder(@NonNull RidesCompletedAdapter.ViewHolder holder, int position) {
         Paseo paseo = paseos.get(position);
-        users.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot user : users.getResult()) {
-                    if (user.get("ID_Usuario").toString().equals(paseo.getId_usuario())) {
-                        UsuarioCliente cliente = new UsuarioCliente(
-                                Integer.parseInt(user.get("Mascotas_Alta").toString()),
-                                user.get("Foto_Usuario").toString(),
-                                user.get("ID_Usuario").toString(),
-                                user.get("Nombre").toString(),
-                                Integer.parseInt(user.get("Genero").toString()),
-                                Integer.parseInt(user.get("Edad").toString()),
-                                Long.parseLong(user.get("Numero_Telefonico").toString()),
-                                user.get("Domicilio").toString(),
-                                user.get("Correo_Electronico").toString(),
-                                Integer.parseInt(user.get("Tipo_Usuario").toString())
-                        );
+        users.addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot user : users.getResult()) {
+                if (user.get("ID_Usuario").toString().equals(paseo.getId_usuario())) {
+                    UsuarioCliente cliente = new UsuarioCliente(
+                            Integer.parseInt(user.get("Mascotas_Alta").toString()),
+                            user.get("Foto_Usuario").toString(),
+                            user.get("ID_Usuario").toString(),
+                            user.get("Nombre").toString(),
+                            user.get("Genero").toString(),
+                            Integer.parseInt(user.get("Edad").toString()),
+                            Long.parseLong(user.get("Numero_Telefonico").toString()),
+                            user.get("Domicilio").toString(),
+                            user.get("Correo_Electronico").toString(),
+                            user.get("Tipo_Usuario").toString()
+                    );
 
-                        holder.bind(cliente, paseo, context);;
-                    }
+                    holder.bind(cliente, paseo, context);
+                    ;
                 }
             }
         });

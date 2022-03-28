@@ -10,7 +10,6 @@ import static org.equiposeis.huellitasaventureras.MainActivity.user;
 import static org.equiposeis.huellitasaventureras.MainActivity.userQuery;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,13 +18,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -53,7 +52,6 @@ public class EditProfileFragment extends Fragment {
     private String[] user_types = null;
 
     private final StorageReference profilePhotoReference = storage.getReference().child("ProfilePictures/" + user.getUid());
-    Bitmap bitmap = null;
     Uri cropedUri = null;
     boolean IMAGE_SELECTED = false;
 
@@ -145,6 +143,9 @@ public class EditProfileFragment extends Fragment {
                 updateUser.put(getResources().getString(R.string.DOMICILIO_USUARIO), addres);
                 updateUser.put(getResources().getString(R.string.EMAIL_USUARIO), mail);
                 updateUser.put(getResources().getString(R.string.TIPO_USUARIO), userType);
+                db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).update(updateUser);
+                Toast.makeText(requireContext(), "Actualización Exitosa. Reincia la app.", Toast.LENGTH_SHORT).show();
+                NavHostFragment.findNavController(EditProfileFragment.this).navigate(R.id.action_navigation_edit_profile_to_navigation_profile, null);
             } else {
                 UploadTask uploadTask = profilePhotoReference.putFile(cropedUri);
                 profilePhotoReference.getDownloadUrl().addOnSuccessListener(uri -> {
@@ -158,6 +159,7 @@ public class EditProfileFragment extends Fragment {
                     updateUser.put(getResources().getString(R.string.TIPO_USUARIO), userType);
                     updateUser.put(getResources().getString(R.string.FOTO_USUARIO), uri.toString());
                     db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(user.getUid()).update(updateUser);
+                    Toast.makeText(requireContext(), "Actualización Exitosa. Reincia la app.", Toast.LENGTH_SHORT).show();
                     NavHostFragment.findNavController(EditProfileFragment.this).navigate(R.id.action_navigation_edit_profile_to_navigation_profile, null);
                 });
             }

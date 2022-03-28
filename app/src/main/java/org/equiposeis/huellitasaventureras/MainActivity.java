@@ -27,26 +27,35 @@ import org.equiposeis.huellitasaventureras.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ActivityMainBinding binding;
+
+    //    Instancias de Firebase:
     public static FirebaseAuth auth = FirebaseAuth.getInstance();
     public static FirebaseUser user = auth.getCurrentUser();
-    private ActivityMainBinding binding;
-    public static int IMAGE_REQUEST_CODE = 10;
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public static FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    //    Consultas a la BD:
+    public static Task<DocumentSnapshot> userQuery = db.collection("Usuarios").document(user.getUid()).get();
+    public static Task<QuerySnapshot> mascotasUsuarioQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
+    public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").get();
+    public static Task<QuerySnapshot> walksQuery = db.collection("Paseos").get();
+    public static Task<QuerySnapshot> employeesQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 1).get();
+    public static Task<QuerySnapshot> clientsQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 0).get();
+
+    //    Control de objetos seleccionados:
     public static Mascota mascotaSeleccionada = null;
     public static Paseo paseoSeleccionado = null;
+
+    //    Constantes de Control:
+    public static int IMAGE_REQUEST_CODE = 10;
+    public static StorageReference PROFILE_PHOTO_REFERENCE = storage.getReference().child("ProfilePictures/" + user.getUid());
     public static String ADD_PET_TYPE = "ADD_PET";
+
+    //    Variables de Control:
     public static boolean PETS_ALREADY_DOWNLOADED = false;
     public static boolean HOME_RIDES_ALREADY_DOWNLOADED = false;
     public static boolean PROFILE_RIDES_ALREADY_DOWNLOADED = false;
-    public static Task<QuerySnapshot> mascotasUsuarioQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
-    public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").get();
-    public static Task<DocumentSnapshot> userQuery = db.collection("Usuarios").document(user.getUid()).get();
-    public static Task<QuerySnapshot> employeesQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 1).get();
-    public static Task<QuerySnapshot> clientsQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 0).get();
-    public static Task<QuerySnapshot> walksQuery = db.collection("Paseos").get();
-    public static FirebaseStorage storage = FirebaseStorage.getInstance();
-
-    public static StorageReference PROFILE_PHOTO_REFERENCE = storage.getReference().child("ProfilePictures/" + user.getUid());
     public static boolean PROFILE_PHOTO_EDITED = false;
 
     @Override

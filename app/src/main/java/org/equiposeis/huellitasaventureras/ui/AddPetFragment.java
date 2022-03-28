@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -21,8 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -41,8 +38,7 @@ import java.util.TimeZone;
 public class AddPetFragment extends Fragment {
 
     private FragmentAddPetBinding binding;
-    private String petname = "", otherrace = "", petfecha = "", race1 = "";
-    private int race = 0;
+    private String petname = "", otherrace = "", petfecha = "", race = "";
     private String[] races = null;
     private FirebaseUser user = null;
     private Mascota mascota = new Mascota();
@@ -111,50 +107,16 @@ public class AddPetFragment extends Fragment {
             if (!binding.txtPetfecha.getText().toString().isEmpty()) {
                 petfecha = binding.txtPetfecha.getText().toString();
             }
-
-            if (binding.txtRace.getText().toString().equals("Husky siberiano")) {
-                race = 0;
-                race1 = "Husky siberiano";
-            } else if (binding.txtRace.getText().toString().equals("Golden retriever")) {
-                race = 1;
-                race1 = "Golden retriever";
-            } else if (binding.txtRace.getText().toString().equals("Caniche")) {
-                race = 2;
-                race1 = "Caniche";
-            } else if (binding.txtRace.getText().toString().equals("Pastor alemán")) {
-                race = 3;
-                race1 = "Pastor alemán";
-            } else if (binding.txtRace.getText().toString().equals("Yorkshire terrier")) {
-                race = 4;
-                race1 = "Yorkshire terrier";
-            } else if (binding.txtRace.getText().toString().equals("Dálmata")) {
-                race = 5;
-                race1 = "Dálmata";
-            } else if (binding.txtRace.getText().toString().equals("Bóxer")) {
-                race = 6;
-                race1 = "Bóxer";
-            } else if (binding.txtRace.getText().toString().equals("Chihuahua")) {
-                race = 7;
-                race1 = "Chihuahua";
-            } else if (binding.txtRace.getText().toString().equals("Bulldog inglés")) {
-                race = 8;
-                race1 = "Bulldog inglés";
-            } else if (binding.txtRace.getText().toString().equals("Beagle")) {
-                race = 9;
-                race1 = "Beagle";
-            } else if (binding.txtRace.getText().toString().equals("Schnauzer")) {
-                race = 10;
-                race1 = "Schnauzer";
-            } else {
-                race = 11;
+            if (!binding.txtRace.getText().toString().isEmpty()) {
+                race = binding.txtRace.getText().toString();
             }
 
             mascota.setId_usuario(user.getUid());
             mascota.setNombre_mascota(petname);
             mascota.setFecha_mascota(petfecha);
-            mascota.setRaza(race1);
+            mascota.setRaza(race);
 
-            if (!petname.isEmpty() && race != 11) {
+            if (!petname.isEmpty() && !race.equals("Otro")) {
                 //Mandar a la BD todos los datos
 
                 Map<String, Object> Mascota_db = new HashMap<>();
@@ -165,25 +127,17 @@ public class AddPetFragment extends Fragment {
 
                 db.collection("Mascota").document(user.getUid() + petname)
                         .set(Mascota_db)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                if (ADD_PET_TYPE.equals("ADD_PET"))
-                                    mascotas.add(mascota);
-                                else if (ADD_PET_TYPE.equals("EDIT_PET"))
-                                    mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
-                                Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
-                                NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
-                            }
+                        .addOnSuccessListener(aVoid -> {
+                            if (ADD_PET_TYPE.equals("ADD_PET"))
+                                mascotas.add(mascota);
+                            else if (ADD_PET_TYPE.equals("EDIT_PET"))
+                                mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
+                            Toast.makeText(requireActivity(), "Registro Exitoso. Reinicie la aplicación.", Toast.LENGTH_SHORT).show();
+                            NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show());
 
-            } else if (!petname.isEmpty() && race == 11) {
+            } else if (!petname.isEmpty() && race.equals("Otro")) {
                 //Mandar a la BD todos los datos cuando race es otro
                 if (!binding.txtOtherRace.getText().toString().isEmpty()) {
                     otherrace = binding.txtOtherRace.getText().toString();
@@ -197,23 +151,15 @@ public class AddPetFragment extends Fragment {
 
                 db.collection("Mascota").document(user.getUid() + petname)
                         .set(Mascota_db)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                if (ADD_PET_TYPE.equals("ADD_PET"))
-                                    mascotas.add(mascota);
-                                else if (ADD_PET_TYPE.equals("EDIT_PET"))
-                                    mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
-                                Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
-                                NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
-                            }
+                        .addOnSuccessListener(aVoid -> {
+                            if (ADD_PET_TYPE.equals("ADD_PET"))
+                                mascotas.add(mascota);
+                            else if (ADD_PET_TYPE.equals("EDIT_PET"))
+                                mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
+                            Toast.makeText(requireActivity(), "Registro Exitoso. Reinicie la aplicación.", Toast.LENGTH_SHORT).show();
+                            NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show());
             } else {
                 Toast.makeText(requireActivity(), "Campos Incompletos", Toast.LENGTH_SHORT).show();
             }
@@ -251,19 +197,11 @@ public class AddPetFragment extends Fragment {
             case R.id.delete_pet:
                 db.collection("Mascota").document(user.getUid() + mascotaSeleccionada.getNombre_mascota())
                         .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                mascotas.remove(mascotaSeleccionada);
-                                NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile);
-                            }
+                        .addOnSuccessListener(unused -> {
+                            mascotas.remove(mascotaSeleccionada);
+                            NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile);
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(requireActivity(), "Intentelo de nuevo", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Intentelo de nuevo", Toast.LENGTH_SHORT).show());
                 break;
             default:
                 break;

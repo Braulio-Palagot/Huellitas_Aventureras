@@ -45,18 +45,13 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.ViewHolder> {
         holder.bind(mascota, context);
 
         holder.itemView.setOnClickListener(view -> PetAdapter.this.clickListener.invoke(mascota));
-        holder.bttnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                db.collection("Mascota").document(user.getUid() + mascotas.get(holder.getAdapterPosition()).getNombre_mascota())
-                        .delete()
-                        .addOnSuccessListener(unused -> {
-                            mascotas.remove(holder.getAdapterPosition());
-                            PetAdapter.this.notifyItemRemoved(holder.getAdapterPosition());
-                        })
-                        .addOnFailureListener(e -> Toast.makeText(PetAdapter.this.context, "Intentelo de nuevo", Toast.LENGTH_SHORT).show());
-            }
-        });
+        holder.bttnDelete.setOnClickListener(view -> db.collection("Mascota").document(user.getUid() + mascotas.get(holder.getAdapterPosition()).getNombre_mascota())
+                .delete()
+                .addOnSuccessListener(unused -> {
+                    mascotas.remove(holder.getAdapterPosition());
+                    PetAdapter.this.notifyItemRemoved(holder.getAdapterPosition());
+                })
+                .addOnFailureListener(e -> Toast.makeText(PetAdapter.this.context, "Intentelo de nuevo", Toast.LENGTH_SHORT).show()));
     }
 
     @Override

@@ -29,12 +29,11 @@ import java.util.Map;
 public class RideRequestClientFragment extends Fragment {
 
     private FragmentRideRequestClientBinding binding;
-    private int RideQuestClientTime;
 
     private ArrayList<String> employees = new ArrayList<>();
     private ArrayList<String> Pets = new ArrayList<>();
     private String[] Times = null;
-    private String Times1 = "";
+    private String time = "";
     private String mascota = "";
 
     @Override
@@ -44,7 +43,7 @@ public class RideRequestClientFragment extends Fragment {
         View root = binding.getRoot();
         Times = getResources().getStringArray(R.array.Times);
 
-        Paseo paseo = new Paseo("", "", "", "", 0);
+        Paseo paseo = new Paseo();
 
         binding.txtEmployee.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, employees));
         binding.txtPet.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Pets));
@@ -72,41 +71,9 @@ public class RideRequestClientFragment extends Fragment {
 
         binding.bttnClientRequest.setOnClickListener(v -> {
 
-            if (binding.txtTime.getText().toString().equals("30 Mint")) {
-                RideQuestClientTime = 0;
-                Times1 = "30 Mint";
-            } else if (binding.txtTime.getText().toString().equals("45 Mint")) {
-                RideQuestClientTime = 1;
-                Times1="45 Mint";
-            } else if (binding.txtTime.getText().toString().equals("60 Mint")) {
-                RideQuestClientTime = 2;
-                Times1="60 Mint";
-            } else if (binding.txtTime.getText().toString().equals("75 Mint")) {
-                RideQuestClientTime = 3;
-                Times1="75 Mint";
-            } else if (binding.txtTime.getText().toString().equals("90 Mint")) {
-                RideQuestClientTime = 4;
-                Times1="90 Mint";
-            } else if (binding.txtTime.getText().toString().equals("105 Mint")) {
-                RideQuestClientTime = 5;
-                Times1="105 Mint";
-            } else if (binding.txtTime.getText().toString().equals("120 Mint")) {
-                RideQuestClientTime = 6;
-                Times1="120 Mint";
-            } else if (binding.txtTime.getText().toString().equals("135 Mint")) {
-                RideQuestClientTime = 7;
-                Times1="135 Mint";
-            } else if (binding.txtTime.getText().toString().equals("150 Mint")) {
-                RideQuestClientTime = 8;
-                Times1 = "150 Mint";
-            } else if (binding.txtTime.getText().toString().equals("165 Mint")) {
-                RideQuestClientTime = 9;
-                Times1 = "165 Mint";
-            } else {
-                RideQuestClientTime = 10;
-                Times1 = "180 Mint";
+            if (!binding.txtTime.getText().toString().isEmpty()) {
+                time = binding.txtTime.getText().toString();
             }
-
             if (!binding.txtPet.getText().toString().isEmpty()) {
                 mascota = binding.txtPet.getText().toString();
             }
@@ -119,7 +86,7 @@ public class RideRequestClientFragment extends Fragment {
             }
             paseo.setId_usuario(user.getUid());
             paseo.setMascota(mascota);
-            paseo.setDuracionPaseo(Times1);
+            paseo.setDuracionPaseo(time);
             paseo.setEstado(0);
 
             //Metodo para mandar datos a la base de datos.

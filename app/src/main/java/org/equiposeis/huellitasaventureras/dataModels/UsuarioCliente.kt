@@ -5,12 +5,12 @@ class UsuarioCliente(
     foto_perfil: String = "",
     id_cliente: String = "",
     nombre: String = "",
-    genero: Int = 3,
+    genero: String = "",
     edad: Int = 0,
     numero_telefonico: Long = 0L,
     domicilio: String = "",
     correo_electronico: String = "",
-    tipo_usuario: Int
+    tipo_usuario: String = ""
 ) : Persona(
     foto_perfil,
     id_cliente,

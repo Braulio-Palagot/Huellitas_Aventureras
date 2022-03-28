@@ -5,12 +5,12 @@ class UsuarioPaseador(
     foto_perfil: String = "",
     id_paseador: String = "",
     nombre:String = "",
-    genero:Int = 0,
+    genero:String = "",
     edad:Int = 0,
     numero_telefonico:Long = 0L,
     domicilio:String = "",
     correo_electronico:String = "",
-    tipo_usuario:Int
+    tipo_usuario:String = ""
 ): Persona(
     foto_perfil,
     id_paseador, nombre, genero, edad, numero_telefonico, domicilio, correo_electronico, tipo_usuario)

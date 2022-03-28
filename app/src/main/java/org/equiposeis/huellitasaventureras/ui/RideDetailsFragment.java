@@ -46,12 +46,12 @@ public class RideDetailsFragment extends Fragment {
                         document.get("Foto_Usuario").toString(),
                         document.get("ID_Usuario").toString(),
                         document.get("Nombre").toString(),
-                        Integer.parseInt(document.get("Genero").toString()),
+                        document.get("Genero").toString(),
                         Integer.parseInt(document.get("Edad").toString()),
                         Long.parseLong(document.get("Numero_Telefonico").toString()),
                         document.get("Domicilio").toString(),
                         document.get("Correo_Electronico").toString(),
-                        Integer.parseInt(document.get("Tipo_Usuario").toString())
+                        document.get("Tipo_Usuario").toString()
                 );
                 binding.txtName.setText(cliente.getNombre());
                 binding.txtAddress.setText(cliente.getDomicilio());

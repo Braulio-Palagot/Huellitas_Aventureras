@@ -8,6 +8,7 @@
 
         <TextView
             android:id="@+id/textViewRideInRequest"
+            android:visibility="gone"
             style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -15,6 +16,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesRequested"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             tools:listitem="@layout/rclr_item_ride" />
@@ -34,6 +36,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnQuestRide"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/request_ride" />

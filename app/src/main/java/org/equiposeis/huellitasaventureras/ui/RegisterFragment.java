@@ -28,8 +28,8 @@ public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding binding;
     // Creación de variables para mandar a la BD:
-    private String name = "", addres = "", mail = "", passOne = "", passTwo = "";
-    private int gender = 0, age = 0, userType = 0;
+    private String name = "", addres = "", mail = "", passOne = "", passTwo = "", gender = "", userType = "";
+    private int age = 0;
     private long phone = 0;
     // Se crean los arrays de elemntos de los DropDown:
     private String[] genders = null;
@@ -79,23 +79,11 @@ public class RegisterFragment extends Fragment {
             if (!binding.txtPhone.getText().toString().isEmpty()) {
                 phone = Long.parseLong(binding.txtPhone.getText().toString().trim());
             }
-
-            // Se selecciona el valor índice de cada selección de los DropDowns:
             if (!binding.txtGender.getText().toString().isEmpty()) {
-                if (binding.txtGender.getText().toString().equals("Masculino")) {
-                    gender = 0;
-                } else if (binding.txtGender.getText().toString().equals("Femenino")) {
-                    gender = 1;
-                } else {
-                    gender = 2;
-                }
+                gender = binding.txtGender.getText().toString();
             }
             if (!binding.txtUserType.getText().toString().isEmpty()) {
-                if (binding.txtUserType.getText().toString().equals("Cliente")) {
-                    userType = 0;
-                } else if (binding.txtUserType.getText().toString().equals("Paseador")) {
-                    userType = 1;
-                }
+                userType = binding.txtUserType.getText().toString();
             }
 
             // Se confirma que el correo no esté vacío y que las contraseñas coincidan para
@@ -105,7 +93,7 @@ public class RegisterFragment extends Fragment {
                     //Registrar usuario con Firebase Authentication:
                     auth.createUserWithEmailAndPassword(mail, passOne).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            if (userType == 0) {
+                            if (userType.equals("Cliente")) {
                                 UsuarioCliente cliente = new UsuarioCliente(
                                         0,
                                         BASE_USER_PHOTO,
@@ -130,7 +118,7 @@ public class RegisterFragment extends Fragment {
                                 usuario.put(getResources().getString(R.string.FOTO_USUARIO), cliente.getFoto_perfil());
 
                                 db.collection(getResources().getString(R.string.USUARIOS_TABLE)).document(cliente.getId_usuaio()).set(usuario);
-                            } else if (userType == 1) {
+                            } else if (userType.equals("Paseador")) {
                                 UsuarioPaseador paseador = new UsuarioPaseador(
                                         "",
                                         BASE_USER_PHOTO,

@@ -90,11 +90,6 @@ public class ProfileFragment extends Fragment {
         rclrPetsAdapter = new PetAdapter(getActivity(), mascotas, onPetClickListener);
         rclrPaseosFinalizadosAdapter = new RidesCompletedAdapter(requireContext(), paseosFinalizados, clientsQuery, onRideClickListener);
 
-        binding.txtViewPet.setVisibility(View.GONE);
-        binding.rclrPet.setVisibility(View.GONE);
-        binding.bttnAddPet.setVisibility(View.GONE);
-        binding.txtViewWalker.setVisibility(View.GONE);
-        binding.rclrRides.setVisibility(View.GONE);
         binding.rclrPet.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         binding.rclrPet.setAdapter(rclrPetsAdapter);
         binding.rclrRides.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
