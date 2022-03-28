@@ -64,46 +64,6 @@ public class LoginFragment extends Fragment {
                         }
                     });
                 }
-            } else {
-                if (binding.txtMail.getText().toString().isEmpty()) {
-                    binding.txtlytMail.setError(getResources().getString(R.string.no_mail));
-                }
-                if (binding.txtPassword.getText().toString().isEmpty()) {
-                    binding.txtlytPassword.setError(getResources().getString(R.string.no_password));
-                }
-            }
-        });
-
-        binding.txtMail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                binding.txtlytMail.setError(null);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        binding.txtPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                binding.txtlytPassword.setError(null);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
             }
         });
 

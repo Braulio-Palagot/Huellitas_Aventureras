@@ -21,14 +21,19 @@ import org.equiposeis.huellitasaventureras.databinding.ActivityAuthBinding;
 public class AuthActivity extends AppCompatActivity {
 
     private ActivityAuthBinding binding;
-    public static FirebaseAuth auth = FirebaseAuth.getInstance();
 
+    //    Instancias de Firebase:
+    public static FirebaseAuth auth = FirebaseAuth.getInstance();
+    public static FirebaseFirestore db = null;
+
+    //    Shared Preferences de la App:
     public static SharedPreferences preferences;
     public static final String PREFS_NAME = "org.equiposeis.huellitasaventureras.sharedpreferences";
     public static final String DONT_KEEP_LOGGED = "IS_LOGGED";
+
+    //    Constantes de Control:
     public static String BASE_USER_PHOTO = "https://firebasestorage.googleapis.com/v0/b/huellitas-aventureras.appspot.com/o/ProfilePictures%2FuserNoPicture.jpg?alt=media&token=a0988f39-5a75-4491-97e9-77bc97170698";
     public static final int PERMISSION_ID = 34;
-    public static FirebaseFirestore db = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
