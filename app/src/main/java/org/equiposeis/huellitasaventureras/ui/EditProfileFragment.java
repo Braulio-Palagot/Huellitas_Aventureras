@@ -67,15 +67,15 @@ public class EditProfileFragment extends Fragment {
         // Se cargan los datos del usuario:
         DocumentSnapshot userData = userQuery.getResult();
         binding.txtName.setText(userData.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString());
-        binding.txtGender.setText(getResources().getStringArray(R.array.genders)[Integer.parseInt(userData.get(getResources().getString(R.string.GENERO_USUARIO)).toString())]);
+        binding.txtGender.setText(userData.get(getResources().getString(R.string.GENERO_USUARIO)).toString());
         binding.txtAge.setText(userData.get(getResources().getString(R.string.EDAD_USUARIO)).toString());
         binding.txtPhone.setText(userData.get(getResources().getString(R.string.TELEFONO_USUARIO)).toString());
         binding.txtAddress.setText(userData.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString());
         binding.txtMail.setText(userData.get(getResources().getString(R.string.EMAIL_USUARIO)).toString());
-        binding.txtUserType.setText(getResources().getStringArray(R.array.user_types)[Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString())]);
+        binding.txtUserType.setText(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString());
 
         GlideApp.with(EditProfileFragment.this)
-                .load(PROFILE_PHOTO_REFERENCE)
+                .load(userData.get("Foto_Usuario"))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(binding.imgUserPhoto);
@@ -88,7 +88,7 @@ public class EditProfileFragment extends Fragment {
         binding.txtGender.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, genders));
         binding.txtUserType.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, user_types));
 
-        binding.bttnPaymentMethod.setText(getResources().getString(R.string.payment_method, Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0 ? "Pago" : "Cobro"));
+        binding.bttnPaymentMethod.setText(getResources().getString(R.string.payment_method, userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals("Cliente") ? "Pago" : "Cobro"));
 
         binding.bttnEditPhoto.setOnClickListener(v -> {
             // Se realiza la selección de foto desde el celular:

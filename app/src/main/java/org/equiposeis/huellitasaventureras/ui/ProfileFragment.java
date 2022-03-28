@@ -102,17 +102,17 @@ public class ProfileFragment extends Fragment {
                 binding.txtName.setText(userData.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString());
                 binding.txtAddress.setText(userData.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString());
                 GlideApp.with(ProfileFragment.this)
-                        .load(PROFILE_PHOTO_REFERENCE)
+                        .load(userData.get("Foto_Usuario"))
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
                         .into(binding.imgUserPhoto);
 
                 //Ocultar datos de paseador
-                if (Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0) {
+                if (userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals("Cliente")) {
                     binding.txtViewPet.setVisibility(View.VISIBLE);
                     binding.rclrPet.setVisibility(View.VISIBLE);
                     binding.bttnAddPet.setVisibility(View.VISIBLE);
-                } else if (Integer.parseInt(userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) { //ocultar datos de cliente
+                } else if (userData.get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals("Paseador")) { //ocultar datos de cliente
                     binding.txtViewWalker.setVisibility(View.VISIBLE);
                     binding.rclrRides.setVisibility(View.VISIBLE);
                 }

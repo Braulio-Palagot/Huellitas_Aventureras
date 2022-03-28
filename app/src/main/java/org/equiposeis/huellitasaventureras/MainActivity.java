@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public static Task<QuerySnapshot> mascotasUsuarioQuery = db.collection("Mascota").whereEqualTo("ID_Cliente", user.getUid()).get();
     public static Task<QuerySnapshot> mascotasQuery = db.collection("Mascota").get();
     public static Task<QuerySnapshot> walksQuery = db.collection("Paseos").get();
-    public static Task<QuerySnapshot> employeesQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 1).get();
-    public static Task<QuerySnapshot> clientsQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", 0).get();
+    public static Task<QuerySnapshot> employeesQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", "Paseador").get();
+    public static Task<QuerySnapshot> clientsQuery = db.collection("Usuarios").whereEqualTo("Tipo_Usuario", "Cliente").get();
 
     //    Control de objetos seleccionados:
     public static Mascota mascotaSeleccionada = null;

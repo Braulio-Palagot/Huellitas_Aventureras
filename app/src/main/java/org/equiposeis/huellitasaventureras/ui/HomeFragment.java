@@ -88,11 +88,11 @@ public class HomeFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 //Mostrar datos de Cliente
                 try {
-                    if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 0) {
+                    if (document.get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals("Cliente")) {
                         binding.textViewRideInProgress.setVisibility(View.VISIBLE);
                         binding.rclrRidesInProgress.setVisibility(View.VISIBLE);
                         binding.bttnQuestRide.setVisibility(View.VISIBLE);
-                    } else if (Integer.parseInt(document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()) == 1) {
+                    } else if (document.get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals("Paseador")) {
                         //Mostrar datos de Paseador
                         binding.textViewRideInRequest.setVisibility(View.VISIBLE);
                         binding.rclrRidesRequested.setVisibility(View.VISIBLE);
