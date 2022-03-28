@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         userQuery.addOnSuccessListener(documentSnapshot -> {
-            if (Integer.parseInt(userQuery.getResult().get("Tipo_Usuario").toString()) == 0) {
+            if (userQuery.getResult().get("Tipo_Usuario").toString().equals("Cliente")) {
                 rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, employeesQuery, onClickListener);
             } else {
                 rclrPaseosPendientesAdapter = new RidesRequestedAdapter(requireContext(), paseosPendientes, clientsQuery, onClickListener);
