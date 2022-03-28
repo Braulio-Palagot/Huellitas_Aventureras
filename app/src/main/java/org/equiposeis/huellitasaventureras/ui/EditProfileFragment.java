@@ -42,11 +42,9 @@ public class EditProfileFragment extends Fragment {
 
     private FragmentEditProfileBinding binding;
     // Creación de variables para mandar a la BD:
-    private String name = "", addres = "", mail = "";
-    private int gender = 0;
+    private String name = "", addres = "", mail = "", userType = "", gender = "";
     private int age = 0;
     private long phone = 0;
-    private int userType = 0;
     // Se crean los arrays de elemntos de los DropDown:
     private String[] genders = null;
     private String[] user_types = null;
@@ -117,20 +115,10 @@ public class EditProfileFragment extends Fragment {
 
             // Se selecciona el valor índice de cada selección de los DropDowns:
             if (!binding.txtGender.getText().toString().isEmpty()) {
-                if (binding.txtGender.getText().toString().equals("Masculino")) {
-                    gender = 0;
-                } else if (binding.txtGender.getText().toString().equals("Femenino")) {
-                    gender = 1;
-                } else {
-                    gender = 2;
-                }
+                gender = binding.txtGender.getText().toString();
             }
             if (!binding.txtUserType.getText().toString().isEmpty()) {
-                if (binding.txtUserType.getText().toString().equals("Cliente")) {
-                    userType = 0;
-                } else if (binding.txtUserType.getText().toString().equals("Paseador")) {
-                    userType = 1;
-                }
+                userType = binding.txtUserType.getText().toString();
             }
 
             if (!IMAGE_SELECTED) {
