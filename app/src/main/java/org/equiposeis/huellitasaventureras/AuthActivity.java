@@ -24,7 +24,7 @@ public class AuthActivity extends AppCompatActivity {
 
     //    Instancias de Firebase:
     public static FirebaseAuth auth = FirebaseAuth.getInstance();
-    public static FirebaseFirestore db = null;
+    public static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     //    Shared Preferences de la App:
     public static SharedPreferences preferences;
@@ -41,13 +41,10 @@ public class AuthActivity extends AppCompatActivity {
         binding = ActivityAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        db = FirebaseFirestore.getInstance();
-
         preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         if (preferences.getBoolean(DONT_KEEP_LOGGED,false))
             auth.signOut();
-
         if ((auth.getCurrentUser() != null)) {
             startActivity(new Intent(this, MainActivity.class));
             this.finish();

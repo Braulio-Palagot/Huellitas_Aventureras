@@ -1,6 +1,8 @@
 package org.equiposeis.huellitasaventureras.ui;
 
 import static org.equiposeis.huellitasaventureras.AuthActivity.BASE_USER_PHOTO;
+import static org.equiposeis.huellitasaventureras.AuthActivity.auth;
+import static org.equiposeis.huellitasaventureras.AuthActivity.db;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,9 +41,6 @@ public class RegisterFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentRegisterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        // Se crea una instancia de la Base de Datos y del servicio de Autenticación:
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseAuth auth = FirebaseAuth.getInstance();
         // Se crea el HashMap que se subirá a la Base de Datos:
         Map<String, Object> usuario = new HashMap<>();
 
