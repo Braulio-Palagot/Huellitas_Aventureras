@@ -113,7 +113,8 @@ public class RideDetailsFragment extends Fragment {
             //Mandar a BD la respuesta de rechaza
             String documentPath = paseoSeleccionado.getId_usuario() + paseoSeleccionado.getMascota();
             db.collection("Paseos").document(documentPath).delete();
-            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_profile_to_navigation_add_pet, null);
+            paseosPendientes.remove(paseoSeleccionado);
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_details_to_navigation_home, null);
         });
 
         binding.bttnFinish.setOnClickListener(view -> {
