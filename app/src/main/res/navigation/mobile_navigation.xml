@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/navigation_add_pet"
         android:name="org.equiposeis.huellitasaventureras.ui.AddPetFragment"
-        android:label="fragment_add_pet"
+        android:label="@string/title_add_pet"
         tools:layout="@layout/fragment_add_pet" >
         <action
             android:id="@+id/action_navigation_add_pet_to_navigation_profile"
@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/navigation_edit_profile"
         android:name="org.equiposeis.huellitasaventureras.ui.EditProfileFragment"
-        android:label="fragment_edit_profile"
+        android:label="@string/title_edit_profile"
         tools:layout="@layout/fragment_edit_profile" >
         <action
             android:id="@+id/action_navigation_edit_profile_to_navigation_profile"
@@ -64,7 +64,7 @@
     <fragment
         android:id="@+id/navigation_payment"
         android:name="org.equiposeis.huellitasaventureras.ui.PaymentFormat"
-        android:label="fragment_payment_format"
+        android:label="@string/title_payment"
         tools:layout="@layout/fragment_payment_format" >
         <action
             android:id="@+id/action_navigation_payment_to_navigation_profile"
@@ -75,7 +75,7 @@
     <fragment
         android:id="@+id/navigation_ride_details"
         android:name="org.equiposeis.huellitasaventureras.ui.RideDetailsFragment"
-        android:label="fragment_ride_details"
+        android:label="@string/title_ride_details"
         tools:layout="@layout/fragment_ride_details" >
         <action
             android:id="@+id/action_navigation_ride_details_to_navigation_home"
@@ -86,7 +86,7 @@
     <fragment
         android:id="@+id/navigation_ride_request"
         android:name="org.equiposeis.huellitasaventureras.ui.RideRequestClientFragment"
-        android:label="fragment_ride_request_client"
+        android:label="@string/title_ride_request"
         tools:layout="@layout/fragment_ride_request_client" >
         <action
             android:id="@+id/action_navigation_ride_request_to_navigation_home"

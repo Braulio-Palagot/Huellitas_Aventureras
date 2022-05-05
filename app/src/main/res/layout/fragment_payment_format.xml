@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.PaymentFormat">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtlytTitularCard"
@@ -12,66 +23,88 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/card_owner_hint">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtTitularCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtlytCardDetails"
-        style="@style/BaseDropDown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tipo de identificador">
-
-        <AutoCompleteTextView
-            android:id="@+id/txtCardDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtlytIntroduce"
-            style="@style/BaseOutlinedTextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/bank_acount_identifier_hint">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtIntroduce"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtlytCVV"
-            style="@style/BaseOutlinedTextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/cvv_hint" >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtCVV"
+                android:id="@+id/txtTitularCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bttnCancelPayment"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtlytCardDetails"
             android:layout_width="match_parent"
+            style="@style/BaseDropDown"
             android:layout_height="wrap_content"
-            android:text="@string/cancel" />
+            android:hint="Tipo de identificador">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bttnEndPayment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/finish" />
+            <AutoCompleteTextView
+                android:id="@+id/txtCardDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytIntroduce"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:hint="@string/bank_acount_identifier_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtIntroduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtlytCVV"
+                style="@style/BaseOutlinedTextInput"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/cvv_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCVV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttnCancelPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bttnEndPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/finish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bttnCancelPayment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
