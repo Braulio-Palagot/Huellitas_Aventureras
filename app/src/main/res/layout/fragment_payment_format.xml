@@ -24,7 +24,7 @@
         style="@style/BaseDropDown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tipo de identificador">
+        android:hint="@string/identifier_type_hint"><!-- cambio -->
 
         <AutoCompleteTextView
             android:id="@+id/txtCardDetails"
@@ -66,7 +66,7 @@
             android:id="@+id/bttnCancelPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cancel" />
+            android:text="@string/cancel" /><!-- mismo que generales -->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnEndPayment"

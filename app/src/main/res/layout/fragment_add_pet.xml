@@ -29,7 +29,7 @@
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha de Nacimiento">
+            android:hint="@string/date_pet_hint"><!--Cambio-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPetfecha"
@@ -45,7 +45,7 @@
             style="@style/BaseDropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/race_hint">
+            android:hint="@string/race_hint"><!--Cambio-->
 
             <AutoCompleteTextView
                 android:id="@+id/txtRace"
@@ -59,7 +59,7 @@
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/other_race">
+            android:hint="@string/other_race"><!--Cambio-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtOtherRace"

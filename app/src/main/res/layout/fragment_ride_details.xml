@@ -18,7 +18,7 @@
         style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/name_hint">
+        android:hint="@string/name_hint"><!-- mismo que register -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtName"
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/address_hint">
+        android:hint="@string/address_hint"><!-- mismo que register -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtAddress"
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
         style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/age_hint">
+        android:hint="@string/age_hint"><!-- mismo que register -->
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPetfecha"
@@ -79,7 +79,7 @@
         style="@style/BaseOutlinedTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/race_hint">
+        android:hint="@string/race_hint"><!-- cambio -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtRace"
             android:layout_width="match_parent"
@@ -104,17 +104,17 @@
         android:id="@+id/bttnAccept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/accept" />
+        android:text="@string/accept" /><!-- de generales -->
 
     <Button
         android:id="@+id/bttnReject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/reject" />
+        android:text="@string/reject" /><!-- de generales -->
 
     <Button
         android:id="@+id/bttnFinish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/finish" />
+        android:text="@string/finish" /><!-- de generales -->
 </LinearLayout>

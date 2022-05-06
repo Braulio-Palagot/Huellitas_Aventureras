@@ -12,7 +12,7 @@
             style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paseos en Solicitud" />
+            android:hint="@string/pending_rides_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesRequested"
@@ -26,7 +26,7 @@
             style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paseos en Curso" />
+            android:hint="@string/ongoing_rides_title" />    <!-- Cambio de color? -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesInProgress"
@@ -39,5 +39,5 @@
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/request_ride" />
+            android:text="@string/request_ride" />    <!-- Se jalo de string ridereq -->
 </androidx.appcompat.widget.LinearLayoutCompat>

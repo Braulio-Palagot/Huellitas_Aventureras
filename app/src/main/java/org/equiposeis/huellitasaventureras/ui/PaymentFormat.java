@@ -72,22 +72,22 @@ public class PaymentFormat extends Fragment {
 
                 //Método para mandar datos a la base.
                 Map<String, Object> MetPago_db = new HashMap<>();
-                MetPago_db.put("ID_Usuario", met.getID_Usuario());
-                MetPago_db.put("Nombre", met.getTitular());
-                MetPago_db.put("Tipo de Pago", met.getMetodo_pago());
-                MetPago_db.put("Numero", met.getNumero_pago());
-                MetPago_db.put("CVV", met.getCVV());
+                MetPago_db.put(getResources().getString(R.string.ID_USUARIO), met.getID_Usuario());
+                MetPago_db.put(getResources().getString(R.string.name_hint), met.getTitular());
+                MetPago_db.put(getResources().getString(R.string.payment_type), met.getMetodo_pago());
+                MetPago_db.put(getResources().getString(R.string.number), met.getNumero_pago());
+                MetPago_db.put(getResources().getString(R.string.cvv_hint), met.getCVV());
 
-                db.collection("Metodo de Pago").document(user.getUid() + CardOption)
+                db.collection(getResources().getString(R.string.payment_method/*verificar*/)).document(user.getUid() + CardOption)
                         .set(MetPago_db)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(requireActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), getResources().getString(R.string.succefull_register_payment), Toast.LENGTH_SHORT).show();
                             NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_payment_to_navigation_profile, null);
                         })
-                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show());
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getString(R.string.registry_error), Toast.LENGTH_SHORT).show());
 
             }else{
-                Toast.makeText(requireActivity(), "Campos Incompletos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), getResources().getString(R.string.incomplete_fields), Toast.LENGTH_SHORT).show();
             }
 
         });

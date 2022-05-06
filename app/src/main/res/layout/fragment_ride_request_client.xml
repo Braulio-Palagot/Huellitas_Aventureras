@@ -58,5 +58,5 @@
             android:id="@+id/bttnCancelClientRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cancel" />
+            android:text="@string/cancel" /><!-- de generales -->
 </androidx.appcompat.widget.LinearLayoutCompat>

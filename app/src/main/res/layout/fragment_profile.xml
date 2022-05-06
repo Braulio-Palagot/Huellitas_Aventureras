@@ -24,7 +24,7 @@
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_hint">
+            android:hint="@string/name_hint"><!-- mismo que register -->
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             style="@style/BaseOutlinedTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/address_hint">
+            android:hint="@string/address_hint"><!-- mismo que register -->
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtAddress"
                     android:focusable="false"
