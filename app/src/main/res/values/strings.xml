@@ -4,6 +4,11 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Inicio</string>
     <string name="title_profile">Perfil</string>
+    <string name="title_edit_profile">Editar Perfil</string>
+    <string name="title_add_pet">Registrar Mascota</string>
+    <string name="title_ride_details">Detalles</string>
+    <string name="title_payment">Tarjetas y Cuentas</string>
+    <string name="title_ride_request">Solicitar Servicio</string>
     <string name="cancel">Cancelar</string>
     <string name="finish">Finalizar</string>
     <string name="register">Registrarse</string>

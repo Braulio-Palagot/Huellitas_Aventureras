@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.HomeFragment">
 
         <TextView
             android:id="@+id/textViewRideInRequest"
-            android:visibility="gone"
             style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
+            android:text="Paseos en Solicitud"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/rclrRidesRequested"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
             android:hint="@string/pending_rides_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesRequested"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_marginVertical="16dp"
             android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewRideInRequest"
             tools:listitem="@layout/rclr_item_ride" />
 
         <TextView
@@ -26,18 +39,34 @@
             style="@style/BaseTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
+            android:text="Paseos en Curso"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rclrRidesRequested" />
             android:hint="@string/ongoing_rides_title" />    <!-- Cambio de color? -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesInProgress"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_marginVertical="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRideInProgress"
             tools:listitem="@layout/rclr_item_ride" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bttnQuestRide"
-            android:visibility="gone"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/request_ride" />    <!-- Se jalo de string ridereq -->
-</androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_marginBottom="64dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/request_ride"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
