@@ -1,88 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.ProfileFragment" >
+    tools:context=".ui.ProfileFragment">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgUserPhoto"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/no_user_photo"
-            android:layout_marginVertical="24dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/BaseProfileImageView" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtlytName"
-            style="@style/BaseOutlinedTextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_hint">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtName"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgUserPhoto"
                     android:layout_width="match_parent"
-                    android:focusable="false"
-                    android:layout_height="match_parent"
-                    android:inputType="textPersonName|textCapWords" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="150dp"
+                    android:layout_marginVertical="24dp"
+                    android:src="@drawable/no_user_photo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/BaseProfileImageView" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtlytAddress"
-            style="@style/BaseOutlinedTextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/address_hint">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtAddress"
-                    android:focusable="false"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtlytName"
+                    style="@style/BaseOutlinedTextInput"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name_hint"><!-- mismo que register -->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:focusable="false"
+                            android:inputType="textPersonName|textCapWords" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtlytAddress"
+                    style="@style/BaseOutlinedTextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address_hint"><!-- mismo que register -->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:focusable="false"
+                            android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtViewPet"
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/BaseTextView"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
             android:text="@string/pets_title"
-            style="@style/BaseTextView"/>
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrPet"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="24dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/bttnAddPet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewPet"
             tools:listitem="@layout/rclr_item_pet" />
 
         <Button
             android:id="@+id/bttnAddPet"
-            android:visibility="gone"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_pet"/>
+            android:layout_marginBottom="64dp"
+            android:text="@string/add_pet"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtViewWalker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/rides_title"
             style="@style/BaseTextView"
-            android:visibility="gone"/>
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:text="@string/rides_title"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRides"
-            style="@style/BaseRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="64dp"
             android:visibility="gone"
-            tools:listitem="@layout/rclr_item_ride"/>
+            app:layout_constraintBottom_toBottomOf="@+id/bttnAddPet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewWalker"
+            tools:listitem="@layout/rclr_item_ride" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

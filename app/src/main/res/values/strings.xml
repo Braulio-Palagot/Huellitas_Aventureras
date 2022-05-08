@@ -18,10 +18,10 @@
     <string name="reject">Rechazar</string>
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
-    <string name="payment_method">Método de %1$s</string>
+    <string name="payment_method">Método de %1$s</string><!--preguntar-->
     <string name="select_media_app">Selecciona su galería</string>
 
-    <!--  RegisterFragment  -->
+    <!--  RegisterFragment & EditProfileFragment -->
     <string name="name_hint">Nombre</string>
     <string name="gender_hint">Género</string>
     <string name="age_hint">Edad</string>
@@ -62,6 +62,7 @@
     <string name="time_hint">Tiempo de paseo</string>
 
     <!-- AddPetFragment -->
+    <string name="date_pet_hint">Fecha de nacimiento</string><!--Cambio-->
     <string-array name="races">
         <item>Husky siberiano</item>
         <item>Golden retriever</item>
@@ -107,6 +108,7 @@
   
     <!-- PaymentFormatFragment -->
     <string name="card_owner_hint">Titular de la cuenta</string>
+    <string name="identifier_type_hint">Tipo de identificador</string><!-- cambio -->
     <string name="bank_acount_identifier_hint">Identificador de la cuenta</string>
     <string name="identifier_hint">Introducir %1$s</string>
     <string name="cvv_hint">CVV</string>
@@ -119,6 +121,7 @@
     <!--  HomeFragment  -->
     <string name="ongoing_rides_title">Paseos en curso</string>
     <string name="pending_rides_title">Paseos en solicitud</string>
+
 
     <!--  Tablas de la BD  -->
     <string name="USUARIOS_TABLE">Usuarios</string>
@@ -134,4 +137,50 @@
     <string name="MASCOTAS_USUARIO">Mascotas_Alta</string>
     <string name="CAPACITACION_USUARIO">Capacitacion</string>
     <string name="METODO_PAGO_COBRO">Metodo_Pago_Cobro</string>
+
+
+    <!--  RclrItemPet  -->
+    <string name="namePet_hint">Nombre de la mascota</string>
+
+    <!--  RclrItemRide  -->
+    <string name="nameUser_hint">Nombre del usuario</string>
+    <string name="time">Tiempo</string>
+
+    <!--  Archivos .java  -->
+    <!--  AddPetFragment  -->
+    <string name="other">Otro</string>
+    <string name="succefull_register">Registro Exitoso. Reinicie la aplicación.</string>
+    <string name="registry_error">Fallo en el Registro.</string>
+    <string name="incomplete_fields">Campos incompletos.</string>
+
+    <!--  HomeFragment  -->
+    <string name="ID_PASEADOR">ID_Paseador</string>
+    <string name="Duracion_Paseo">Duracion_Paseo</string>
+    <string name="Estado">Estado</string>
+    <string name="Walker">Paseador</string>
+
+    <!-- AddPetFragment -->
+    <string name="retry">Intentelo de nuevo</string>
+
+
+    <!--  PaymentFormatFragment  -->
+    <string name="succefull_register_payment">Registro Exitoso.</string>
+    <string name="payment_type">Tipo de pago</string>
+    <string name="number">Numero</string>
+
+    <!-- ProfileFragment -->
+    <string name="photo_user">Foto_Usuario</string>
+    <string name="notification">No es posible cargar los datos del usuario en este momento.</string>
+    <string name="date">Fecha</string>
+    <string name="ID_Cliente">ID_Cliente</string>
+    <string name="ADD_PET">ADD_PET</string>
+    <string name="EDIT_PET">EDIT_PET</string>
+
+    <!--RideDetailsFragment-->
+    <string name="Rides">Paseos</string>
+
+    <!--RideRequestClientFragment-->
+    <string name="succefull_register_ride">Registro de paseo exitoso</string>
+    <string name="fail_register_ride">No se pudo realizar el registro del paseo</string>
+
 </resources>

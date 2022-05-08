@@ -56,14 +56,14 @@ public class AddPetFragment extends Fragment {
         binding.txtOtherRace.setVisibility(View.GONE);
         binding.txtPetfecha.setOnClickListener(view -> {
             MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
-                    .setTitleText("Fecha de Nacimiento")
+                    .setTitleText(getResources().getString(R.string.date_pet_hint))
                     .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                     .build();
             datePicker.addOnPositiveButtonClickListener(selection -> binding.txtPetfecha.setText(setDate(selection)));
             datePicker.show(getActivity().getSupportFragmentManager(), "tag");
         });
 
-        if (ADD_PET_TYPE.equals("EDIT_PET")) {
+        if (ADD_PET_TYPE.equals(getResources().getString(R.string.EDIT_PET))) {
             binding.txtPetName.setText(mascotaSeleccionada.getNombre_mascota());
             binding.txtPetfecha.setText(mascotaSeleccionada.getFecha_mascota());
             binding.txtRace.setText(mascotaSeleccionada.getRaza());
@@ -78,7 +78,7 @@ public class AddPetFragment extends Fragment {
                     !mascotaSeleccionada.getRaza().equals("Bulldog inglés") &&
                     !mascotaSeleccionada.getRaza().equals("Beagle") &&
                     !mascotaSeleccionada.getRaza().equals("Schnauzer")) {
-                binding.txtRace.setText("Otro");
+                binding.txtRace.setText(getResources().getString(R.string.other));//linea de referencia para este tipo de archivos
                 binding.txtOtherRace.setText(mascotaSeleccionada.getRaza());
                 binding.txtlytOtherRace.setVisibility(View.VISIBLE);
                 binding.txtOtherRace.setVisibility(View.VISIBLE);
@@ -120,22 +120,22 @@ public class AddPetFragment extends Fragment {
                 //Mandar a la BD todos los datos
 
                 Map<String, Object> Mascota_db = new HashMap<>();
-                Mascota_db.put("ID_Cliente", mascota.getId_usuario());
-                Mascota_db.put("Nombre", mascota.getNombre_mascota());
-                Mascota_db.put("Fecha", mascota.getFecha_mascota());
-                Mascota_db.put("Raza", mascota.getRaza());
+                Mascota_db.put(getResources().getString(R.string.ID_Cliente), mascota.getId_usuario());
+                Mascota_db.put(getResources().getString(R.string.name_hint), mascota.getNombre_mascota());
+                Mascota_db.put(getResources().getString(R.string.date), mascota.getFecha_mascota());
+                Mascota_db.put(getResources().getString(R.string.race_hint), mascota.getRaza());
 
-                db.collection("Mascota").document(user.getUid() + petname)
+                db.collection(getResources().getString(R.string.pet_title)).document(user.getUid() + petname)
                         .set(Mascota_db)
                         .addOnSuccessListener(aVoid -> {
                             if (ADD_PET_TYPE.equals("ADD_PET"))
                                 mascotas.add(mascota);
                             else if (ADD_PET_TYPE.equals("EDIT_PET"))
                                 mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
-                            Toast.makeText(requireActivity(), "Registro Exitoso. Reinicie la aplicación.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), getResources().getString(R.string.succefull_register), Toast.LENGTH_SHORT).show();//preguntar acá
                             NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                         })
-                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show());
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getString(R.string.registry_error), Toast.LENGTH_SHORT).show());
 
             } else if (!petname.isEmpty() && race.equals("Otro")) {
                 //Mandar a la BD todos los datos cuando race es otro
@@ -144,24 +144,24 @@ public class AddPetFragment extends Fragment {
                     mascota.setRaza(otherrace);
                 }
                 Map<String, Object> Mascota_db = new HashMap<>();
-                Mascota_db.put("ID_Cliente", mascota.getId_usuario());
-                Mascota_db.put("Nombre", mascota.getNombre_mascota());
-                Mascota_db.put("Fecha", mascota.getFecha_mascota());
-                Mascota_db.put("Raza", mascota.getRaza());
+                Mascota_db.put(getResources().getString(R.string.ID_USUARIO), mascota.getId_usuario());
+                Mascota_db.put(getResources().getString(R.string.name_hint), mascota.getNombre_mascota());
+                Mascota_db.put(getResources().getString(R.string.date), mascota.getFecha_mascota());
+                Mascota_db.put(getResources().getString(R.string.race_hint), mascota.getRaza());
 
-                db.collection("Mascota").document(user.getUid() + petname)
+                db.collection(getResources().getString(R.string.pet_title)).document(user.getUid() + petname)
                         .set(Mascota_db)
                         .addOnSuccessListener(aVoid -> {
                             if (ADD_PET_TYPE.equals("ADD_PET"))
                                 mascotas.add(mascota);
                             else if (ADD_PET_TYPE.equals("EDIT_PET"))
                                 mascotas.set(mascotas.indexOf(mascotaSeleccionada), mascota);
-                            Toast.makeText(requireActivity(), "Registro Exitoso. Reinicie la aplicación.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), getResources().getString(R.string.succefull_register), Toast.LENGTH_SHORT).show();
                             NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile, null);
                         })
-                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Fallo en el Registro", Toast.LENGTH_SHORT).show());
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getString(R.string.registry_error), Toast.LENGTH_SHORT).show());
             } else {
-                Toast.makeText(requireActivity(), "Campos Incompletos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), getResources().getString(R.string.incomplete_fields), Toast.LENGTH_SHORT).show();
             }
         });
         binding.bttnCancelPetRegister.setOnClickListener(v ->
@@ -195,13 +195,13 @@ public class AddPetFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_pet:
-                db.collection("Mascota").document(user.getUid() + mascotaSeleccionada.getNombre_mascota())
+                db.collection(getResources().getString(R.string.pet_title)).document(user.getUid() + mascotaSeleccionada.getNombre_mascota())
                         .delete()
                         .addOnSuccessListener(unused -> {
                             mascotas.remove(mascotaSeleccionada);
                             NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_add_pet_to_navigation_profile);
                         })
-                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), "Intentelo de nuevo", Toast.LENGTH_SHORT).show());
+                        .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getString(R.string.retry), Toast.LENGTH_SHORT).show());
                 break;
             default:
                 break;

@@ -60,7 +60,7 @@ public class ProfileFragment extends Fragment {
 
         public void invoke(Mascota mascota) {
             mascotaSeleccionada = mascota;
-            ADD_PET_TYPE = "EDIT_PET";
+            ADD_PET_TYPE = getResources().getString(R.string.EDIT_PET);
             NavHostFragment.findNavController(ProfileFragment.this).navigate(R.id.action_navigation_profile_to_navigation_add_pet);
         }
     });
@@ -102,7 +102,7 @@ public class ProfileFragment extends Fragment {
                 binding.txtName.setText(userData.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString());
                 binding.txtAddress.setText(userData.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString());
                 GlideApp.with(ProfileFragment.this)
-                        .load(userData.get("Foto_Usuario"))
+                        .load(userData.get(getResources().getString(R.string.photo_user)))
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
                         .into(binding.imgUserPhoto);
@@ -117,7 +117,7 @@ public class ProfileFragment extends Fragment {
                     binding.rclrRides.setVisibility(View.VISIBLE);
                 }
             } else {
-                Toast.makeText(requireActivity(), "No es posible cargar los datos del usuario en este momento.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), getResources().getString(R.string.notification), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -138,7 +138,7 @@ public class ProfileFragment extends Fragment {
         }
 
         binding.bttnAddPet.setOnClickListener(v -> {
-            ADD_PET_TYPE = "ADD_PET";
+            ADD_PET_TYPE = getResources().getString(R.string.ADD_PET);
             //Navegación hacia el fragment agregar mascota
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_profile_to_navigation_add_pet, null);
         });
@@ -149,13 +149,13 @@ public class ProfileFragment extends Fragment {
     private void showRides() {
         walksQuery.addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : walksQuery.getResult()) {
-                if (document.get("ID_Paseador").toString().equals(user.getUid())) {
+                if (document.get(getResources().getString(R.string.ID_PASEADOR)).toString().equals(user.getUid())) {
                     Paseo addingWalk = new Paseo(
-                            document.get("ID_Usuario").toString(),
-                            document.get("ID_Paseador").toString(),
-                            document.get("Mascota").toString(),
-                            document.get("Duracion_Paseo").toString(),
-                            Integer.parseInt(document.get("Estado").toString())
+                            document.get(getResources().getString(R.string.ID_USUARIO)).toString(),
+                            document.get(getResources().getString(R.string.ID_PASEADOR)).toString(),
+                            document.get(getResources().getString(R.string.pet_title)).toString(),
+                            document.get(getResources().getString(R.string.Duracion_Paseo)).toString(),
+                            Integer.parseInt(document.get(getResources().getString(R.string.Estado)).toString())
                     );
                     if (addingWalk.getEstado() == 2) {
                         // Finalizado
@@ -172,15 +172,15 @@ public class ProfileFragment extends Fragment {
     private void showPets() {
         mascotasUsuarioQuery.addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
-                String fecha = document.get("Fecha").toString();
+                String fecha = document.get(getResources().getString(R.string.date)).toString();
                 int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
                 int edadMascota = 2022 - anhoMascota;
                 Mascota addingPet = new Mascota(
-                        document.get("ID_Cliente").toString(),
-                        document.get("Nombre").toString(),
+                        document.get(getResources().getString(R.string.ID_Cliente)).toString(),
+                        document.get(getResources().getString(R.string.name_hint)).toString(),
                         edadMascota,
-                        document.get("Fecha").toString(),
-                        document.get("Raza").toString()
+                        document.get(getResources().getString(R.string.date)).toString(),
+                        document.get(getResources().getString(R.string.race_hint)).toString()
                 );
                 if (!mascotas.contains(addingPet)) {
                     mascotas.add(addingPet);

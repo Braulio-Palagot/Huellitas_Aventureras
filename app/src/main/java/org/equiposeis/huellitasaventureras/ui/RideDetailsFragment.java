@@ -40,18 +40,18 @@ public class RideDetailsFragment extends Fragment {
 
         // Rellenar datos del Paseo Seleccionado:
         for (DocumentSnapshot document : clientsQuery.getResult()) {
-            if (document.get("ID_Usuario").toString().equals(paseoSeleccionado.getId_usuario())) {
+            if (document.get(getResources().getString(R.string.ID_USUARIO)).toString().equals(paseoSeleccionado.getId_usuario())) {
                 cliente = new UsuarioCliente(
-                        Integer.parseInt(document.get("Mascotas_Alta").toString()),
-                        document.get("Foto_Usuario").toString(),
-                        document.get("ID_Usuario").toString(),
-                        document.get("Nombre").toString(),
-                        document.get("Genero").toString(),
-                        Integer.parseInt(document.get("Edad").toString()),
-                        Long.parseLong(document.get("Numero_Telefonico").toString()),
-                        document.get("Domicilio").toString(),
-                        document.get("Correo_Electronico").toString(),
-                        document.get("Tipo_Usuario").toString()
+                        Integer.parseInt(document.get(getResources().getString(R.string.MASCOTAS_USUARIO)).toString()),
+                        document.get(getResources().getString(R.string.FOTO_USUARIO)).toString(),
+                        document.get(getResources().getString(R.string.ID_USUARIO)).toString(),
+                        document.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString(),
+                        document.get(getResources().getString(R.string.GENERO_USUARIO)).toString(),
+                        Integer.parseInt(document.get(getResources().getString(R.string.EDAD_USUARIO)).toString()),
+                        Long.parseLong(document.get(getResources().getString(R.string.TELEFONO_USUARIO)).toString()),
+                        document.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString(),
+                        document.get(getResources().getString(R.string.EMAIL_USUARIO)).toString(),
+                        document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()
                 );
                 binding.txtName.setText(cliente.getNombre());
                 binding.txtAddress.setText(cliente.getDomicilio());
@@ -60,17 +60,17 @@ public class RideDetailsFragment extends Fragment {
         }
 
         for (DocumentSnapshot document : mascotasQuery.getResult()) {
-            if (document.get("ID_Cliente").toString().equals(paseoSeleccionado.getId_usuario()) &&
-                    document.get("Nombre").toString().equals(paseoSeleccionado.getMascota())) {
-                String fecha = document.get("Fecha").toString();
+            if (document.get(getResources().getString(R.string.ID_Cliente)).toString().equals(paseoSeleccionado.getId_usuario()) &&
+                    document.get(getResources().getString(R.string.name_hint)).toString().equals(paseoSeleccionado.getMascota())) {
+                String fecha = document.get(getResources().getString(R.string.date)).toString();
                 int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
                 int edadMascota = 2022 - anhoMascota;
                 mascota = new Mascota(
-                        document.get("ID_Cliente").toString(),
-                        document.get("Nombre").toString(),
+                        document.get(getResources().getString(R.string.ID_Cliente)).toString(),
+                        document.get(getResources().getString(R.string.name_hint)).toString(),
                         edadMascota,
-                        document.get("Fecha").toString(),
-                        document.get("Raza").toString()
+                        document.get(getResources().getString(R.string.date)).toString(),
+                        document.get(getResources().getString(R.string.race_hint)).toString()
                 );
                 binding.txtPetName.setText(mascota.getNombre_mascota());
                 binding.txtPetfecha.setText(mascota.getFecha_mascota());
@@ -101,8 +101,8 @@ public class RideDetailsFragment extends Fragment {
             //Mandar a BD la respuesta de aceptar
             String documentPath = paseoSeleccionado.getId_usuario() + paseoSeleccionado.getMascota();
             Map<String, Object> updateRideStatus = new HashMap<>();
-            updateRideStatus.put("Estado", 1);
-            db.collection("Paseos").document(documentPath).update(updateRideStatus);
+            updateRideStatus.put(getResources().getString(R.string.Estado), 1);
+            db.collection(getResources().getString(R.string.Rides)).document(documentPath).update(updateRideStatus);
             paseosPendientes.remove(paseoSeleccionado);
             paseoSeleccionado.setEstado(1);
             paseosEnCurso.add(paseoSeleccionado);
@@ -112,7 +112,7 @@ public class RideDetailsFragment extends Fragment {
         binding.bttnReject.setOnClickListener(v ->{
             //Mandar a BD la respuesta de rechaza
             String documentPath = paseoSeleccionado.getId_usuario() + paseoSeleccionado.getMascota();
-            db.collection("Paseos").document(documentPath).delete();
+            db.collection(getResources().getString(R.string.Rides)).document(documentPath).delete();
             paseosPendientes.remove(paseoSeleccionado);
             NavHostFragment.findNavController(this).navigate(R.id.action_navigation_ride_details_to_navigation_home, null);
         });
@@ -121,8 +121,8 @@ public class RideDetailsFragment extends Fragment {
             //Mandar a BD la finalización
             String documentPath = paseoSeleccionado.getId_usuario() + paseoSeleccionado.getMascota();
             Map<String, Object> updateRideStatus = new HashMap<>();
-            updateRideStatus.put("Estado", 2);
-            db.collection("Paseos").document(documentPath).update(updateRideStatus);
+            updateRideStatus.put(getResources().getString(R.string.Estado), 2);
+            db.collection(getResources().getString(R.string.Rides)).document(documentPath).update(updateRideStatus);
             paseosEnCurso.remove(paseoSeleccionado);
             paseoSeleccionado.setEstado(2);
             paseosFinalizados.add(paseoSeleccionado);

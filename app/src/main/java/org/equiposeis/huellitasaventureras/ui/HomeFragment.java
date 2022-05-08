@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         userQuery.addOnSuccessListener(documentSnapshot -> {
-            if (userQuery.getResult().get("Tipo_Usuario").toString().equals("Cliente")) {
+            if (userQuery.getResult().get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals(getResources().getString(R.string.client_title))) {
                 rclrPaseosEnCursoAdapter = new RidesInProgressAdapter(requireContext(), paseosEnCurso, employeesQuery, onClickListener);
             } else {
                 rclrPaseosPendientesAdapter = new RidesRequestedAdapter(requireContext(), paseosPendientes, clientsQuery, onClickListener);
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment {
                         binding.textViewRideInProgress.setVisibility(View.VISIBLE);
                         binding.rclrRidesInProgress.setVisibility(View.VISIBLE);
                         binding.bttnQuestRide.setVisibility(View.VISIBLE);
-                    } else if (document.get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals("Paseador")) {
+                    } else if (document.get(getResources().getString(R.string.TIPO_USUARIO)).toString().equals(getResources().getString(R.string.Walker))) {
                         //Mostrar datos de Paseador
                         binding.textViewRideInRequest.setVisibility(View.VISIBLE);
                         binding.rclrRidesRequested.setVisibility(View.VISIBLE);
@@ -118,13 +118,13 @@ public class HomeFragment extends Fragment {
     private void showWalks() {
         walksQuery.addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : walksQuery.getResult()) {
-                if (document.get("ID_Paseador").toString().equals(user.getUid())) {
+                if (document.get(getResources().getString(R.string.ID_PASEADOR)).toString().equals(user.getUid())) {
                      Paseo addingWalk = new Paseo(
-                            document.get("ID_Usuario").toString(),
-                            document.get("ID_Paseador").toString(),
-                            document.get("Mascota").toString(),
-                            document.get("Duracion_Paseo").toString(),
-                            Integer.parseInt(document.get("Estado").toString())
+                            document.get(getResources().getString(R.string.ID_USUARIO)).toString(),//checar
+                             document.get(getResources().getString(R.string.ID_PASEADOR)).toString(),
+                             document.get(getResources().getString(R.string.pet_title)).toString(),
+                             document.get(getResources().getString(R.string.Duracion_Paseo)).toString(),
+                            Integer.parseInt(document.get(getResources().getString(R.string.Estado)).toString())
                     );
                     if (addingWalk.getEstado() == 0) {
                         // Pendiente
@@ -139,15 +139,15 @@ public class HomeFragment extends Fragment {
                             binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
                         }
                     }
-                } else if (document.get("ID_Usuario").toString().equals(user.getUid())) {
+                } else if (getResources().getString(R.string.ID_USUARIO).toString().equals(user.getUid())) {
                     Paseo addingWalk = new Paseo(
-                            document.get("ID_Usuario").toString(),
-                            document.get("ID_Paseador").toString(),
-                            document.get("Mascota").toString(),
-                            document.get("Duracion_Paseo").toString(),
-                            Integer.parseInt(document.get("Estado").toString())
+                            document.get(getResources().getString(R.string.ID_USUARIO)).toString(),
+                            document.get(getResources().getString(R.string.ID_PASEADOR)).toString(),
+                            document.get(getResources().getString(R.string.pet_title)).toString(),
+                            document.get(getResources().getString(R.string.Duracion_Paseo)).toString(),
+                            Integer.parseInt(getResources().getString(R.string.Estado).toString())
                     );
-                    if (Integer.parseInt(document.get("Estado").toString()) == 1) {
+                    if (Integer.parseInt(getResources().getString(R.string.Estado).toString()) == 1) {
                         // En curso
                         if (!paseosEnCurso.contains(addingWalk)) {
                             paseosEnCurso.add(addingWalk);

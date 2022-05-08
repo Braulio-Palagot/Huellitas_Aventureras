@@ -52,7 +52,7 @@ public class RideRequestClientFragment extends Fragment {
 //Rellenado de datos Empleados Disponibles subidos en la  BD
         mascotasUsuarioQuery.addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : mascotasUsuarioQuery.getResult()) {
-                String nombre = document.get("Nombre").toString();
+                String nombre = document.get(getResources().getString(R.string.name_hint)).toString();
                 Pets.add(nombre);
             }
             binding.txtPet.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, Pets));
@@ -62,7 +62,7 @@ public class RideRequestClientFragment extends Fragment {
         //Rellenado de datos de Mascotas registradas subidos en la BD
         employeesQuery.addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : employeesQuery.getResult()) {
-                String nombre = document.get("Nombre").toString();
+                String nombre = document.get(getResources().getString(R.string.name_hint)).toString();
                 employees.add(nombre);
             }
             binding.txtEmployee.setAdapter(new ArrayAdapter(requireActivity(), R.layout.dropdown_item, employees));
@@ -79,8 +79,8 @@ public class RideRequestClientFragment extends Fragment {
             }
 
             for (DocumentSnapshot document : employeesQuery.getResult()) {
-                if (document.get("Nombre").toString().equals(binding.txtEmployee.getText().toString())) {
-                    paseo.setId_paseador(document.get("ID_Usuario").toString());
+                if (document.get(getResources().getString(R.string.name_hint)).toString().equals(binding.txtEmployee.getText().toString())) {
+                    paseo.setId_paseador(document.get(getResources().getString(R.string.ID_USUARIO)).toString());
                     break;
                 }
             }
@@ -91,20 +91,20 @@ public class RideRequestClientFragment extends Fragment {
 
             //Metodo para mandar datos a la base de datos.
             Map<String, Object> Paseo_db = new HashMap<>();
-            Paseo_db.put("ID_Usuario", paseo.getId_usuario());
-            Paseo_db.put("Mascota", paseo.getMascota());
-            Paseo_db.put("ID_Paseador", paseo.getId_paseador());
-            Paseo_db.put("Duracion_Paseo", paseo.getDuracionPaseo());
-            Paseo_db.put("Estado", paseo.getEstado());
+            Paseo_db.put(getResources().getString(R.string.ID_USUARIO), paseo.getId_usuario());
+            Paseo_db.put(getResources().getString(R.string.pet_title), paseo.getMascota());
+            Paseo_db.put(getResources().getString(R.string.ID_PASEADOR), paseo.getId_paseador());
+            Paseo_db.put(getResources().getString(R.string.Duracion_Paseo), paseo.getDuracionPaseo());
+            Paseo_db.put(getResources().getString(R.string.Estado), paseo.getEstado());
 
-            db.collection("Paseos").document(user.getUid() + mascota)
+            db.collection(getResources().getString(R.string.Rides)).document(user.getUid() + mascota)
                     .set(Paseo_db)
                     .addOnSuccessListener(unused -> {
-                        Toast.makeText(requireActivity(), "Registro de paseo exitoso", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), getResources().getString(R.string.succefull_register_ride), Toast.LENGTH_SHORT).show();
 
                         NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_navigation_ride_request_to_navigation_home, null);
                     })
-                    .addOnFailureListener(e -> Toast.makeText(requireActivity(), "No se pudo realizar el registro del paseo", Toast.LENGTH_SHORT).show());
+                    .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getString(R.string.fail_register_ride), Toast.LENGTH_SHORT).show());
         });
 
         binding.bttnCancelClientRequest.setOnClickListener(v -> {

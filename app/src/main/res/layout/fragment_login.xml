@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/ic_mail"
-        android:hint="@string/mail_hint">
+        android:hint="@string/mail_hint">    <!-- mismo que register -->
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtMail"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/password_hint"
         app:startIconDrawable="@drawable/ic_lock"
-        app:endIconMode="password_toggle">
+        app:endIconMode="password_toggle"><!-- mismo que register -->
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPassword"
@@ -72,5 +72,5 @@
         style="@style/BaseTextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register" />
+        android:text="@string/register" /><!-- mismo que generales -->
 </LinearLayout>

@@ -20,6 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/pending_rides_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesRequested"
@@ -44,6 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rclrRidesRequested" />
+            android:hint="@string/ongoing_rides_title" />    <!-- Cambio de color? -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rclrRidesInProgress"
