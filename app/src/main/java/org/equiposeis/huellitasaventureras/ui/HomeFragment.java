@@ -139,15 +139,15 @@ public class HomeFragment extends Fragment {
                             binding.rclrRidesInProgress.getAdapter().notifyDataSetChanged();
                         }
                     }
-                } else if (getResources().getString(R.string.ID_USUARIO).toString().equals(user.getUid())) {
+                } else if (document.get(getResources().getString(R.string.ID_USUARIO)).toString().equals(user.getUid())) {
                     Paseo addingWalk = new Paseo(
                             document.get(getResources().getString(R.string.ID_USUARIO)).toString(),
                             document.get(getResources().getString(R.string.ID_PASEADOR)).toString(),
                             document.get(getResources().getString(R.string.pet_title)).toString(),
                             document.get(getResources().getString(R.string.Duracion_Paseo)).toString(),
-                            Integer.parseInt(getResources().getString(R.string.Estado).toString())
+                            Integer.parseInt(document.get(getResources().getString(R.string.Estado)).toString())
                     );
-                    if (Integer.parseInt(getResources().getString(R.string.Estado).toString()) == 1) {
+                    if (Integer.parseInt(document.get(getResources().getString(R.string.Estado)).toString()) == 1) {
                         // En curso
                         if (!paseosEnCurso.contains(addingWalk)) {
                             paseosEnCurso.add(addingWalk);
