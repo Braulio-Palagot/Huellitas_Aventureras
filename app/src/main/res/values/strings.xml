@@ -182,5 +182,6 @@
     <!--RideRequestClientFragment-->
     <string name="succefull_register_ride">Registro de paseo exitoso</string>
     <string name="fail_register_ride">No se pudo realizar el registro del paseo</string>
+    <string name="TRY_AGAIN">Intentelo de nuevo más tarde.</string>
 
 </resources>

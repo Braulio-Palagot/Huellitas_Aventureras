@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -38,47 +39,50 @@ public class RideDetailsFragment extends Fragment {
         binding=FragmentRideDetailsBinding.inflate(inflater,container,false);
         View root=binding.getRoot();
 
-        // Rellenar datos del Paseo Seleccionado:
-        for (DocumentSnapshot document : clientsQuery.getResult()) {
-            if (document.get(getResources().getString(R.string.ID_USUARIO)).toString().equals(paseoSeleccionado.getId_usuario())) {
-                cliente = new UsuarioCliente(
-                        Integer.parseInt(document.get(getResources().getString(R.string.MASCOTAS_USUARIO)).toString()),
-                        document.get(getResources().getString(R.string.FOTO_USUARIO)).toString(),
-                        document.get(getResources().getString(R.string.ID_USUARIO)).toString(),
-                        document.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString(),
-                        document.get(getResources().getString(R.string.GENERO_USUARIO)).toString(),
-                        Integer.parseInt(document.get(getResources().getString(R.string.EDAD_USUARIO)).toString()),
-                        Long.parseLong(document.get(getResources().getString(R.string.TELEFONO_USUARIO)).toString()),
-                        document.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString(),
-                        document.get(getResources().getString(R.string.EMAIL_USUARIO)).toString(),
-                        document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()
-                );
-                binding.txtName.setText(cliente.getNombre());
-                binding.txtAddress.setText(cliente.getDomicilio());
-                break;
+        try {
+            // Rellenar datos del Paseo Seleccionado:
+            for (DocumentSnapshot document : clientsQuery.getResult()) {
+                if (document.get(getResources().getString(R.string.ID_USUARIO)).toString().equals(paseoSeleccionado.getId_usuario())) {
+                    cliente = new UsuarioCliente(
+                            Integer.parseInt(document.get(getResources().getString(R.string.MASCOTAS_USUARIO)).toString()),
+                            document.get(getResources().getString(R.string.FOTO_USUARIO)).toString(),
+                            document.get(getResources().getString(R.string.ID_USUARIO)).toString(),
+                            document.get(getResources().getString(R.string.NOMBRE_USUARIO)).toString(),
+                            document.get(getResources().getString(R.string.GENERO_USUARIO)).toString(),
+                            Integer.parseInt(document.get(getResources().getString(R.string.EDAD_USUARIO)).toString()),
+                            Long.parseLong(document.get(getResources().getString(R.string.TELEFONO_USUARIO)).toString()),
+                            document.get(getResources().getString(R.string.DOMICILIO_USUARIO)).toString(),
+                            document.get(getResources().getString(R.string.EMAIL_USUARIO)).toString(),
+                            document.get(getResources().getString(R.string.TIPO_USUARIO)).toString()
+                    );
+                    binding.txtName.setText(cliente.getNombre());
+                    binding.txtAddress.setText(cliente.getDomicilio());
+                    break;
+                }
             }
-        }
 
-        for (DocumentSnapshot document : mascotasQuery.getResult()) {
-            if (document.get(getResources().getString(R.string.ID_Cliente)).toString().equals(paseoSeleccionado.getId_usuario()) &&
-                    document.get(getResources().getString(R.string.name_hint)).toString().equals(paseoSeleccionado.getMascota())) {
-                String fecha = document.get(getResources().getString(R.string.date)).toString();
-                int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
-                int edadMascota = 2022 - anhoMascota;
-                mascota = new Mascota(
-                        document.get(getResources().getString(R.string.ID_Cliente)).toString(),
-                        document.get(getResources().getString(R.string.name_hint)).toString(),
-                        edadMascota,
-                        document.get(getResources().getString(R.string.date)).toString(),
-                        document.get(getResources().getString(R.string.race_hint)).toString()
-                );
-                binding.txtPetName.setText(mascota.getNombre_mascota());
-                binding.txtPetfecha.setText(mascota.getFecha_mascota());
-                binding.txtRace.setText(mascota.getRaza());
-                break;
+            for (DocumentSnapshot document : mascotasQuery.getResult()) {
+                if (document.get(getResources().getString(R.string.ID_Cliente)).toString().equals(paseoSeleccionado.getId_usuario()) &&
+                        document.get(getResources().getString(R.string.name_hint)).toString().equals(paseoSeleccionado.getMascota())) {
+                    String fecha = document.get(getResources().getString(R.string.date)).toString();
+                    int anhoMascota = Integer.parseInt(fecha.substring(fecha.lastIndexOf('/') + 1));
+                    int edadMascota = 2022 - anhoMascota;
+                    mascota = new Mascota(
+                            document.get(getResources().getString(R.string.ID_Cliente)).toString(),
+                            document.get(getResources().getString(R.string.name_hint)).toString(),
+                            edadMascota,
+                            document.get(getResources().getString(R.string.date)).toString(),
+                            document.get(getResources().getString(R.string.race_hint)).toString()
+                    );
+                    binding.txtPetName.setText(mascota.getNombre_mascota());
+                    binding.txtPetfecha.setText(mascota.getFecha_mascota());
+                    binding.txtRace.setText(mascota.getRaza());
+                    break;
+                }
             }
+        } catch (Exception e) {
+            Toast.makeText(requireActivity(), getResources().getString(R.string.TRY_AGAIN), Toast.LENGTH_SHORT).show();
         }
-
 
         binding.txtTime.setText(paseoSeleccionado.getDuracionPaseo());
 
