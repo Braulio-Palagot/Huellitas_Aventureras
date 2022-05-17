@@ -3,15 +3,11 @@ Proyecto semestral para la materia de Ingeniería de Software (6g6D). Equipo 06.
 
 
 ## Integrantes del Equipo:
-Flores López Jocelyn.               19011339
-
-Hernández Palagot Braulio David.    19011364
-
-Mijangos Gálvez Jafet.              19011399
-
-Ramírez Lazares Claudia Guadalupe.  19011427
-
-Rebollo Merino Antonio.             19011432
+    Flores López Jocelyn.               19011339
+    Hernández Palagot Braulio David.    19011364    
+    Mijangos Gálvez Jafet.              19011399    
+    Ramírez Lazares Claudia Guadalupe.  19011427    
+    Rebollo Merino Antonio.             19011432
 
 ## Justificación
 El Proyecto presentado tiene como finalidad el poder ayudar a las diferentes personas con mascotas debido a que por motivos de pandemia se ha complicado aún más la interacción fuera de casa, varios expertos aseguran que el ejercicio del perro es un aspecto fundamental para que el animal lleve una vida saludable y un desarrollo adecuado. Para ello, es necesario un paseo que dure entre 30 y 60 minutos, dependiendo de la raza y edad del perro, teniendo en cuenta que los cachorros, al estar en pleno crecimiento, son muy movidos y necesitan quemar mucha energía. Lo más recomendable es empezar realizando 2 paseos al día de 20 minutos cada uno.
